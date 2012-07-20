@@ -1,10 +1,27 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * JarLoader.java
+ * 
+ * BrowserNG - A workbench for the browser of the new generation
+ * Copyright (C) 2012 Ioannis Charalampidis
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
  */
 package com.wavesoft.webng.io;
 
 import com.wavesoft.webng.api.WebViewNG;
+import com.wavesoft.webng.api.Website;
 import com.wavesoft.webng.render.WebViewError;
 import java.net.URL;
 import java.io.IOException;
@@ -31,32 +48,40 @@ public class JarLoader {
 
     private JarFileLoader jarLoader = new JarFileLoader (new URL[] {});
     
-    public WebViewNG getViewByName(String name) {
-        try {
-            
-            jarLoader.addFile("/Users/icharala/NetBeansProjects/WebNG-Wavesoft/dist/WebNG-Wavesoft.jar");
-            
-            // Get the view by name
-            Class c = jarLoader.loadClass(name);
-            if (!WebViewNG.class.isAssignableFrom(c)) {
-                return new WebViewError("Unable to load this view", "The view is not a subclass of WebViewNG!");
-            }
-            
-            // Get instance
-            WebViewNG view = (WebViewNG)c.newInstance();
-            
-            // Return view
-            return view;
-            
-        } catch (MalformedURLException ex) {
-            return new WebViewError("Unable to load the view file", ex);
-        } catch (InstantiationException ex) {
-            return new WebViewError("Unable to load this view", ex);
-        } catch (IllegalAccessException ex) {
-            return new WebViewError("Unable to load this view", ex);
-        } catch (ClassNotFoundException ex) {
-            return new WebViewError("Unable to load this view", ex);
-        }
+    public WebViewNG getViewFromJar(String jarFile, String className) 
+            throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        
+        // It automatically de-duplicates classes
+        jarLoader.addFile(jarFile);
+
+        // Get the view by name
+        Class c = jarLoader.loadClass(className);
+        if (!WebViewNG.class.isAssignableFrom(c)) 
+            throw new IllegalAccessException("The specified class is not a WebViewNG instance!");
+
+        // Get instance
+        WebViewNG instance = (WebViewNG)c.newInstance();
+
+        // Return view
+        return instance;
+    }
+    
+    public Website getWebsiteFromJar(String jarFile, String className) 
+            throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        
+        // It automatically de-duplicates classes
+        jarLoader.addFile(jarFile);
+
+        // Get the view by name
+        Class c = jarLoader.loadClass(className);
+        if (!Website.class.isAssignableFrom(c)) 
+            throw new IllegalAccessException("The specified class is not a Website instance!");
+
+        // Get instance
+        Website instance = (Website)c.newInstance();
+
+        // Return view
+        return instance;
     }
     
 }
