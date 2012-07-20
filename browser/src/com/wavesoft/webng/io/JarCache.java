@@ -39,10 +39,10 @@ public class JarCache {
         try {
             Statement stat = conn.createStatement();
             
-            stat.executeUpdate("CREATE TABLE IF NOT EXISTS jar_ ("
-                    + "index INTEGER PRIMARY KEY,"
-                    + "name  VARCHAR(1024),"
-                    + ""
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS jar_packages ("
+                    + "index     INTEGER PRIMARY KEY,"
+                    + "package   VARCHAR(1024),"
+                    + "jar       VARCHAR(1024)"
                     + ")");
             
         } catch (SQLException ex) {
@@ -51,14 +51,17 @@ public class JarCache {
 
     }
     
-    public JarCache(String directory) {
+    public JarCache(String directory, String database) {
         try {
             
             // Try to load the SQLite JDBC
             Class.forName("org.sqlite.JDBC");
 
             // Open a connection
-            conn = DriverManager.getConnection("jdbc:sqlite:"+directory+"/store.sqlite3");
+            conn = DriverManager.getConnection("jdbc:sqlite:"+database);
+            
+            // Setup database
+            setupDatabase();
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(JarCache.class.getName()).log(Level.SEVERE, null, ex);

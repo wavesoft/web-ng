@@ -24,7 +24,10 @@ package com.wavesoft.webng.ui;
 import com.wavesoft.webng.api.BrowserWindow;
 import com.wavesoft.webng.api.HeadButton;
 import com.wavesoft.webng.api.WebViewNG;
+import com.wavesoft.webng.io.DownloadManager.DownloadJob;
+import com.wavesoft.webng.io.DownloadManager.DownloadListener;
 import com.wavesoft.webng.io.JarLoader;
+import com.wavesoft.webng.io.WebNGSystem;
 import com.wavesoft.webng.render.WebViewError;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -213,6 +216,18 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow {
     private void sbHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sbHomeMouseClicked
 
         //navigateTo(loader.getViewByName("com.wavesoft.templates.basic.BlogHome"));
+        WebNGSystem.downloadManager.download("http://localhost/", new DownloadListener() {
+
+            @Override
+            public void downloadCompleted(DownloadJob job) {
+                navigateTo(new WebViewError("No error", job.buffer.replace("<", "{").replace(">", "}")));
+            }
+
+            @Override
+            public void downloadFailed(DownloadJob job) {
+            }
+            
+        });
         
     }//GEN-LAST:event_sbHomeMouseClicked
 

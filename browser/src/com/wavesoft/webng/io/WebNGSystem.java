@@ -30,6 +30,7 @@ public class WebNGSystem {
     
     public static JarCache jarCache;
     public static JarLoader jarLoader;
+    public static DownloadManager downloadManager;
     
     private static String getAppDataDir(String appName) {
         String OS = System.getProperty("os.name").toUpperCase();
@@ -57,11 +58,15 @@ public class WebNGSystem {
         // Get/Make user directory
         String webNGdir = getAppDataDir("WebNGBrowser");
         mkdirIfMissing(webNGdir);
-        mkdirIfMissing(webNGdir + "/jarbox");
+        mkdirIfMissing(webNGdir+"/jarbox");
         
         // Create cache and jar loader
-        jarCache = new JarCache(webNGdir+"/jarbox");
+        jarCache = new JarCache(webNGdir+"/jarbox", webNGdir+"/data.sqlite3");
         jarLoader = new JarLoader();
+        
+        // Initialize download manager
+        downloadManager = new DownloadManager();
+        
     }
     
 }
