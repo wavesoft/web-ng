@@ -21,7 +21,6 @@
 package com.wavesoft.webng.io;
 
 import java.io.File;
-import sun.management.FileSystem;
 
 /**
  *
@@ -47,16 +46,21 @@ public class WebNGSystem {
         return System.getProperty("user.dir") + "/." + appName;
     }
     
+    public static void mkdirIfMissing(String path) {
+        File dir = new File(path);
+        if (!dir.isDirectory())
+            dir.mkdir();        
+    }
+    
     public static void Initialize() {
         
         // Get/Make user directory
         String webNGdir = getAppDataDir("WebNGBrowser");
-        File dir = new File(webNGdir);
-        if (!dir.isDirectory())
-            dir.mkdir();
+        mkdirIfMissing(webNGdir);
+        mkdirIfMissing(webNGdir + "/jarbox");
         
         // Create cache and jar loader
-        jarCache = new JarCache(webNGdir);
+        jarCache = new JarCache(webNGdir+"/jarbox");
         jarLoader = new JarLoader();
     }
     
