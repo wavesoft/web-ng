@@ -29,6 +29,7 @@ import java.util.ArrayList;
  */
 public abstract class WebViewNG extends javax.swing.JPanel {
     private BrowserWindow browserWindow = null;
+    private ArrayList<WebViewEventListener> listeners = new ArrayList<WebViewEventListener>();
     
     /** Creates new form WebViewNG */
     public WebViewNG() {
@@ -48,20 +49,24 @@ public abstract class WebViewNG extends javax.swing.JPanel {
         return super.add(cmpnt);
     }
     
-    /**
-     * Return the buttons the website wants to put on the location bar
-     * @return Returns null or a list of HeadButton instances
-     */
-    public HeadButton[] webngGetHeadButtons() {
-        return null;
-    }
-    
     public void webngSetBrowserWindow(BrowserWindow window) {
         browserWindow = window;
     }
     
     public BrowserWindow getWindow() {
         return browserWindow;
+    }
+    
+    public void addViewEventListener(WebViewEventListener l) {
+        listeners.add(l);
+    }
+    
+    public void removeViewEventListener(WebViewEventListener l) {
+        listeners.remove(l);
+    }
+    
+    public void getViewEventListeners() {
+        
     }
 
     /** This method is called from within the constructor to
@@ -79,11 +84,11 @@ public abstract class WebViewNG extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 427, Short.MAX_VALUE)
+            .add(0, 123, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 202, Short.MAX_VALUE)
+            .add(0, 62, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -24,6 +24,7 @@ package com.wavesoft.webng.ui;
 import com.wavesoft.webng.api.BrowserWindow;
 import com.wavesoft.webng.api.HeadButton;
 import com.wavesoft.webng.api.WebViewNG;
+import com.wavesoft.webng.api.WebViewEventListener;
 import com.wavesoft.webng.io.DownloadManager.DownloadJob;
 import com.wavesoft.webng.io.DownloadManager.DownloadListener;
 import com.wavesoft.webng.io.JarLoader;
@@ -100,9 +101,6 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow {
         
         view.setVisible(true);
         view.webngSetBrowserWindow(this);
-        
-        // Update the headButtons
-        updateHeadButtons(webView.webngGetHeadButtons());
         
     }
     
@@ -249,6 +247,20 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow {
     public void navigateTo(WebViewNG view) {
         setView(view);
         revalidate();
+    }
+
+    @Override
+    public void setTitle(String title) {
+    }
+
+    @Override
+    public void setHeadButtons(HeadButton[] buttons) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void addWindowEventListener(WebViewEventListener l) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

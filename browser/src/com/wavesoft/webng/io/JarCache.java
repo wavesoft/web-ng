@@ -39,8 +39,8 @@ public class JarCache {
         try {
             Statement stat = conn.createStatement();
             
-            stat.executeUpdate("CREATE TABLE IF NOT EXISTS jar_packages ("
-                    + "index     INTEGER PRIMARY KEY,"
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS jars ("
+                    + "id        INTEGER PRIMARY KEY,"
                     + "package   VARCHAR(1024),"
                     + "jar       VARCHAR(1024)"
                     + ")");
@@ -69,6 +69,10 @@ public class JarCache {
             Logger.getLogger(JarCache.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    
+    public void getJarFor(String className) {
+        
     }
     
 }

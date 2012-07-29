@@ -28,5 +28,8 @@ public interface BrowserWindow {
     
     public void navigateTo(String url);
     public void navigateTo(WebViewNG view);
+    public void setTitle(String title);
+    public void setHeadButtons(HeadButton[] buttons);
+    public void addWindowEventListener(WebViewEventListener l);
     
 }

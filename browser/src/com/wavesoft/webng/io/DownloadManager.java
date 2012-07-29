@@ -20,18 +20,13 @@
  */
 package com.wavesoft.webng.io;
 
-import com.sun.xml.internal.ws.util.ByteArrayBuffer;
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

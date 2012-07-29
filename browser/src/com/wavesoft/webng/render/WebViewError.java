@@ -56,29 +56,7 @@ public class WebViewError extends WebViewNG {
         jBodyLabel.setText("<html><p>An "+ex.getClass().getName()+" exception occured:</p><pre>"+os.toString()+"</pre>");
         
     }
-
-    @Override
-    public HeadButton[] webngGetHeadButtons() {
-        return new HeadButton[] {
-            new HeadButton() {
-                @Override
-                public Icon getIcon() {
-                    return new javax.swing.ImageIcon(getClass().getResource("/com/wavesoft/webng/resources/question.png"));
-                }
-
-                @Override
-                public String getToolTip() {
-                    return "Investigate error";
-                }
-
-                @Override
-                public void buttonClicked() {
-                    getWindow().navigateTo(new WebViewLoading());
-                }
-            }
-        };
-    }
-
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

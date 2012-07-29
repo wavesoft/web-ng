@@ -28,8 +28,6 @@ import java.io.File;
  */
 public class WebNGSystem {
     
-    public static JarCache jarCache;
-    public static JarLoader jarLoader;
     public static DownloadManager downloadManager;
     
     private static String getAppDataDir(String appName) {
@@ -60,9 +58,8 @@ public class WebNGSystem {
         mkdirIfMissing(webNGdir);
         mkdirIfMissing(webNGdir+"/jarbox");
         
-        // Create cache and jar loader
-        jarCache = new JarCache(webNGdir+"/jarbox", webNGdir+"/data.sqlite3");
-        jarLoader = new JarLoader();
+        // Initialize JarIO
+        JarIO.Initialize(webNGdir);
         
         // Initialize download manager
         downloadManager = new DownloadManager();
