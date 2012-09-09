@@ -1,0 +1,45 @@
+
+=======================
+ Universal JAR Loading
+=======================
+
+DESCRIPTION
+
+The fully-qualified naming in java objects provides a great power on resource discovery.
+The main purpose of the Universal JAR Loading (UJL) was to locate the jar file that provides
+a requested class, no mater where it resides on the internet.
+
+Here is what happens when you want to load a class, let's say: "gr.wavesoft.blog.FrontPage"
+
+    1. The system will reverse the first two components and use them as the domain
+       name where the jar file is located. In this case:
+
+	   wavesoft.gr
+	
+	2. The system will then look for an /exports file. This file contains the mapping between
+	   the class names the server provides and the jar file where they reside.
+	   Here is an example file:
+	
+	   # Exports file
+	   com.wavesoft.templates.* : jars/templates.jar
+	   com.wavesoft.about.About : jars/about.jar	
+	   com.wavesoft.system.*	: system/
+	
+	3. The system will then load the defined jar file and try to load the specified class
+	   from there. If the class is not found in the file the process will fail.
+	   (It is planned to perform a secondary lookup on a community-contributed database but
+	    that's still under discussion)
+
+
+EXPORTS FILE SYNTAX
+
+The general syntax of the exports file is:
+
+ # <comment>
+ <match rule> : [ <path to jar file> | <subfolder> ]
+
+Match rule is either the fully-qualified name of a class (Note: NOT the package, but the class itself)
+or a part of the FQN plus the wildcard '*'.
+
+If you specify a subfolder instead of a jar file, the system expects to find another /exports file in that
+folder that will have again the same syntax.
