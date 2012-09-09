@@ -21,7 +21,6 @@
 package com.wavesoft.webng;
 
 import com.wavesoft.webng.io.WebNGSystem;
-import com.wavesoft.webng.ui.BrowserFrame;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -38,6 +37,7 @@ public class WebNG {
      */
     public static void main(String[] args) {
 
+        
         // Setup system's look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -53,14 +53,46 @@ public class WebNG {
 
         // Initialize WebIO
         WebNGSystem.Initialize();
+        
+        /*
+        WLData data = new WLRemoteData("http://localhost/web-ng/test.php");
+        
+        Long diff;
+        Long time = System.currentTimeMillis();
+        
+        System.out.println(data.get("when"));
+        
+        diff = System.currentTimeMillis() - time;
+        time = System.currentTimeMillis();
+        System.out.println("It took "+diff+" ms");
 
-        /* Create and display the form */
+        System.out.println(data.get("when"));
+        
+        diff = System.currentTimeMillis() - time;
+        time = System.currentTimeMillis();
+        System.out.println("It took "+diff+" ms");
+
+        data.invalidate();
+        System.out.println(data.get("when"));
+        
+        diff = System.currentTimeMillis() - time;
+        time = System.currentTimeMillis();
+        System.out.println("It took "+diff+" ms");
+        */
+                
+        // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
                 new Browser().setVisible(true);
             }
+
         });
+        
+        /*
+        // Start AIK kernel
+        Kernel.start();
+        */
         
     }
     

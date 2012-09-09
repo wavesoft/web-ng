@@ -102,7 +102,7 @@
         <attribute name="visiblerect" type="string">{{1, 172}, {604, 477}}</attribute>
         <attribute name="lasteditdate" type="date">365213506.52262800931930541992</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">365214010.75288599729537963867</attribute>
+        <attribute name="fileloaddate" type="date">365215818.08164101839065551758</attribute>
         <attribute name="extension" type="string">tex</attribute>
         <attribute name="cursor" type="string">{752, 0}</attribute>
         <attribute name="sortindex" type="int32">0</attribute>
@@ -138,7 +138,7 @@
         <attribute name="visiblerect" type="string">{{0, 0}, {610, 492}}</attribute>
         <attribute name="lasteditdate" type="date">365213072.97237098217010498047</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">365214010.75517702102661132812</attribute>
+        <attribute name="fileloaddate" type="date">365215818.08750498294830322266</attribute>
         <attribute name="extension" type="string">tex</attribute>
         <attribute name="cursor" type="string">{262, 0}</attribute>
         <attribute name="sortindex" type="int32">4</attribute>
@@ -154,11 +154,11 @@
     <object type="TEXFILE" id="z109">
         <attribute name="wasopen" type="bool">1</attribute>
         <attribute name="visiblerect" type="string">{{0, 0}, {619, 492}}</attribute>
-        <attribute name="lasteditdate" type="date">365214009.90544497966766357422</attribute>
+        <attribute name="lasteditdate" type="date">365215817.18500101566314697266</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">365214010.75400501489639282227</attribute>
+        <attribute name="fileloaddate" type="date">365215818.08602702617645263672</attribute>
         <attribute name="extension" type="string">tex</attribute>
-        <attribute name="cursor" type="string">{256, 0}</attribute>
+        <attribute name="cursor" type="string">{135, 0}</attribute>
         <attribute name="sortindex" type="int32">3</attribute>
         <attribute name="name" type="string">specs.tex</attribute>
         <attribute name="isexpanded" type="bool">0</attribute>

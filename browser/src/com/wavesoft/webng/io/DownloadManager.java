@@ -21,10 +21,12 @@
 package com.wavesoft.webng.io;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.net.URL;
 import java.util.logging.Level;
@@ -35,6 +37,8 @@ import java.util.logging.Logger;
  * @author icharala
  */
 public class DownloadManager {
+    
+    private static final int BUFFER_SIZE = 1024;
 
     public static interface DownloadListener {
         
@@ -48,16 +52,49 @@ public class DownloadManager {
      */
     public static class DownloadJob {
 
-        public String url;
+        public enum DownloadType {
+            BUFFER, FILE
+        }
+        
+        public URL url;
+        public String requestMethod;
+        public String requestData;
+        
         public String buffer;
+        public String filename;
         public int    status;
         public String statusMessage;
         public DownloadListener listener;
+        public DownloadType type;
         
-        public DownloadJob(String url,DownloadListener listener) {
+        public DownloadJob(URL url,DownloadListener listener) {
             this.url = url;
             this.buffer = "";
+            this.filename = "";
+            this.requestMethod = "GET";
+            this.requestData = "";
             this.listener = listener;
+            this.type = DownloadType.BUFFER;
+        }
+        
+        public DownloadJob(URL url, String requestMethod, String requestData, DownloadListener listener) {
+            this.url = url;
+            this.buffer = "";
+            this.filename = "";
+            this.requestMethod = requestMethod;
+            this.requestData = requestData;
+            this.listener = listener;
+            this.type = DownloadType.BUFFER;
+        }
+        
+        public DownloadJob(URL url, String filename, DownloadListener listener) {
+            this.url = url;
+            this.buffer = "";
+            this.requestMethod = "GET";
+            this.requestData = "";
+            this.filename = filename;
+            this.listener = listener;
+            this.type = DownloadType.FILE;
         }
         
         public void setFailure(int status, String statusMessage) {
@@ -77,7 +114,6 @@ public class DownloadManager {
         @Override
         public void run() {
             HttpURLConnection connection;
-            URL serverAddress;
             BufferedReader bufReader;
             StringBuilder strBuffer;
             
@@ -92,21 +128,19 @@ public class DownloadManager {
                     return;
                 }
                 
-                // Setup URL
-                try {
-                    serverAddress = new URL(job.url);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(DownloadManager.class.getName()).log(Level.SEVERE, null, ex);
-                    job.setFailure(600, "Mailformed URL Exception: "+ex.getMessage());
-                    continue; // With the next job
-                }
-                
                 // Connect to the server and download the file
                 try {
-                    connection = (HttpURLConnection)serverAddress.openConnection();
-                    connection.setRequestMethod("GET");
+                    connection = (HttpURLConnection)job.url.openConnection();
+                    connection.setRequestMethod(job.requestMethod);
                     connection.setDoOutput(true);
                     connection.setReadTimeout(10000);
+                    
+                    // Send request data
+                    if (!job.requestData.isEmpty()) {
+                        OutputStreamWriter osw = new OutputStreamWriter(connection.getOutputStream());
+                        osw.append(job.requestData);
+                        osw.close();
+                    }
                     
                 } catch (IOException ex) {
                     Logger.getLogger(DownloadManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,16 +150,40 @@ public class DownloadManager {
                 
                 // Read the entire buffer
                 try {
-                    bufReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    strBuffer = new StringBuilder();
                     
-                    char[] charBuf = new char[1024];
-                    while (bufReader.read(charBuf)>0) {
-                        strBuffer.append(charBuf);
+                    // Download to BUFFER
+                    if (job.type == DownloadJob.DownloadType.BUFFER) {
+                        
+                        // Prepare StringBuilder
+                        bufReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        strBuffer = new StringBuilder();
+                        
+                        // Download
+                        char[] charBuf = new char[BUFFER_SIZE];
+                        int len = 0;
+                        while ((len = bufReader.read(charBuf))>0) {
+                            strBuffer.append(charBuf, 0, len);
+                        }
+                        job.buffer = strBuffer.toString();
+                        
+                    // Download to FILE
+                    } else if (job.type == DownloadJob.DownloadType.FILE) {
+                        
+                        // Download to FileOutputStream
+                        FileOutputStream fos = new FileOutputStream(job.filename, false);
+                        InputStream inStream = connection.getInputStream();
+                        byte[] byteBuf = new byte[BUFFER_SIZE];
+                        int len = 0;
+                        while ((len = inStream.read(byteBuf))>0) {
+                            fos.write(byteBuf, 0, len);
+                        }
+                        
                     }
                     
-                    job.buffer = strBuffer.toString();
+                    // Update job information
                     job.status = connection.getResponseCode();
+                    
+                    // Notify event
                     if (job.listener != null)
                         job.listener.downloadCompleted(job);
                     
@@ -152,7 +210,7 @@ public class DownloadManager {
         queue = new ArrayBlockingQueue<DownloadJob>(MAX_THREADS);
     }
     
-    private void checkThreads() {
+    public synchronized void checkThreads() {
         // Dispose completed threads
         // and detect free slot
         int freeSlot = -1;
@@ -170,18 +228,27 @@ public class DownloadManager {
         // No free slot? No new thread...
         if (freeSlot != -1) {
             threads[freeSlot] = new Thread(new DownloadThread());
-            threads[freeSlot].run();
+            threads[freeSlot].start();
         }
     }
     
-    public void download(String URL) {
-        queue.add(new DownloadJob(URL, null));
-        checkThreads();
+    public DownloadJob download(URL url, DownloadListener listener) {
+        DownloadJob job = new DownloadJob(url, listener);
+        queue.add(job);
+        return job;
     }
     
-    public void download(String URL, DownloadListener listener) {
-        queue.add(new DownloadJob(URL, listener));
-        checkThreads();
+    public void download(DownloadJob job, DownloadListener listener) {
+        job.listener = listener;
+        queue.add(job);
+    }
+    
+    public void download(URL url, String requestMethod, String requestData, DownloadListener listener) {
+        queue.add(new DownloadJob(url, requestMethod, requestData, listener));
+    }
+    
+    public void downloadFile(URL url, String targetFilename, DownloadListener listener) {
+        queue.add(new DownloadJob(url, targetFilename, listener));
     }
     
 }

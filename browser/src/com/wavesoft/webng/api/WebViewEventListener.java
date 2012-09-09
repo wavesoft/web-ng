@@ -4,11 +4,13 @@
  */
 package com.wavesoft.webng.api;
 
+import java.util.EventListener;
+
 /**
  *
  * @author icharala
  */
-public interface WebViewEventListener {
+public interface WebViewEventListener extends EventListener {
     
     public void viewsLoaded();
     public void contentLoaded();

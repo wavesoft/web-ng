@@ -21,29 +21,65 @@
  */
 package com.wavesoft.webng;
 
-import com.wavesoft.webng.render.AnimationSync;
-import com.wavesoft.webng.render.AnimationSyncHandler;
+import com.wavesoft.webng.ui.BrowserFrame;
+import com.wavesoft.webng.ui.ComponentMover;
+import com.wavesoft.webng.ui.Tabs.TabChangeListener;
+import java.awt.CardLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Basic browser class
  * @author Ioannis Charalampidis
  */
-public class Browser extends javax.swing.JFrame implements ComponentListener {
+public class Browser extends javax.swing.JFrame implements ComponentListener, TabChangeListener {
 
+    ComponentMover mover;
+    ArrayList<BrowserFrame> tabs;
+    
     /** Creates new form Browser */
     public Browser() {
         initComponents();
+        
+        // Setup variables
+        mover = new ComponentMover(this, tabsHead);
+        tabs = new ArrayList<BrowserFrame>();
+        
+        // Setup listeners
         addComponentListener(this);
+        tabsHead.addTabChangeListener(this);
+        
+        // Add the default, new tab
+        addNewTab();
     }
 
-    @Override
-    public void setVisible(boolean bln) {
-        super.setVisible(bln);
-        if (bln) {
-            tabs1.repaint();
-        }
+    public Browser(BrowserFrame frame) {
+        initComponents();
+        
+        // Setup variables
+        mover = new ComponentMover(this, tabsHead);
+        tabs = new ArrayList<BrowserFrame>();
+        
+        // Setup listeners
+        addComponentListener(this);
+        tabsHead.addTabChangeListener(this);
+        
+        // Add the default, new tab
+        addNewTab();
+        
+    }
+    
+    public void addNewTab() {
+        String id = UUID.randomUUID().toString();
+        BrowserFrame view = new BrowserFrame();
+        tabs.add(view);
+        panelViews.add(view, id);
+        view.setTab(tabsHead.addTab(view.getTitle(), id));
+        tabsHead.revalidate();
+        repaint();
     }
 
     /** This method is called from within the constructor to
@@ -55,47 +91,72 @@ public class Browser extends javax.swing.JFrame implements ComponentListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tabs1 = new com.wavesoft.webng.ui.Tabs();
-        pageFrame1 = new com.wavesoft.webng.ui.BrowserFrame();
+        popupMenu = new javax.swing.JPopupMenu();
+        tabsHead = new com.wavesoft.webng.ui.Tabs();
+        panelViews = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WebNG Experimental Browser");
 
-        tabs1.setPreferredSize(new java.awt.Dimension(520, 42));
+        tabsHead.setPreferredSize(new java.awt.Dimension(520, 42));
+        tabsHead.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabsHeadMouseClicked(evt);
+            }
+        });
 
-        org.jdesktop.layout.GroupLayout tabs1Layout = new org.jdesktop.layout.GroupLayout(tabs1);
-        tabs1.setLayout(tabs1Layout);
-        tabs1Layout.setHorizontalGroup(
-            tabs1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        org.jdesktop.layout.GroupLayout tabsHeadLayout = new org.jdesktop.layout.GroupLayout(tabsHead);
+        tabsHead.setLayout(tabsHeadLayout);
+        tabsHeadLayout.setHorizontalGroup(
+            tabsHeadLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(0, 630, Short.MAX_VALUE)
         );
-        tabs1Layout.setVerticalGroup(
-            tabs1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        tabsHeadLayout.setVerticalGroup(
+            tabsHeadLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(0, 42, Short.MAX_VALUE)
         );
+
+        panelViews.setOpaque(false);
+        panelViews.setLayout(new java.awt.CardLayout());
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(pageFrame1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
-            .add(tabs1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+            .add(panelViews, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+            .add(tabsHead, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(tabs1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, 0)
-                .add(pageFrame1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
+                .add(tabsHead, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(panelViews, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tabsHeadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabsHeadMouseClicked
+        if (evt.isConsumed()) return;
+        if (evt.getClickCount() > 1) {
+            addNewTab();
+        }
+    }//GEN-LAST:event_tabsHeadMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.wavesoft.webng.ui.BrowserFrame pageFrame1;
-    private com.wavesoft.webng.ui.Tabs tabs1;
+    private javax.swing.JPanel panelViews;
+    private javax.swing.JPopupMenu popupMenu;
+    private com.wavesoft.webng.ui.Tabs tabsHead;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setVisible(boolean bln) {
+        super.setVisible(bln);
+        if (bln) {
+            tabsHead.repaint();
+        }
+    }
 
     @Override
     public void componentResized(ComponentEvent ce) {
@@ -116,6 +177,22 @@ public class Browser extends javax.swing.JFrame implements ComponentListener {
 
     @Override
     public void componentHidden(ComponentEvent ce) {
+    }
+
+    @Override
+    public void tabChanged(int index, String key) {
+        CardLayout cl = (CardLayout)(panelViews.getLayout());
+        cl.show(panelViews, key);
+        tabs.get(index).focusOnLocationBar();
+    }
+
+    @Override
+    public void tabClosed(int index, String key) {
+        tabsHead.removeTab(index);
+        BrowserFrame frame = tabs.get(index);
+        panelViews.remove(frame);
+        tabs.remove(index);
+        if (tabs.isEmpty()) System.exit(0);
     }
     
 }

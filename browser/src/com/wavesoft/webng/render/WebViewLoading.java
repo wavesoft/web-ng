@@ -54,7 +54,7 @@ public class WebViewLoading extends WebViewNG implements ComponentListener {
         setBackground(new java.awt.Color(255, 255, 255));
         setOpaque(false);
 
-        image1.setBorder(new com.wavesoft.webng.ui.RoundedCordersBorder());
+        image1.setBorder(new com.wavesoft.webng.ui.RoundedCornersBorder());
         image1.setImage(new javax.swing.ImageIcon(getClass().getResource("/com/wavesoft/webng/resources/cloud.jpeg"))); // NOI18N
 
         org.jdesktop.layout.GroupLayout image1Layout = new org.jdesktop.layout.GroupLayout(image1);

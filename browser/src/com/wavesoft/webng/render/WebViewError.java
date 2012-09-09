@@ -21,18 +21,11 @@
  */
 package com.wavesoft.webng.render;
 
-import com.sun.xml.internal.ws.util.ByteArrayBuffer;
-import com.wavesoft.webng.api.HeadButton;
+import com.wavesoft.webng.api.BrowserWindow;
 import com.wavesoft.webng.api.WebViewNG;
-import java.awt.Dimension;
+import com.wavesoft.webng.ui.SystemIcons;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import javax.swing.Icon;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,6 +48,14 @@ public class WebViewError extends WebViewNG {
         ex.printStackTrace(new PrintStream(os));
         jBodyLabel.setText("<html><p>An "+ex.getClass().getName()+" exception occured:</p><pre>"+os.toString()+"</pre>");
         
+    }
+
+    @Override
+    public void webngSetBrowserWindow(BrowserWindow window) {
+        super.webngSetBrowserWindow(window);
+        if (window == null) return;
+        window.setTitle("Error");
+        window.setIcon(SystemIcons.tabErrorIcon);
     }
     
     /** This method is called from within the constructor to
@@ -80,11 +81,11 @@ public class WebViewError extends WebViewNG {
         imgWarning.setLayout(imgWarningLayout);
         imgWarningLayout.setHorizontalGroup(
             imgWarningLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 279, Short.MAX_VALUE)
+            .add(0, 256, Short.MAX_VALUE)
         );
         imgWarningLayout.setVerticalGroup(
             imgWarningLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 259, Short.MAX_VALUE)
+            .add(0, 280, Short.MAX_VALUE)
         );
 
         jTitleLabel.setFont(new java.awt.Font("Lucida Grande", 1, 24));
@@ -102,22 +103,22 @@ public class WebViewError extends WebViewNG {
             imgBackLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(imgBackLayout.createSequentialGroup()
                 .add(imgWarning, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(18, 18, 18)
                 .add(imgBackLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jBodyLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                    .add(jTitleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)))
+                    .add(jBodyLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                    .add(jTitleLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)))
         );
         imgBackLayout.setVerticalGroup(
             imgBackLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, imgBackLayout.createSequentialGroup()
-                .add(imgBackLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, imgWarning, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(imgBackLayout.createSequentialGroup()
+                .add(imgBackLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(imgBackLayout.createSequentialGroup()
                         .add(20, 20, 20)
                         .add(jTitleLabel)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jBodyLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
-                .add(118, 118, 118))
+                        .add(jBodyLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
+                    .add(imgWarning, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(0, 0, 0))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -137,4 +138,5 @@ public class WebViewError extends WebViewNG {
     private javax.swing.JLabel jBodyLabel;
     private javax.swing.JLabel jTitleLabel;
     // End of variables declaration//GEN-END:variables
+
 }

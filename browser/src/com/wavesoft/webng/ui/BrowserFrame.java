@@ -25,33 +25,43 @@ import com.wavesoft.webng.api.BrowserWindow;
 import com.wavesoft.webng.api.HeadButton;
 import com.wavesoft.webng.api.WebViewNG;
 import com.wavesoft.webng.api.WebViewEventListener;
-import com.wavesoft.webng.io.DownloadManager.DownloadJob;
-import com.wavesoft.webng.io.DownloadManager.DownloadListener;
 import com.wavesoft.webng.io.JarLoader;
-import com.wavesoft.webng.io.WebNGSystem;
 import com.wavesoft.webng.render.WebViewError;
-import java.awt.Color;
-import java.awt.Dimension;
+import com.wavesoft.webng.render.WebViewLoading;
+import com.wavesoft.webng.ui.Tabs.Tab;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.ArrayList;
 
 /**
  *
  * @author icharala
  */
-public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow {
+public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, PresenterEventListener {
     
     private WebViewNG webView;
     private ArrayList<SmoothButton> headButtons = new ArrayList<SmoothButton>();
     private JarLoader loader = new JarLoader();
+    private Tab linkedTab = null;
+    private Thread presenterThread = null;
     
     /** Creates new form PageFrame */
     public BrowserFrame() {
         initComponents();
+        jViewPanel.getVerticalScrollBar().setUnitIncrement(16);
+        jViewPanel.getHorizontalScrollBar().setUnitIncrement(16);
         
         setView(new WebViewError("No view available", "<html><p>No view is currently available</p></html>"));
+    }
+    
+    public void focusOnLocationBar() {
+        jLocationBar.requestFocus();
+    }
+    
+    public String getTitle() {
+        return "New Tab";
     }
     
     public void renderBackground(Graphics g) {
@@ -92,8 +102,11 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow {
     
     public void setView(WebViewNG view) {
         // Remove previous component
-        if (webView != null)
+        if (webView != null) {
+            webView.webngSetBrowserWindow(null);
             jViewPanel.remove(webView);
+            webView = null;
+        }
         
         // Add the new webView
         webView = view;
@@ -133,6 +146,21 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow {
         jHeadBarPanel.setOpaque(false);
 
         jLocationBar.setText("jTextField1");
+        jLocationBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLocationBarActionPerformed(evt);
+            }
+        });
+        jLocationBar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jLocationBarFocusGained(evt);
+            }
+        });
+        jLocationBar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLocationBarKeyPressed(evt);
+            }
+        });
 
         jHeadButtons.setOpaque(false);
         jHeadButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
@@ -212,8 +240,8 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sbHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sbHomeMouseClicked
-
         //navigateTo(loader.getViewByName("com.wavesoft.templates.basic.BlogHome"));
+        /*
         WebNGSystem.downloadManager.download("http://localhost/", new DownloadListener() {
 
             @Override
@@ -224,10 +252,27 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow {
             @Override
             public void downloadFailed(DownloadJob job) {
             }
-            
+
         });
+         */
         
     }//GEN-LAST:event_sbHomeMouseClicked
+
+    private void jLocationBarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLocationBarFocusGained
+        jLocationBar.selectAll();
+    }//GEN-LAST:event_jLocationBarFocusGained
+
+    private void jLocationBarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLocationBarKeyPressed
+
+        if ((evt.getKeyCode() == 13) || (evt.getKeyCode() == 10)) {
+            navigateTo(jLocationBar.getText());
+        }
+        
+    }//GEN-LAST:event_jLocationBarKeyPressed
+
+    private void jLocationBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLocationBarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLocationBarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jHeadBarPanel;
@@ -241,6 +286,9 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow {
 
     @Override
     public void navigateTo(String url) {
+        navigateTo(new WebViewLoading());
+        presenterThread = new Thread(new PresenterThread(url, this));
+        presenterThread.start();
     }
 
     @Override
@@ -251,16 +299,41 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow {
 
     @Override
     public void setTitle(String title) {
+        if (linkedTab == null) return;
+        linkedTab.title = title;
+        getParent().getParent().repaint();
+    }
+
+    @Override
+    public void setIcon(Image icon) {
+        if (linkedTab == null) return;
+        linkedTab.img = icon;
+        getParent().getParent().repaint();
     }
 
     @Override
     public void setHeadButtons(HeadButton[] buttons) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void addWindowEventListener(WebViewEventListener l) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setTab(Tab tab) {
+        linkedTab = tab;
+    }
+
+    @Override
+    public void statusChanged(String status) {
+    }
+
+    @Override
+    public void progressChanged(int value, int max) {
+    }
+
+    @Override
+    public void viewChanged(WebViewNG view) {
+        navigateTo(view);
     }
     
 }

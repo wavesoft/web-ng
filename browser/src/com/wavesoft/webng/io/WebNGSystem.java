@@ -28,8 +28,6 @@ import java.io.File;
  */
 public class WebNGSystem {
     
-    public static DownloadManager downloadManager;
-    
     private static String getAppDataDir(String appName) {
         String OS = System.getProperty("os.name").toUpperCase();
         
@@ -59,11 +57,8 @@ public class WebNGSystem {
         mkdirIfMissing(webNGdir+"/jarbox");
         
         // Initialize JarIO
-        JarIO.Initialize(webNGdir);
-        
-        // Initialize download manager
-        downloadManager = new DownloadManager();
-        
+        WebNGIO.Initialize(webNGdir);
+                
     }
     
 }

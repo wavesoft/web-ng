@@ -1,0 +1,1085 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.1" sequence="1" timestamp="1345678788000" analysisTimestamp="1345679327233" release="">
+  <Project projectName="WebNG">
+    <Jar>/Users/icharala/github/web-ng/browser/build/classes</Jar>
+    <SrcDir>/Users/icharala/github/web-ng/browser/src</SrcDir>
+    <WrkDir>/Users/icharala/github/web-ng/documentation</WrkDir>
+    <Plugin id="edu.umd.cs.findbugs.plugins.webCloud" enabled="false"/>
+    <Plugin id="edu.umd.cs.findbugs.plugins.findbugsCommunalCloud" enabled="false"/>
+  </Project>
+  <BugInstance type="MS_CANNOT_BE_FINAL" priority="2" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.AIK.Kernel">
+      <SourceLine classname="com.wavesoft.webng.AIK.Kernel" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.AIK.Kernel" name="currentSession" signature="Lcom/wavesoft/webng/AIK/Session;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.AIK.Kernel" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.AIK.Kernel" start="66" end="66" startBytecode="38" endBytecode="38" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+  </BugInstance>
+  <BugInstance type="MS_PKGPROTECT" priority="2" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.AIK.Kernel">
+      <SourceLine classname="com.wavesoft.webng.AIK.Kernel" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.AIK.Kernel" name="currentEvent" signature="Lcom/wavesoft/webng/AIK/QueuedEvent;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.AIK.Kernel" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.AIK.Kernel" start="71" end="71" startBytecode="42" endBytecode="42" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+  </BugInstance>
+  <BugInstance type="NN_NAKED_NOTIFY" priority="2" abbrev="NN" category="MT_CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.AIK.Kernel">
+      <SourceLine classname="com.wavesoft.webng.AIK.Kernel" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.AIK.Kernel" name="addEvent" signature="(Lcom/wavesoft/webng/AIK/QueuedEvent;)Lcom/wavesoft/webng/AIK/QueuedEvent;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.AIK.Kernel" start="161" end="167" startBytecode="0" endBytecode="146" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.AIK.Kernel" start="164" end="164" startBytecode="27" endBytecode="27" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+  </BugInstance>
+  <BugInstance type="NN_NAKED_NOTIFY" priority="2" abbrev="NN" category="MT_CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.AIK.Kernel">
+      <SourceLine classname="com.wavesoft.webng.AIK.Kernel" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.AIK.Kernel" name="addEvent" signature="(Lcom/wavesoft/webng/AIK/Session;Ljava/lang/String;[Ljava/lang/Object;)Lcom/wavesoft/webng/AIK/QueuedEvent;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.AIK.Kernel" start="150" end="157" startBytecode="0" endBytecode="205" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.AIK.Kernel" start="154" end="154" startBytecode="39" endBytecode="39" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+  </BugInstance>
+  <BugInstance type="UW_UNCOND_WAIT" priority="2" abbrev="UW" category="MT_CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.AIK.Kernel">
+      <SourceLine classname="com.wavesoft.webng.AIK.Kernel" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.AIK.Kernel" name="timeSlice" signature="()Lcom/wavesoft/webng/AIK/QueuedEvent;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.AIK.Kernel" start="126" end="145" startBytecode="0" endBytecode="246" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.AIK.Kernel" start="134" end="134" startBytecode="42" endBytecode="42" sourcefile="Kernel.java" sourcepath="com/wavesoft/webng/AIK/Kernel.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" abbrev="EI2" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.AIK.QueuedEvent">
+      <SourceLine classname="com.wavesoft.webng.AIK.QueuedEvent" sourcefile="QueuedEvent.java" sourcepath="com/wavesoft/webng/AIK/QueuedEvent.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.AIK.QueuedEvent" name="&lt;init&gt;" signature="(Lcom/wavesoft/webng/AIK/Session;Ljava/lang/String;[Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.AIK.QueuedEvent" start="24" end="28" startBytecode="0" endBytecode="107" sourcefile="QueuedEvent.java" sourcepath="com/wavesoft/webng/AIK/QueuedEvent.java"/>
+    </Method>
+    <Field classname="com.wavesoft.webng.AIK.QueuedEvent" name="arguments" signature="[Ljava/lang/Object;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.AIK.QueuedEvent" sourcefile="QueuedEvent.java" sourcepath="com/wavesoft/webng/AIK/QueuedEvent.java"/>
+    </Field>
+    <LocalVariable name="arguments" register="3" pc="16" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="com.wavesoft.webng.AIK.QueuedEvent" start="27" end="27" startBytecode="16" endBytecode="16" sourcefile="QueuedEvent.java" sourcepath="com/wavesoft/webng/AIK/QueuedEvent.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" priority="2" abbrev="UrF" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.AIK.Session">
+      <SourceLine classname="com.wavesoft.webng.AIK.Session" sourcefile="Session.java" sourcepath="com/wavesoft/webng/AIK/Session.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.AIK.Session" name="disposable" signature="Ljava/lang/Boolean;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.AIK.Session" sourcefile="Session.java" sourcepath="com/wavesoft/webng/AIK/Session.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.AIK.Session" start="71" end="71" startBytecode="14" endBytecode="14" sourcefile="Session.java" sourcepath="com/wavesoft/webng/AIK/Session.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.AIK.Triggers.TimedTrigger">
+      <SourceLine classname="com.wavesoft.webng.AIK.Triggers.TimedTrigger" sourcefile="TimedTrigger.java" sourcepath="com/wavesoft/webng/AIK/Triggers/TimedTrigger.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.AIK.Triggers.TimedTrigger" name="running" signature="Ljava/lang/Boolean;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.AIK.Triggers.TimedTrigger" sourcefile="TimedTrigger.java" sourcepath="com/wavesoft/webng/AIK/Triggers/TimedTrigger.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.AIK.Triggers.TimedTrigger" start="39" end="39" startBytecode="9" endBytecode="9" sourcefile="TimedTrigger.java" sourcepath="com/wavesoft/webng/AIK/Triggers/TimedTrigger.java"/>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" abbrev="Dm" category="BAD_PRACTICE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.Browser">
+      <SourceLine classname="com.wavesoft.webng.Browser" sourcefile="Browser.java" sourcepath="com/wavesoft/webng/Browser.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.Browser" name="tabClosed" signature="(ILjava/lang/String;)V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.Browser" start="177" end="182" startBytecode="0" endBytecode="157" sourcefile="Browser.java" sourcepath="com/wavesoft/webng/Browser.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.Browser" start="181" end="181" startBytecode="48" endBytecode="48" sourcefile="Browser.java" sourcepath="com/wavesoft/webng/Browser.java"/>
+  </BugInstance>
+  <BugInstance type="ICAST_IDIV_CAST_TO_DOUBLE" priority="2" abbrev="ICAST" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.components.ProgressBar$BarPoint">
+      <SourceLine classname="com.wavesoft.webng.components.ProgressBar$BarPoint" sourcefile="ProgressBar.java" sourcepath="com/wavesoft/webng/components/ProgressBar.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.components.ProgressBar$BarPoint" name="render" signature="(Ljava/awt/Graphics2D;)V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.components.ProgressBar$BarPoint" start="80" end="92" startBytecode="0" endBytecode="225" sourcefile="ProgressBar.java" sourcepath="com/wavesoft/webng/components/ProgressBar.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.components.ProgressBar$BarPoint" start="83" end="83" startBytecode="47" endBytecode="47" sourcefile="ProgressBar.java" sourcepath="com/wavesoft/webng/components/ProgressBar.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" priority="2" abbrev="UrF" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.DownloadManager$DownloadJob">
+      <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadJob" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.io.DownloadManager$DownloadJob" name="status" signature="I" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadJob" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadJob" start="101" end="101" startBytecode="2" endBytecode="2" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" abbrev="Dm" category="I18N" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.DownloadManager$DownloadThread">
+      <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" start="121" end="200" startBytecode="0" endBytecode="979" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="55" end="62" startBytecode="0" endBytecode="83" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" start="158" end="158" startBytecode="187" endBytecode="187" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" abbrev="Dm" category="I18N" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.DownloadManager$DownloadThread">
+      <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" start="121" end="200" startBytecode="0" endBytecode="979" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+    </Method>
+    <Method classname="java.io.OutputStreamWriter" name="&lt;init&gt;" signature="(Ljava/io/OutputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.OutputStreamWriter" start="92" end="98" startBytecode="0" endBytecode="83" sourcefile="OutputStreamWriter.java" sourcepath="java/io/OutputStreamWriter.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" start="140" end="140" startBytecode="86" endBytecode="86" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+  </BugInstance>
+  <BugInstance type="OS_OPEN_STREAM" priority="2" abbrev="OS" category="BAD_PRACTICE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.DownloadManager$DownloadThread">
+      <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" start="121" end="200" startBytecode="0" endBytecode="175" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+    </Method>
+    <Type descriptor="Ljava/io/OutputStream;" role="TYPE_CLOSEIT">
+      <SourceLine classname="java.io.OutputStream" start="29" end="135" sourcefile="OutputStream.java" sourcepath="java/io/OutputStream.java"/>
+    </Type>
+    <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" start="173" end="173" startBytecode="260" endBytecode="260" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+  </BugInstance>
+  <BugInstance type="OS_OPEN_STREAM" priority="2" abbrev="OS" category="BAD_PRACTICE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.DownloadManager$DownloadThread">
+      <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" start="121" end="200" startBytecode="0" endBytecode="175" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+    </Method>
+    <Type descriptor="Ljava/io/Reader;" role="TYPE_CLOSEIT">
+      <SourceLine classname="java.io.Reader" start="49" end="232" sourcefile="Reader.java" sourcepath="java/io/Reader.java"/>
+    </Type>
+    <SourceLine classname="com.wavesoft.webng.io.DownloadManager$DownloadThread" start="158" end="158" startBytecode="175" endBytecode="175" sourcefile="DownloadManager.java" sourcepath="com/wavesoft/webng/io/DownloadManager.java"/>
+  </BugInstance>
+  <BugInstance type="OS_OPEN_STREAM" priority="2" abbrev="OS" category="BAD_PRACTICE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.JarCache">
+      <SourceLine classname="com.wavesoft.webng.io.JarCache" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarCache" name="importJAR" signature="(Ljava/lang/String;Ljava/lang/String;)I" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.JarCache" start="143" end="196" startBytecode="0" endBytecode="223" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+    </Method>
+    <Type descriptor="Ljava/util/zip/ZipFile;" role="TYPE_CLOSEIT">
+      <SourceLine classname="java.util.zip.ZipFile" start="31" end="427" sourcefile="ZipFile.java" sourcepath="java/util/zip/ZipFile.java"/>
+    </Type>
+    <SourceLine classname="com.wavesoft.webng.io.JarCache" start="146" end="146" startBytecode="2" endBytecode="2" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+  </BugInstance>
+  <BugInstance type="NP_LOAD_OF_KNOWN_NULL_VALUE" priority="2" abbrev="NP" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.JarCache$2$1">
+      <SourceLine classname="com.wavesoft.webng.io.JarCache$2$1" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarCache$2$1" name="completed" signature="(Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.JarCache$2$1" start="254" end="296" startBytecode="0" endBytecode="214" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.JarCache$2$1" start="282" end="282" startBytecode="302" endBytecode="302" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+  </BugInstance>
+  <BugInstance type="UW_UNCOND_WAIT" priority="2" abbrev="UW" category="MT_CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.JarCache$Downloader">
+      <SourceLine classname="com.wavesoft.webng.io.JarCache$Downloader" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarCache$Downloader" name="downloadFile" signature="(Ljava/net/URL;Ljava/lang/String;)Ljava/lang/Boolean;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.JarCache$Downloader" start="75" end="89" startBytecode="0" endBytecode="230" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.JarCache$Downloader" start="82" end="82" startBytecode="25" endBytecode="25" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+  </BugInstance>
+  <BugInstance type="WA_NOT_IN_LOOP" priority="2" abbrev="Wa" category="MT_CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.JarCache$Downloader">
+      <SourceLine classname="com.wavesoft.webng.io.JarCache$Downloader" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarCache$Downloader" name="downloadFile" signature="(Ljava/net/URL;Ljava/lang/String;)Ljava/lang/Boolean;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.JarCache$Downloader" start="75" end="89" startBytecode="0" endBytecode="230" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.JarCache$Downloader" start="82" end="82" startBytecode="25" endBytecode="25" sourcefile="JarCache.java" sourcepath="com/wavesoft/webng/io/JarCache.java"/>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" abbrev="OBL" category="EXPERIMENTAL" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <UserAnnotation designation="NEEDS_STUDY" timestamp="1345679238379"/>
+    <Class classname="com.wavesoft.webng.io.JarDiscovery">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarDiscovery" name="locateLocalJarID" signature="(Ljava/lang/String;)I" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" start="364" end="381" startBytecode="0" endBytecode="221" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Method>
+    <Class classname="java.sql.ResultSet" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.ResultSet" sourcefile="ResultSet.java" sourcepath="java/sql/ResultSet.java"/>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING"/>
+    <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" start="372" end="372" startBytecode="34" endBytecode="34" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java" role="SOURCE_LINE_OBLIGATION_CREATED"/>
+    <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" start="375" end="375" startBytecode="40" endBytecode="40" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <String value="{ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS"/>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" abbrev="OBL" category="EXPERIMENTAL" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <UserAnnotation designation="NEEDS_STUDY" timestamp="1345679238379"/>
+    <Class classname="com.wavesoft.webng.io.JarDiscovery">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarDiscovery" name="lookupExports" signature="(Ljava/lang/String;)Ljava/net/URL;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" start="182" end="205" startBytecode="0" endBytecode="280" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Method>
+    <Class classname="java.sql.ResultSet" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.ResultSet" sourcefile="ResultSet.java" sourcepath="java/sql/ResultSet.java"/>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING"/>
+    <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" start="190" end="190" startBytecode="34" endBytecode="34" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java" role="SOURCE_LINE_OBLIGATION_CREATED"/>
+    <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" start="193" end="193" startBytecode="40" endBytecode="40" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <String value="{ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS"/>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" abbrev="OBL" category="EXPERIMENTAL" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <UserAnnotation designation="NEEDS_STUDY" timestamp="1345679238378"/>
+    <Class classname="com.wavesoft.webng.io.JarDiscovery">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarDiscovery" name="lookupJAR" signature="(Ljava/lang/String;)Ljava/net/URL;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" start="148" end="170" startBytecode="0" endBytecode="280" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Method>
+    <Class classname="java.sql.ResultSet" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.ResultSet" sourcefile="ResultSet.java" sourcepath="java/sql/ResultSet.java"/>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING"/>
+    <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" start="156" end="156" startBytecode="34" endBytecode="34" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java" role="SOURCE_LINE_OBLIGATION_CREATED"/>
+    <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" start="159" end="159" startBytecode="40" endBytecode="40" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <String value="{ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS"/>
+  </BugInstance>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" abbrev="WMI" category="PERFORMANCE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.JarDiscovery">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarDiscovery" name="updateExports" signature="(Ljava/net/URL;)Ljava/lang/Boolean;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" start="259" end="298" startBytecode="0" endBytecode="542" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.JarDiscovery" start="269" end="269" startBytecode="65" endBytecode="65" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+  </BugInstance>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" abbrev="WMI" category="PERFORMANCE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.JarDiscovery$1">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$1" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarDiscovery$1" name="downloadCompleted" signature="(Lcom/wavesoft/webng/io/DownloadManager$DownloadJob;)V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$1" start="311" end="350" startBytecode="0" endBytecode="598" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$1" start="319" end="319" startBytecode="54" endBytecode="54" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.JarDiscovery$Downloader">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$Downloader" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.io.JarDiscovery$Downloader" name="baseURL" signature="Ljava/net/URL;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$Downloader" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$Downloader" start="125" end="125" startBytecode="9" endBytecode="9" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+  </BugInstance>
+  <BugInstance type="UW_UNCOND_WAIT" priority="2" abbrev="UW" category="MT_CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.JarDiscovery$Downloader">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$Downloader" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarDiscovery$Downloader" name="downloadList" signature="(Ljava/net/URL;)Ljava/util/HashMap;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$Downloader" start="122" end="136" startBytecode="0" endBytecode="209" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$Downloader" start="129" end="129" startBytecode="21" endBytecode="21" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+  </BugInstance>
+  <BugInstance type="WA_NOT_IN_LOOP" priority="2" abbrev="Wa" category="MT_CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.JarDiscovery$Downloader">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$Downloader" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarDiscovery$Downloader" name="downloadList" signature="(Ljava/net/URL;)Ljava/util/HashMap;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$Downloader" start="122" end="136" startBytecode="0" endBytecode="209" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.JarDiscovery$Downloader" start="129" end="129" startBytecode="21" endBytecode="21" sourcefile="JarDiscovery.java" sourcepath="com/wavesoft/webng/io/JarDiscovery.java"/>
+  </BugInstance>
+  <BugInstance type="DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED" priority="2" abbrev="DP" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.JarLoader">
+      <SourceLine classname="com.wavesoft.webng.io.JarLoader" sourcefile="JarLoader.java" sourcepath="com/wavesoft/webng/io/JarLoader.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.JarLoader" name="&lt;clinit&gt;" signature="()V" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.JarLoader" start="35" end="48" startBytecode="0" endBytecode="76" sourcefile="JarLoader.java" sourcepath="com/wavesoft/webng/io/JarLoader.java"/>
+    </Method>
+    <Class classname="com.wavesoft.webng.io.JarLoader$JarFileLoader">
+      <SourceLine classname="com.wavesoft.webng.io.JarLoader$JarFileLoader" sourcefile="JarLoader.java" sourcepath="com/wavesoft/webng/io/JarLoader.java"/>
+    </Class>
+    <SourceLine classname="com.wavesoft.webng.io.JarLoader" start="48" end="48" startBytecode="30" endBytecode="30" sourcefile="JarLoader.java" sourcepath="com/wavesoft/webng/io/JarLoader.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" abbrev="Dm" category="I18N" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.SystemConsole">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.SystemConsole" name="stringify" signature="([Ljava/lang/Object;)Ljava/lang/String;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" start="84" end="99" startBytecode="0" endBytecode="391" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Method>
+    <Method classname="java.io.ByteArrayOutputStream" name="toString" signature="()Ljava/lang/String;" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.ByteArrayOutputStream" start="163" end="163" startBytecode="0" endBytecode="40" sourcefile="ByteArrayOutputStream.java" sourcepath="java/io/ByteArrayOutputStream.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.SystemConsole" start="94" end="94" startBytecode="141" endBytecode="141" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" abbrev="Dm" category="I18N" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.SystemConsole">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.SystemConsole" name="stringify" signature="([Ljava/lang/Object;)Ljava/lang/String;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" start="84" end="99" startBytecode="0" endBytecode="391" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Method>
+    <Method classname="java.io.PrintStream" name="&lt;init&gt;" signature="(Ljava/io/OutputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.PrintStream" start="62" end="63" startBytecode="0" endBytecode="34" sourcefile="PrintStream.java" sourcepath="java/io/PrintStream.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.SystemConsole" start="86" end="86" startBytecode="16" endBytecode="16" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.SystemConsole">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.io.SystemConsole" name="LOG_DEBUG" signature="B" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.io.SystemConsole" start="21" end="21" startBytecode="13" endBytecode="13" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.SystemConsole">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.io.SystemConsole" name="LOG_ERROR" signature="B" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.io.SystemConsole" start="18" end="18" startBytecode="1" endBytecode="1" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.SystemConsole">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.io.SystemConsole" name="LOG_INFO" signature="B" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.io.SystemConsole" start="20" end="20" startBytecode="9" endBytecode="9" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.SystemConsole">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.io.SystemConsole" name="LOG_WARNING" signature="B" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.io.SystemConsole" start="19" end="19" startBytecode="5" endBytecode="5" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+  </BugInstance>
+  <BugInstance type="SBSC_USE_STRINGBUFFER_CONCATENATION" priority="2" abbrev="SBSC" category="PERFORMANCE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.SystemConsole">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.SystemConsole" name="stringify" signature="([Ljava/lang/Object;)Ljava/lang/String;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.SystemConsole" start="84" end="99" startBytecode="0" endBytecode="391" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.SystemConsole" start="96" end="96" startBytecode="154" endBytecode="154" sourcefile="SystemConsole.java" sourcepath="com/wavesoft/webng/io/SystemConsole.java"/>
+  </BugInstance>
+  <BugInstance type="NM_METHOD_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.WebNGIO">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.WebNGIO" name="Initialize" signature="(Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="109" end="119" startBytecode="0" endBytecode="108" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" abbrev="OBL" category="EXPERIMENTAL" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <UserAnnotation designation="NEEDS_STUDY" timestamp="1345679238382"/>
+    <Class classname="com.wavesoft.webng.io.WebNGIO">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.WebNGIO" name="dbUpdate" signature="(Ljava/lang/String;)I" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="151" end="155" startBytecode="0" endBytecode="134" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" sourcefile="Statement.java" sourcepath="java/sql/Statement.java"/>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="151" end="151" startBytecode="3" endBytecode="3" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_OBLIGATION_CREATED"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="152" end="152" startBytecode="9" endBytecode="9" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS"/>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" abbrev="OBL" category="EXPERIMENTAL" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <UserAnnotation designation="NEEDS_STUDY" timestamp="1345679238380"/>
+    <Class classname="com.wavesoft.webng.io.WebNGIO">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.WebNGIO" name="setupDB" signature="(Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="37" end="104" startBytecode="0" endBytecode="265" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" sourcefile="Statement.java" sourcepath="java/sql/Statement.java"/>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="43" end="43" startBytecode="34" endBytecode="34" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_OBLIGATION_CREATED"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="45" end="45" startBytecode="40" endBytecode="40" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="52" end="52" startBytecode="49" endBytecode="49" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="81" end="81" startBytecode="58" endBytecode="58" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="89" end="89" startBytecode="67" endBytecode="67" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="103" end="103" startBytecode="76" endBytecode="76" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="104" end="104" startBytecode="106" endBytecode="106" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS"/>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" abbrev="OBL" category="EXPERIMENTAL" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.WebNGIO">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.WebNGIO" name="dbQuery" signature="(Ljava/lang/String;)Ljava/sql/ResultSet;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="141" end="145" startBytecode="0" endBytecode="134" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" sourcefile="Statement.java" sourcepath="java/sql/Statement.java"/>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="141" end="141" startBytecode="3" endBytecode="3" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_OBLIGATION_CREATED"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="142" end="142" startBytecode="9" endBytecode="9" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="143" end="143" startBytecode="17" endBytecode="17" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="144" end="144" startBytecode="18" endBytecode="18" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="145" end="145" startBytecode="35" endBytecode="35" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS"/>
+  </BugInstance>
+  <BugInstance type="ODR_OPEN_DATABASE_RESOURCE" priority="2" abbrev="ODR" category="BAD_PRACTICE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.WebNGIO">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.WebNGIO" name="dbQuery" signature="(Ljava/lang/String;)Ljava/sql/ResultSet;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="141" end="145" startBytecode="0" endBytecode="16" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Method>
+    <Type descriptor="Ljava/sql/Statement;" role="TYPE_CLOSEIT">
+      <SourceLine classname="java.sql.Statement" sourcefile="Statement.java" sourcepath="java/sql/Statement.java"/>
+    </Type>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="141" end="141" startBytecode="3" endBytecode="3" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+  </BugInstance>
+  <BugInstance type="ODR_OPEN_DATABASE_RESOURCE" priority="2" abbrev="ODR" category="BAD_PRACTICE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.WebNGIO">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.WebNGIO" name="dbUpdate" signature="(Ljava/lang/String;)I" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="151" end="155" startBytecode="0" endBytecode="16" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Method>
+    <Type descriptor="Ljava/sql/Statement;" role="TYPE_CLOSEIT">
+      <SourceLine classname="java.sql.Statement" sourcefile="Statement.java" sourcepath="java/sql/Statement.java"/>
+    </Type>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="151" end="151" startBytecode="3" endBytecode="3" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+  </BugInstance>
+  <BugInstance type="ODR_OPEN_DATABASE_RESOURCE" priority="2" abbrev="ODR" category="BAD_PRACTICE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.WebNGIO">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.WebNGIO" name="setupDB" signature="(Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="37" end="104" startBytecode="0" endBytecode="50" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+    </Method>
+    <Type descriptor="Ljava/sql/Statement;" role="TYPE_CLOSEIT">
+      <SourceLine classname="java.sql.Statement" sourcefile="Statement.java" sourcepath="java/sql/Statement.java"/>
+    </Type>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGIO" start="43" end="43" startBytecode="34" endBytecode="34" sourcefile="WebNGIO.java" sourcepath="com/wavesoft/webng/io/WebNGIO.java"/>
+  </BugInstance>
+  <BugInstance type="NM_METHOD_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.WebNGSystem">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGSystem" sourcefile="WebNGSystem.java" sourcepath="com/wavesoft/webng/io/WebNGSystem.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.WebNGSystem" name="Initialize" signature="()V" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGSystem" start="55" end="62" startBytecode="0" endBytecode="94" sourcefile="WebNGSystem.java" sourcepath="com/wavesoft/webng/io/WebNGSystem.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE" priority="2" abbrev="RV" category="BAD_PRACTICE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.io.WebNGSystem">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGSystem" sourcefile="WebNGSystem.java" sourcepath="com/wavesoft/webng/io/WebNGSystem.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.io.WebNGSystem" name="mkdirIfMissing" signature="(Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.io.WebNGSystem" start="47" end="50" startBytecode="0" endBytecode="99" sourcefile="WebNGSystem.java" sourcepath="com/wavesoft/webng/io/WebNGSystem.java"/>
+    </Method>
+    <Method classname="java.io.File" name="mkdir" signature="()Z" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.File" start="1153" end="1157" startBytecode="0" endBytecode="59" sourcefile="File.java" sourcepath="java/io/File.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.io.WebNGSystem" start="49" end="49" startBytecode="17" endBytecode="17" sourcefile="WebNGSystem.java" sourcepath="com/wavesoft/webng/io/WebNGSystem.java"/>
+  </BugInstance>
+  <BugInstance type="UWF_NULL_FIELD" priority="2" abbrev="UwF" category="CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.render.Styles$CSSBackground">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBackground" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.render.Styles$CSSBackground" name="image" signature="Ljava/awt/image/BufferedImage;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBackground" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD" priority="2" abbrev="UuF" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.render.Styles$CSSBorder">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorder" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.render.Styles$CSSBorder" name="bottom" signature="Lcom/wavesoft/webng/render/Styles$CSSBorderSide;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorder" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD" priority="2" abbrev="UuF" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.render.Styles$CSSBorder">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorder" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.render.Styles$CSSBorder" name="left" signature="Lcom/wavesoft/webng/render/Styles$CSSBorderSide;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorder" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD" priority="2" abbrev="UuF" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.render.Styles$CSSBorder">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorder" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.render.Styles$CSSBorder" name="right" signature="Lcom/wavesoft/webng/render/Styles$CSSBorderSide;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorder" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD" priority="2" abbrev="UuF" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.render.Styles$CSSBorder">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorder" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.render.Styles$CSSBorder" name="top" signature="Lcom/wavesoft/webng/render/Styles$CSSBorderSide;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorder" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" priority="2" abbrev="UrF" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.render.Styles$CSSBorderSide">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorderSide" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.render.Styles$CSSBorderSide" name="color" signature="Ljava/awt/Color;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorderSide" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorderSide" start="139" end="139" startBytecode="8" endBytecode="8" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" priority="2" abbrev="UrF" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.render.Styles$CSSBorderSide">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorderSide" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.render.Styles$CSSBorderSide" name="type" signature="I" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorderSide" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.render.Styles$CSSBorderSide" start="140" end="140" startBytecode="13" endBytecode="13" sourcefile="Styles.java" sourcepath="com/wavesoft/webng/render/Styles.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" abbrev="Dm" category="I18N" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.render.WebViewError">
+      <SourceLine classname="com.wavesoft.webng.render.WebViewError" sourcefile="WebViewError.java" sourcepath="com/wavesoft/webng/render/WebViewError.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.render.WebViewError" name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/Exception;)V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.render.WebViewError" start="43" end="51" startBytecode="0" endBytecode="181" sourcefile="WebViewError.java" sourcepath="com/wavesoft/webng/render/WebViewError.java"/>
+    </Method>
+    <Method classname="java.io.ByteArrayOutputStream" name="toString" signature="()Ljava/lang/String;" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.ByteArrayOutputStream" start="163" end="163" startBytecode="0" endBytecode="40" sourcefile="ByteArrayOutputStream.java" sourcepath="java/io/ByteArrayOutputStream.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.render.WebViewError" start="49" end="49" startBytecode="68" endBytecode="68" sourcefile="WebViewError.java" sourcepath="com/wavesoft/webng/render/WebViewError.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" abbrev="Dm" category="I18N" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.render.WebViewError">
+      <SourceLine classname="com.wavesoft.webng.render.WebViewError" sourcefile="WebViewError.java" sourcepath="com/wavesoft/webng/render/WebViewError.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.render.WebViewError" name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/Exception;)V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.render.WebViewError" start="43" end="51" startBytecode="0" endBytecode="181" sourcefile="WebViewError.java" sourcepath="com/wavesoft/webng/render/WebViewError.java"/>
+    </Method>
+    <Method classname="java.io.PrintStream" name="&lt;init&gt;" signature="(Ljava/io/OutputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.PrintStream" start="62" end="63" startBytecode="0" endBytecode="34" sourcefile="PrintStream.java" sourcepath="java/io/PrintStream.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.render.WebViewError" start="48" end="48" startBytecode="30" endBytecode="30" sourcefile="WebViewError.java" sourcepath="com/wavesoft/webng/render/WebViewError.java"/>
+  </BugInstance>
+  <BugInstance type="NP_NULL_PARAM_DEREF_ALL_TARGETS_DANGEROUS" priority="2" abbrev="NP" category="CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.BrowserFrame">
+      <SourceLine classname="com.wavesoft.webng.ui.BrowserFrame" sourcefile="BrowserFrame.java" sourcepath="com/wavesoft/webng/ui/BrowserFrame.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.ui.BrowserFrame" name="setView" signature="(Lcom/wavesoft/webng/api/WebViewNG;)V" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.ui.BrowserFrame" start="113" end="125" startBytecode="0" endBytecode="135" sourcefile="BrowserFrame.java" sourcepath="com/wavesoft/webng/ui/BrowserFrame.java"/>
+    </Method>
+    <Method classname="java.awt.Container" name="remove" signature="(Ljava/awt/Component;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.awt.Container" start="1192" end="1200" startBytecode="0" endBytecode="111" sourcefile="Container.java" sourcepath="java/awt/Container.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.ui.BrowserFrame" start="115" end="115" startBytecode="20" endBytecode="20" sourcefile="BrowserFrame.java" sourcepath="com/wavesoft/webng/ui/BrowserFrame.java"/>
+    <Field classname="com.wavesoft.webng.ui.BrowserFrame" name="webView" signature="Lcom/wavesoft/webng/api/WebViewNG;" isStatic="false" role="FIELD_VALUE_OF">
+      <SourceLine classname="com.wavesoft.webng.ui.BrowserFrame" sourcefile="BrowserFrame.java" sourcepath="com/wavesoft/webng/ui/BrowserFrame.java"/>
+    </Field>
+    <Int value="1" role="INT_NULL_ARG"/>
+    <Method classname="java.awt.Container" name="remove" signature="(Ljava/awt/Component;)V" isStatic="false" role="METHOD_DANGEROUS_TARGET_ACTUAL_GUARANTEED_NULL">
+      <SourceLine classname="java.awt.Container" start="1192" end="1200" startBytecode="0" endBytecode="111" sourcefile="Container.java" sourcepath="java/awt/Container.java"/>
+    </Method>
+    <Property name="edu.umd.cs.findbugs.detect.NullArgumentWarningProperty.ALL_DANGEROUS_TARGETS" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.NullArgumentWarningProperty.ACTUAL_PARAMETER_GUARANTEED_NULL" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.NullArgumentWarningProperty.ARG_DEFINITELY_NULL" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.NullArgumentWarningProperty.MONOMORPHIC_CALL_SITE" value="true"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="COLOR_DARK_SHADOW" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="33" end="33" startBytecode="21" endBytecode="21" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="COLOR_HIGHLIGHT" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="35" end="35" startBytecode="45" endBytecode="45" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="COLOR_LIGHT_SHADOW" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="34" end="34" startBytecode="33" endBytecode="33" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="COLOR_SHADOW" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="32" end="32" startBytecode="9" endBytecode="9" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="COLOR_TEXT" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="37" end="37" startBytecode="56" endBytecode="56" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="FONT_GENERIC" signature="Ljava/awt/Font;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="53" end="53" startBytecode="191" endBytecode="191" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="G_BACK_BOTTOM" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="41" end="41" startBytecode="92" endBytecode="92" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="G_BACK_TOP" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="40" end="40" startBytecode="80" endBytecode="80" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="G_SEL_BOTTOM" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="44" end="44" startBytecode="116" endBytecode="116" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="G_SEL_FLOOR" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="45" end="45" startBytecode="128" endBytecode="128" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="G_SEL_TOP" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="43" end="43" startBytecode="104" endBytecode="104" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="G_UNSEL_BOTTOM" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="48" end="48" startBytecode="152" endBytecode="152" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Colorset">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Colorset" name="G_UNSEL_TOP" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Colorset" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Colorset" start="47" end="47" startBytecode="140" endBytecode="140" sourcefile="Colorset.java" sourcepath="com/wavesoft/webng/ui/Colorset.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.RoundedCornersBorder">
+      <SourceLine classname="com.wavesoft.webng.ui.RoundedCornersBorder" sourcefile="RoundedCornersBorder.java" sourcepath="com/wavesoft/webng/ui/RoundedCornersBorder.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.RoundedCornersBorder" name="COLOR_HIGHLIGHT" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.RoundedCornersBorder" sourcefile="RoundedCornersBorder.java" sourcepath="com/wavesoft/webng/ui/RoundedCornersBorder.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.RoundedCornersBorder" start="38" end="38" startBytecode="21" endBytecode="21" sourcefile="RoundedCornersBorder.java" sourcepath="com/wavesoft/webng/ui/RoundedCornersBorder.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.RoundedCornersBorder">
+      <SourceLine classname="com.wavesoft.webng.ui.RoundedCornersBorder" sourcefile="RoundedCornersBorder.java" sourcepath="com/wavesoft/webng/ui/RoundedCornersBorder.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.RoundedCornersBorder" name="COLOR_SHADOW" signature="Ljava/awt/Color;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.RoundedCornersBorder" sourcefile="RoundedCornersBorder.java" sourcepath="com/wavesoft/webng/ui/RoundedCornersBorder.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.RoundedCornersBorder" start="37" end="37" startBytecode="9" endBytecode="9" sourcefile="RoundedCornersBorder.java" sourcepath="com/wavesoft/webng/ui/RoundedCornersBorder.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_REFACTORED_TO_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.SystemIcons">
+      <SourceLine classname="com.wavesoft.webng.ui.SystemIcons" sourcefile="SystemIcons.java" sourcepath="com/wavesoft/webng/ui/SystemIcons.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.SystemIcons" name="tabDefaultIcon" signature="Ljava/awt/Image;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.SystemIcons" sourcefile="SystemIcons.java" sourcepath="com/wavesoft/webng/ui/SystemIcons.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.SystemIcons" start="19" end="19" startBytecode="1" endBytecode="1" sourcefile="SystemIcons.java" sourcepath="com/wavesoft/webng/ui/SystemIcons.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_REFACTORED_TO_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.SystemIcons">
+      <SourceLine classname="com.wavesoft.webng.ui.SystemIcons" sourcefile="SystemIcons.java" sourcepath="com/wavesoft/webng/ui/SystemIcons.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.SystemIcons" name="tabErrorIcon" signature="Ljava/awt/Image;" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.SystemIcons" sourcefile="SystemIcons.java" sourcepath="com/wavesoft/webng/ui/SystemIcons.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.SystemIcons" start="20" end="20" startBytecode="5" endBytecode="5" sourcefile="SystemIcons.java" sourcepath="com/wavesoft/webng/ui/SystemIcons.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Tabs">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Tabs" name="TAB_OVERLAP" signature="I" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Tabs" start="59" end="59" startBytecode="21" endBytecode="21" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Tabs">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Tabs" name="TAB_SIZE" signature="I" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Tabs" start="58" end="58" startBytecode="16" endBytecode="16" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="2" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Tabs">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Tabs" name="leftPadding" signature="I" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Tabs" start="54" end="54" startBytecode="1" endBytecode="1" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="2" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Tabs">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Tabs" name="rightPadding" signature="I" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Tabs" start="55" end="55" startBytecode="5" endBytecode="5" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="2" abbrev="MS" category="MALICIOUS_CODE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Tabs">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Tabs" name="topPadding" signature="I" isStatic="true">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Tabs" start="56" end="56" startBytecode="10" endBytecode="10" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" priority="2" abbrev="UrF" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.ui.Tabs$ImageButton">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs$ImageButton" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.ui.Tabs$ImageButton" name="visible" signature="Ljava/lang/Boolean;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.ui.Tabs$ImageButton" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.ui.Tabs$ImageButton" start="102" end="102" startBytecode="9" endBytecode="9" sourcefile="Tabs.java" sourcepath="com/wavesoft/webng/ui/Tabs.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.wblang.WL$DownloadWait">
+      <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.wblang.WL$DownloadWait" name="pending" signature="Ljava/lang/Boolean;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" start="22" end="22" startBytecode="20" endBytecode="20" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+  </BugInstance>
+  <BugInstance type="UW_UNCOND_WAIT" priority="2" abbrev="UW" category="MT_CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.wblang.WL$DownloadWait">
+      <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.wblang.WL$DownloadWait" name="getList" signature="(Ljava/net/URL;)Ljava/util/LinkedHashMap;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" start="45" end="57" startBytecode="0" endBytecode="200" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" start="50" end="50" startBytecode="16" endBytecode="16" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+  </BugInstance>
+  <BugInstance type="UW_UNCOND_WAIT" priority="2" abbrev="UW" category="MT_CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.wblang.WL$DownloadWait">
+      <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.wblang.WL$DownloadWait" name="getList" signature="(Ljava/net/URL;Ljava/lang/String;)Ljava/util/LinkedHashMap;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" start="67" end="80" startBytecode="0" endBytecode="217" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" start="73" end="73" startBytecode="19" endBytecode="19" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+  </BugInstance>
+  <BugInstance type="WA_NOT_IN_LOOP" priority="2" abbrev="Wa" category="MT_CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.wblang.WL$DownloadWait">
+      <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.wblang.WL$DownloadWait" name="getList" signature="(Ljava/net/URL;)Ljava/util/LinkedHashMap;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" start="45" end="57" startBytecode="0" endBytecode="200" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" start="50" end="50" startBytecode="16" endBytecode="16" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+  </BugInstance>
+  <BugInstance type="WA_NOT_IN_LOOP" priority="2" abbrev="Wa" category="MT_CORRECTNESS" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.wblang.WL$DownloadWait">
+      <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.wblang.WL$DownloadWait" name="getList" signature="(Ljava/net/URL;Ljava/lang/String;)Ljava/util/LinkedHashMap;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" start="67" end="80" startBytecode="0" endBytecode="217" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+    </Method>
+    <SourceLine classname="com.wavesoft.webng.wblang.WL$DownloadWait" start="73" end="73" startBytecode="19" endBytecode="19" sourcefile="WL.java" sourcepath="com/wavesoft/webng/wblang/WL.java"/>
+  </BugInstance>
+  <BugInstance type="BC_VACUOUS_INSTANCEOF" priority="2" abbrev="BC" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.wblang.WLData">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLData" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.wblang.WLData" name="get" signature="(Ljava/lang/String;)Ljava/lang/Object;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLData" start="164" end="172" startBytecode="0" endBytecode="29" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+    </Method>
+    <Type descriptor="Ljava/util/LinkedHashMap;" role="TYPE_FOUND" typeParameters="&lt;java.lang.String,com.wavesoft.webng.wblang.WLData&gt;">
+      <SourceLine classname="java.util.LinkedHashMap" start="130" end="472" sourcefile="LinkedHashMap.java" sourcepath="java/util/LinkedHashMap.java"/>
+    </Type>
+    <Type descriptor="Ljava/util/LinkedHashMap;" role="TYPE_EXPECTED">
+      <SourceLine classname="java.util.LinkedHashMap" start="130" end="472" sourcefile="LinkedHashMap.java" sourcepath="java/util/LinkedHashMap.java"/>
+    </Type>
+    <SourceLine classname="com.wavesoft.webng.wblang.WLData" start="168" end="168" startBytecode="40" endBytecode="40" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+  </BugInstance>
+  <BugInstance type="BC_VACUOUS_INSTANCEOF" priority="2" abbrev="BC" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <UserAnnotation designation="MOSTLY_HARMLESS" timestamp="1345679250889"/>
+    <Class classname="com.wavesoft.webng.wblang.WLData">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLData" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.wblang.WLData" name="getArray" signature="()Ljava/util/ArrayList;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLData" start="134" end="142" startBytecode="0" endBytecode="25" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+    </Method>
+    <Type descriptor="Ljava/util/ArrayList;" role="TYPE_FOUND" typeParameters="&lt;com.wavesoft.webng.wblang.WLData&gt;">
+      <SourceLine classname="java.util.ArrayList" start="108" end="594" sourcefile="ArrayList.java" sourcepath="java/util/ArrayList.java"/>
+    </Type>
+    <Type descriptor="Ljava/util/ArrayList;" role="TYPE_EXPECTED">
+      <SourceLine classname="java.util.ArrayList" start="108" end="594" sourcefile="ArrayList.java" sourcepath="java/util/ArrayList.java"/>
+    </Type>
+    <SourceLine classname="com.wavesoft.webng.wblang.WLData" start="138" end="138" startBytecode="40" endBytecode="40" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+  </BugInstance>
+  <BugInstance type="BC_VACUOUS_INSTANCEOF" priority="2" abbrev="BC" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.wblang.WLData">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLData" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.wblang.WLData" name="getArray" signature="(Ljava/lang/String;)Ljava/util/ArrayList;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLData" start="177" end="187" startBytecode="0" endBytecode="35" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+    </Method>
+    <Type descriptor="Ljava/util/LinkedHashMap;" role="TYPE_FOUND" typeParameters="&lt;java.lang.String,com.wavesoft.webng.wblang.WLData&gt;">
+      <SourceLine classname="java.util.LinkedHashMap" start="130" end="472" sourcefile="LinkedHashMap.java" sourcepath="java/util/LinkedHashMap.java"/>
+    </Type>
+    <Type descriptor="Ljava/util/LinkedHashMap;" role="TYPE_EXPECTED">
+      <SourceLine classname="java.util.LinkedHashMap" start="130" end="472" sourcefile="LinkedHashMap.java" sourcepath="java/util/LinkedHashMap.java"/>
+    </Type>
+    <SourceLine classname="com.wavesoft.webng.wblang.WLData" start="181" end="181" startBytecode="40" endBytecode="40" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+  </BugInstance>
+  <BugInstance type="BC_VACUOUS_INSTANCEOF" priority="2" abbrev="BC" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.wblang.WLData">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLData" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.wblang.WLData" name="getHashMap" signature="()Ljava/util/LinkedHashMap;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLData" start="147" end="155" startBytecode="0" endBytecode="25" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+    </Method>
+    <Type descriptor="Ljava/util/LinkedHashMap;" role="TYPE_FOUND" typeParameters="&lt;java.lang.String,com.wavesoft.webng.wblang.WLData&gt;">
+      <SourceLine classname="java.util.LinkedHashMap" start="130" end="472" sourcefile="LinkedHashMap.java" sourcepath="java/util/LinkedHashMap.java"/>
+    </Type>
+    <Type descriptor="Ljava/util/LinkedHashMap;" role="TYPE_EXPECTED">
+      <SourceLine classname="java.util.LinkedHashMap" start="130" end="472" sourcefile="LinkedHashMap.java" sourcepath="java/util/LinkedHashMap.java"/>
+    </Type>
+    <SourceLine classname="com.wavesoft.webng.wblang.WLData" start="151" end="151" startBytecode="40" endBytecode="40" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+  </BugInstance>
+  <BugInstance type="BC_VACUOUS_INSTANCEOF" priority="2" abbrev="BC" category="STYLE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.wblang.WLData">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLData" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+    </Class>
+    <Method classname="com.wavesoft.webng.wblang.WLData" name="getHashMap" signature="(Ljava/lang/String;)Ljava/util/LinkedHashMap;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLData" start="192" end="202" startBytecode="0" endBytecode="35" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+    </Method>
+    <Type descriptor="Ljava/util/LinkedHashMap;" role="TYPE_FOUND" typeParameters="&lt;java.lang.String,com.wavesoft.webng.wblang.WLData&gt;">
+      <SourceLine classname="java.util.LinkedHashMap" start="130" end="472" sourcefile="LinkedHashMap.java" sourcepath="java/util/LinkedHashMap.java"/>
+    </Type>
+    <Type descriptor="Ljava/util/LinkedHashMap;" role="TYPE_EXPECTED">
+      <SourceLine classname="java.util.LinkedHashMap" start="130" end="472" sourcefile="LinkedHashMap.java" sourcepath="java/util/LinkedHashMap.java"/>
+    </Type>
+    <SourceLine classname="com.wavesoft.webng.wblang.WLData" start="196" end="196" startBytecode="40" endBytecode="40" sourcefile="WLData.java" sourcepath="com/wavesoft/webng/wblang/WLData.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE" firstSeen="8/23/12 1:39 AM" isInCloud="false">
+    <Class classname="com.wavesoft.webng.wblang.WLRemoteData">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLRemoteData" sourcefile="WLRemoteData.java" sourcepath="com/wavesoft/webng/wblang/WLRemoteData.java"/>
+    </Class>
+    <Field classname="com.wavesoft.webng.wblang.WLRemoteData" name="requestData" signature="Ljava/lang/Object;" isStatic="false">
+      <SourceLine classname="com.wavesoft.webng.wblang.WLRemoteData" sourcefile="WLRemoteData.java" sourcepath="com/wavesoft/webng/wblang/WLRemoteData.java"/>
+    </Field>
+    <SourceLine classname="com.wavesoft.webng.wblang.WLRemoteData" start="35" end="35" startBytecode="8" endBytecode="8" sourcefile="WLRemoteData.java" sourcepath="com/wavesoft/webng/wblang/WLRemoteData.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="5">
+    <MissingClass>org.jdesktop.layout.GroupLayout</MissingClass>
+    <MissingClass>org.jdesktop.layout.GroupLayout$Group</MissingClass>
+    <MissingClass>org.jdesktop.layout.GroupLayout$ParallelGroup</MissingClass>
+    <MissingClass>org.jdesktop.layout.GroupLayout$SequentialGroup</MissingClass>
+    <MissingClass>org.yaml.snakeyaml.Yaml</MissingClass>
+  </Errors>
+  <FindBugsSummary timestamp="Thu, 23 Aug 2012 01:39:48 +0200" total_classes="98" referenced_classes="538" total_bugs="88" total_size="3197" num_packages="9" vm_version="20.6-b01-415" cpu_seconds="79.42" clock_seconds="733.67" peak_mbytes="131.85" alloc_mbytes="763.88" gc_seconds="0.81" priority_2="59" priority_1="29">
+    <PackageStats package="com.wavesoft.webng" total_bugs="1" total_types="4" total_size="105" priority_2="1">
+      <ClassStats class="com.wavesoft.webng.Browser" sourceFile="Browser.java" interface="false" size="75" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.Browser$1" sourceFile="Browser.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.WebNG" sourceFile="WebNG.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.WebNG$1" sourceFile="WebNG.java" interface="false" size="6" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.wavesoft.webng.AIK" total_bugs="7" total_types="16" total_size="309" priority_2="7">
+      <ClassStats class="com.wavesoft.webng.AIK.Asynchronous" sourceFile="Asynchronous.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.AsyncronousConstructor" sourceFile="AsyncronousConstructor.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.AsyncronousDestructor" sourceFile="AsyncronousDestructor.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.Kernel" sourceFile="Kernel.java" interface="false" size="111" bugs="5" priority_2="5"/>
+      <ClassStats class="com.wavesoft.webng.AIK.KernelStoppedException" sourceFile="KernelStoppedException.java" interface="false" size="3" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.NonVolatile" sourceFile="NonVolatile.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.PeekSession" sourceFile="PeekSession.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.QueuedEvent" sourceFile="QueuedEvent.java" interface="false" size="34" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.AIK.Session" sourceFile="Session.java" interface="false" size="50" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.AIK.Session$CallbackInfo" sourceFile="Session.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.TEST" sourceFile="TEST.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.TEST$C3" sourceFile="TEST.java" interface="false" size="26" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.TEST$Thread1" sourceFile="TEST.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.TEST$Thread2" sourceFile="TEST.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.Trigger" sourceFile="Trigger.java" interface="false" size="26" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.TriggerInfo" sourceFile="TriggerInfo.java" interface="false" size="8" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.wavesoft.webng.AIK.Triggers" total_bugs="1" total_types="3" total_size="78" priority_2="1">
+      <ClassStats class="com.wavesoft.webng.AIK.Triggers.DownloadTrigger" sourceFile="DownloadTrigger.java" interface="false" size="46" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.AIK.Triggers.TimedTrigger" sourceFile="TimedTrigger.java" interface="false" size="24" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.AIK.Triggers.TimedTrigger$1" sourceFile="TimedTrigger.java" interface="false" size="8" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.wavesoft.webng.api" total_bugs="0" total_types="5" total_size="52">
+      <ClassStats class="com.wavesoft.webng.api.BrowserWindow" sourceFile="BrowserWindow.java" interface="true" size="7" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.api.HeadButton" sourceFile="HeadButton.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.api.WebViewEventListener" sourceFile="WebViewEventListener.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.api.WebViewNG" sourceFile="WebViewNG.java" interface="false" size="31" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.api.Website" sourceFile="Website.java" interface="false" size="3" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.wavesoft.webng.components" total_bugs="1" total_types="9" total_size="286" priority_2="1">
+      <ClassStats class="com.wavesoft.webng.components.FadingComponent" sourceFile="FadingComponent.java" interface="false" size="36" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.components.Image" sourceFile="Image.java" interface="false" size="78" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.components.Image$PositionConstants" sourceFile="Image.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.components.Image$RepeatConstants" sourceFile="Image.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.components.ProgressBar" sourceFile="ProgressBar.java" interface="false" size="90" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.components.ProgressBar$1" sourceFile="ProgressBar.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.components.ProgressBar$BarPoint" sourceFile="ProgressBar.java" interface="false" size="27" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.components.ProgressBar$Kind" sourceFile="ProgressBar.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.components.WideButton" sourceFile="WideButton.java" interface="false" size="20" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.wavesoft.webng.io" total_bugs="34" total_types="24" total_size="932" priority_2="26" priority_1="8">
+      <ClassStats class="com.wavesoft.webng.io.AsyncEventListener" sourceFile="AsyncEventListener.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.DownloadManager" sourceFile="DownloadManager.java" interface="false" size="36" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.DownloadManager$DownloadJob" sourceFile="DownloadManager.java" interface="false" size="46" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.io.DownloadManager$DownloadJob$DownloadType" sourceFile="DownloadManager.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.DownloadManager$DownloadListener" sourceFile="DownloadManager.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.DownloadManager$DownloadThread" sourceFile="DownloadManager.java" interface="false" size="49" bugs="4" priority_2="2" priority_1="2"/>
+      <ClassStats class="com.wavesoft.webng.io.JarCache" sourceFile="JarCache.java" interface="false" size="108" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.io.JarCache$1" sourceFile="JarCache.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.JarCache$2" sourceFile="JarCache.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.JarCache$2$1" sourceFile="JarCache.java" interface="false" size="36" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.io.JarCache$Downloader" sourceFile="JarCache.java" interface="false" size="30" bugs="2" priority_2="2"/>
+      <ClassStats class="com.wavesoft.webng.io.JarDiscovery" sourceFile="JarDiscovery.java" interface="false" size="183" bugs="4" priority_2="4"/>
+      <ClassStats class="com.wavesoft.webng.io.JarDiscovery$1" sourceFile="JarDiscovery.java" interface="false" size="32" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.io.JarDiscovery$2" sourceFile="JarDiscovery.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.JarDiscovery$3" sourceFile="JarDiscovery.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.JarDiscovery$Downloader" sourceFile="JarDiscovery.java" interface="false" size="31" bugs="3" priority_2="3"/>
+      <ClassStats class="com.wavesoft.webng.io.JarLoader" sourceFile="JarLoader.java" interface="false" size="37" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.io.JarLoader$1" sourceFile="JarLoader.java" interface="false" size="36" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.JarLoader$JarFileLoader" sourceFile="JarLoader.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.ProgressEventListener" sourceFile="ProgressEventListener.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.SystemConsole" sourceFile="SystemConsole.java" interface="false" size="53" bugs="7" priority_2="1" priority_1="6"/>
+      <ClassStats class="com.wavesoft.webng.io.SystemConsole$Logger" sourceFile="SystemConsole.java" interface="false" size="31" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.io.WebNGIO" sourceFile="WebNGIO.java" interface="false" size="127" bugs="7" priority_2="7"/>
+      <ClassStats class="com.wavesoft.webng.io.WebNGSystem" sourceFile="WebNGSystem.java" interface="false" size="23" bugs="2" priority_2="2"/>
+    </PackageStats>
+    <PackageStats package="com.wavesoft.webng.render" total_bugs="9" total_types="13" total_size="287" priority_2="7" priority_1="2">
+      <ClassStats class="com.wavesoft.webng.render.AnimationSync" sourceFile="AnimationSync.java" interface="false" size="41" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.render.AnimationSync$1" sourceFile="AnimationSync.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.render.AnimationSync$HandlerEntry" sourceFile="AnimationSync.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.render.AnimationSyncHandler" sourceFile="AnimationSyncHandler.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.render.Styles" sourceFile="Styles.java" interface="false" size="35" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.render.Styles$CSSBackground" sourceFile="Styles.java" interface="false" size="13" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.render.Styles$CSSBorder" sourceFile="Styles.java" interface="false" size="7" bugs="4" priority_2="4"/>
+      <ClassStats class="com.wavesoft.webng.render.Styles$CSSBorderSide" sourceFile="Styles.java" interface="false" size="7" bugs="2" priority_2="2"/>
+      <ClassStats class="com.wavesoft.webng.render.Styles$CSSPosition" sourceFile="Styles.java" interface="false" size="32" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.render.WebViewDefault" sourceFile="WebViewDefault.java" interface="false" size="20" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.render.WebViewError" sourceFile="WebViewError.java" interface="false" size="52" bugs="2" priority_1="2"/>
+      <ClassStats class="com.wavesoft.webng.render.WebViewHome" sourceFile="WebViewHome.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.render.WebViewLoading" sourceFile="WebViewLoading.java" interface="false" size="49" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.wavesoft.webng.ui" total_bugs="24" total_types="18" total_size="912" priority_2="5" priority_1="19">
+      <ClassStats class="com.wavesoft.webng.ui.BrowserFrame" sourceFile="BrowserFrame.java" interface="false" size="139" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.ui.BrowserFrame$1" sourceFile="BrowserFrame.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.ui.BrowserFrame$2" sourceFile="BrowserFrame.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.ui.BrowserFrame$3" sourceFile="BrowserFrame.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.ui.BrowserFrame$4" sourceFile="BrowserFrame.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.ui.BrowserFrame$5" sourceFile="BrowserFrame.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.ui.BrowserFrame$6" sourceFile="BrowserFrame.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.ui.Colorset" sourceFile="Colorset.java" interface="false" size="36" bugs="13" priority_1="13"/>
+      <ClassStats class="com.wavesoft.webng.ui.ComponentMover" sourceFile="ComponentMover.java" interface="false" size="139" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.ui.PresenterThread" sourceFile="PresenterThread.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.ui.RoundedCornersBorder" sourceFile="RoundedCornersBorder.java" interface="false" size="24" bugs="2" priority_1="2"/>
+      <ClassStats class="com.wavesoft.webng.ui.SmoothButton" sourceFile="SmoothButton.java" interface="false" size="91" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.ui.SystemIcons" sourceFile="SystemIcons.java" interface="false" size="13" bugs="2" priority_1="2"/>
+      <ClassStats class="com.wavesoft.webng.ui.Tabs" sourceFile="Tabs.java" interface="false" size="268" bugs="5" priority_2="3" priority_1="2"/>
+      <ClassStats class="com.wavesoft.webng.ui.Tabs$AnimationThread" sourceFile="Tabs.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.ui.Tabs$ImageButton" sourceFile="Tabs.java" interface="false" size="31" bugs="1" priority_2="1"/>
+      <ClassStats class="com.wavesoft.webng.ui.Tabs$Tab" sourceFile="Tabs.java" interface="false" size="98" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.ui.Tabs$TabChangeListener" sourceFile="Tabs.java" interface="true" size="3" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.wavesoft.webng.wblang" total_bugs="11" total_types="6" total_size="236" priority_2="11">
+      <ClassStats class="com.wavesoft.webng.wblang.WL" sourceFile="WL.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.wblang.WL$1" sourceFile="WL.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.wblang.WL$DownloadWait" sourceFile="WL.java" interface="false" size="42" bugs="5" priority_2="5"/>
+      <ClassStats class="com.wavesoft.webng.wblang.WLData" sourceFile="WLData.java" interface="false" size="126" bugs="5" priority_2="5"/>
+      <ClassStats class="com.wavesoft.webng.wblang.WLData$DataType" sourceFile="WLData.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="com.wavesoft.webng.wblang.WLRemoteData" sourceFile="WLRemoteData.java" interface="false" size="40" bugs="1" priority_2="1"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="2524" invocations="538" avgMicrosecondsPerInvocation="4693" maxMicrosecondsPerInvocation="145341" standardDeviationMircosecondsPerInvocation="16167"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="2376" invocations="1861" avgMicrosecondsPerInvocation="1276" maxMicrosecondsPerInvocation="166248" standardDeviationMircosecondsPerInvocation="6419"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ExplicitSerialization" totalMilliseconds="1934" invocations="538" avgMicrosecondsPerInvocation="3595" maxMicrosecondsPerInvocation="154495" standardDeviationMircosecondsPerInvocation="13225"/>
+      <ClassProfile name="edu.umd.cs.findbugs.FindBugs2" totalMilliseconds="1525" invocations="2" avgMicrosecondsPerInvocation="762732" maxMicrosecondsPerInvocation="824639" standardDeviationMircosecondsPerInvocation="61912"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="1040" invocations="466" avgMicrosecondsPerInvocation="2232" maxMicrosecondsPerInvocation="120332" standardDeviationMircosecondsPerInvocation="10560"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="937" invocations="498" avgMicrosecondsPerInvocation="1882" maxMicrosecondsPerInvocation="122267" standardDeviationMircosecondsPerInvocation="9382"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="926" invocations="466" avgMicrosecondsPerInvocation="1988" maxMicrosecondsPerInvocation="127757" standardDeviationMircosecondsPerInvocation="8616"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="827" invocations="1864" avgMicrosecondsPerInvocation="443" maxMicrosecondsPerInvocation="100330" standardDeviationMircosecondsPerInvocation="3110"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="761" invocations="1428" avgMicrosecondsPerInvocation="533" maxMicrosecondsPerInvocation="118820" standardDeviationMircosecondsPerInvocation="4536"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="747" invocations="537" avgMicrosecondsPerInvocation="1391" maxMicrosecondsPerInvocation="78454" standardDeviationMircosecondsPerInvocation="5647"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="714" invocations="466" avgMicrosecondsPerInvocation="1532" maxMicrosecondsPerInvocation="65083" standardDeviationMircosecondsPerInvocation="5455"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="621" invocations="503" avgMicrosecondsPerInvocation="1236" maxMicrosecondsPerInvocation="86449" standardDeviationMircosecondsPerInvocation="5808"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="545" invocations="538" avgMicrosecondsPerInvocation="1014" maxMicrosecondsPerInvocation="102897" standardDeviationMircosecondsPerInvocation="6376"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="534" invocations="393" avgMicrosecondsPerInvocation="1358" maxMicrosecondsPerInvocation="100282" standardDeviationMircosecondsPerInvocation="7432"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="533" invocations="466" avgMicrosecondsPerInvocation="1145" maxMicrosecondsPerInvocation="67167" standardDeviationMircosecondsPerInvocation="4711"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="332" invocations="538" avgMicrosecondsPerInvocation="617" maxMicrosecondsPerInvocation="81779" standardDeviationMircosecondsPerInvocation="3919"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="329" invocations="538" avgMicrosecondsPerInvocation="611" maxMicrosecondsPerInvocation="32324" standardDeviationMircosecondsPerInvocation="2403"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="299" invocations="1812" avgMicrosecondsPerInvocation="165" maxMicrosecondsPerInvocation="99070" standardDeviationMircosecondsPerInvocation="2480"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1345678788000" release="" codeSize="6394" numClasses="196"/>
+  </History>
+</BugCollection>

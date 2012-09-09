@@ -21,7 +21,6 @@
  */
 package com.wavesoft.webng.api;
 import java.awt.Component;
-import java.util.ArrayList;
 
 /**
  *
@@ -29,7 +28,6 @@ import java.util.ArrayList;
  */
 public abstract class WebViewNG extends javax.swing.JPanel {
     private BrowserWindow browserWindow = null;
-    private ArrayList<WebViewEventListener> listeners = new ArrayList<WebViewEventListener>();
     
     /** Creates new form WebViewNG */
     public WebViewNG() {
@@ -58,14 +56,14 @@ public abstract class WebViewNG extends javax.swing.JPanel {
     }
     
     public void addViewEventListener(WebViewEventListener l) {
-        listeners.add(l);
+        listenerList.add(WebViewEventListener.class, l);
     }
     
     public void removeViewEventListener(WebViewEventListener l) {
-        listeners.remove(l);
+        listenerList.remove(WebViewEventListener.class, l);
     }
     
-    public void getViewEventListeners() {
+    public void setData() {
         
     }
 
@@ -84,11 +82,11 @@ public abstract class WebViewNG extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 123, Short.MAX_VALUE)
+            .add(0, 63, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 62, Short.MAX_VALUE)
+            .add(0, 56, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

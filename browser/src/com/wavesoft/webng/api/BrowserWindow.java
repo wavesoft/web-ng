@@ -19,6 +19,7 @@
  * 
  */
 package com.wavesoft.webng.api;
+import java.awt.Image;
 
 /**
  *
@@ -28,6 +29,8 @@ public interface BrowserWindow {
     
     public void navigateTo(String url);
     public void navigateTo(WebViewNG view);
+    
+    public void setIcon(Image icon);
     public void setTitle(String title);
     public void setHeadButtons(HeadButton[] buttons);
     public void addWindowEventListener(WebViewEventListener l);

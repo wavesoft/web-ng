@@ -1,11 +1,13 @@
 \section{Technical details}
+The website is defined as a \emph{YAML} document transfered over HTTP.
 
-\begin{lstlisting}[language=XML]
-<view class="gr.wavesoft.themes.default">
-  <data for="title">
-    <view class="gr.wavesoft.themes.animation3D">
-      <data for="text">Welcome to Wavesoft Animation</data>
-    </view>
-  </data>
-</view>
+\begin{lstlisting}[language=YAML]
+~view :  com.wavesoft.views.main
+title : Welcome to my website!
+navigation:
+- title: Home
+   url: home
+- title: Link
+   url: link
+
 \end{lstlisting}

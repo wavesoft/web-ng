@@ -20,11 +20,7 @@
  */
 package com.wavesoft.webng.io;
 
-import com.wavesoft.webng.api.WebViewNG;
-import com.wavesoft.webng.api.Website;
-import com.wavesoft.webng.render.WebViewError;
 import java.net.URL;
-import java.io.IOException;
 import java.net.URLClassLoader;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
@@ -35,6 +31,9 @@ import java.util.logging.Logger;
  * @author icharala
  */
 public class JarLoader {
+    
+    private static SystemConsole.Logger securityLogger = new SystemConsole.Logger(JarDiscovery.class, "Security");
+    private static SystemConsole.Logger systemLogger = new SystemConsole.Logger(JarDiscovery.class, "JarLoader");
 
     public static class JarFileLoader extends URLClassLoader {
         public JarFileLoader (URL[] urls) {
@@ -46,9 +45,10 @@ public class JarLoader {
         }
     }
 
-    private JarFileLoader jarLoader = new JarFileLoader (new URL[] {});
+    private static JarFileLoader jarLoader = new JarFileLoader (new URL[] {});
     
-    public WebViewNG getViewFromJar(String jarFile, String className) 
+    /*
+    public static WebViewNG getViewFromJar(String jarFile, String className) 
             throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         
         // It automatically de-duplicates classes
@@ -66,7 +66,7 @@ public class JarLoader {
         return instance;
     }
     
-    public Website getWebsiteFromJar(String jarFile, String className) 
+    public static Website getWebsiteFromJar(String jarFile, String className) 
             throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         
         // It automatically de-duplicates classes
@@ -82,6 +82,104 @@ public class JarLoader {
 
         // Return view
         return instance;
+    }
+    */
+    
+    public static Boolean invalidateJar(String jarFile) {
+        return false;
+    }
+    
+    public static Object getInstanceFromJar(String jarFile, String className, Class expectedType)
+        throws ClassNotFoundException, InstantiationException, IllegalAccessException, MalformedURLException {
+                
+        // It automatically de-duplicates classes
+        jarLoader.addFile(jarFile);
+
+        // Get the view by name
+        Class c = jarLoader.loadClass(className);
+        if (!expectedType.isAssignableFrom(c)) 
+            throw new IllegalAccessException("The specified class is not a Website instance!");
+
+        // Return instance
+        return c.newInstance();
+        
+    }
+    
+    public static void getInstance(final String className, final Class expectedType, final AsyncEventListener listener) {
+
+        systemLogger.debug("Fetching JAR for FQN ",className);
+        JarCache.getJarFor(className, new AsyncEventListener() {
+
+            @Override
+            public void completed(Object result) {
+                try {
+                    String jarFile = (String) result;
+                    systemLogger.debug("JAR Found at ",jarFile);
+
+                    if (jarFile == null) 
+                        throw new ClassNotFoundException("Unable to discover a jar file that contains this class!");
+                    
+                    // It automatically de-duplicates classes
+                    systemLogger.debug("Importing file ",jarFile);
+                    jarLoader.addFile(jarFile);
+
+                    // Get the view by name
+                    systemLogger.debug("Loading class ",className, " from ",jarFile);
+                    Class c = jarLoader.loadClass(className);
+                    if (!expectedType.isAssignableFrom(c)) 
+                        throw new IllegalAccessException("The specified class is not an expected instance!");
+
+                    // Callback the final instance
+                    listener.completed(c.newInstance());
+                    
+                } catch (MalformedURLException ex) {
+                    systemLogger.warn("Error processing JAR ",ex);
+                    listener.failed(ex, null);
+                } catch (InstantiationException ex) {
+                    systemLogger.warn("Error processing JAR ",ex);
+                    listener.failed(ex, null);
+                } catch (IllegalAccessException ex) {
+                    systemLogger.warn("Error processing JAR ",ex);
+                    listener.failed(ex, null);
+                } catch (ClassNotFoundException ex) {
+                    systemLogger.warn("Error processing JAR ",ex);
+                    listener.failed(ex, null);
+                }
+
+            }
+
+            @Override
+            public void failed(Exception e, Object result) {
+                systemLogger.warn("Unable to download JAR ",e);
+                listener.failed(e, result);
+            }
+        });
+
+       
+    }
+    
+    public static Object getInstance(String className, Class expectedType) 
+            throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        
+        // Lookup Jar file
+        String jarFile = JarCache.getJarFor(className);
+        if (jarFile == null) throw new ClassNotFoundException("Unable to discover a jar file that contains this class!");
+        try {
+            // It automatically de-duplicates classes
+            jarLoader.addFile(jarFile);
+        } catch (MalformedURLException ex) {
+            systemLogger.exception(ex);
+            return null;
+        }
+
+        // Get the view by name
+        Class c = jarLoader.loadClass(className);
+        if (!expectedType.isAssignableFrom(c)) 
+            throw new IllegalAccessException("The specified class is not an expected instance!");
+
+        // Return instance
+        return c.newInstance();
+        
     }
     
 }
