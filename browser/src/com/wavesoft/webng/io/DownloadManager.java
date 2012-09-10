@@ -1,5 +1,5 @@
 /*
- * DownloadThread.java
+ * DownloadManager.java
  * 
  * BrowserNG - A workbench for the browser of the new generation
  * Copyright (C) 2012 Ioannis Charalampidis
