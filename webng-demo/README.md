@@ -21,7 +21,6 @@ But if you are really, really, really in hurry and you absolutely want to try to
 3. Rebuild the jar file and upload it in your webserver (ex. in the ng-views sub-folder).
 3. Create an exports file - A plain textfile with the following lines:
 
-    # Exports file for my awsome view
     com.example.demo.hello: ng-views/demo.jar
 
 Modify this file according to your needs and you are ready to go!
@@ -33,7 +32,7 @@ Keep in mind the following things:
 The data folder is found in the following locations:
 
 * **Windows:** %appdata%/WebNGBrowser
-* **OSX:** /Users/<user>/Library/ApplicationSupport/WebNGBrowser
-* **Linux:** /home/<user>/.WebNGBrowser
+* **OSX:** /Users/*user*/Library/ApplicationSupport/WebNGBrowser
+* **Linux:** /home/*user*/.WebNGBrowser
 
 Good luck!
