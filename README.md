@@ -6,6 +6,11 @@ of the components of the current system. That's the New Generation of the web.
 
 You can usually find a development build of the project in the broser/app/ folder.
 
+If you are just in hurry, you can try for now to view the *hello world* view, using it's FQN:
+
+    gr.wavesoft.demo.hello 
+
+
 Description
 -----------
 
