@@ -4,12 +4,16 @@ web-ng
 An attempt to create a better information browsing on the internet, by redefining most
 of the components of the current system. That's the New Generation of the web.
 
-You can usually find a development build of the project in the broser/app/ folder.
+Here is what's around:
 
-If you are just in hurry, you can try for now to view the *hello world* view, using it's FQN:
+* The folder **browser/** contains the sources of the WebNG.
+* The folder **browser/dist/** contains the latest jar of the browser.
+* The folder **browser/app/** contains binary packages of the latest build.
+* The folder **webng-demo/** contains the sources of the **gr.wavesoft.demo.hello** hello world view.
+* The folder **documentation/** contains various documents and thoughts for the project.
 
-    gr.wavesoft.demo.hello 
-
+If you just want to get started, check the *browser/app/* folder if there are builds for your OS, otherwise
+download the entire *browser/dist* folder and run the *browser.jar*.
 
 Description
 -----------
@@ -30,40 +34,43 @@ in parsing. This gives a big bonus on the development side.
 
 Here is an example of a small blog:
 
-    ~view    : gr.wavesoft.views.blog
-    posts    :
-        - Title: New website
-          Date: 2001-11-23 15:03:17 -5
-          Body: |
-              This is a demonstration on how easy you can create websites using
-              the new generation of the web!
-              
-        - Title: Testing
-          Date: 2001-11-23 15:03:17 -5
-          Body: |
-              Proof that <b>HTML</b> can still be used! <img src="test" style="float: right" />
+```yaml
+~view    : gr.wavesoft.views.blog
+posts    :
+    - Title: New website
+      Date: 2001-11-23 15:03:17 -5
+      Body: |
+          This is a demonstration on how easy you can create websites using
+          the new generation of the web!
+          
+    - Title: Testing
+      Date: 2001-11-23 15:03:17 -5
+      Body: |
+          Proof that <b>HTML</b> can still be used! <img src="test" style="float: right" />
+```
 
 Straight-forward right? Anyone can write (and even maintain by hand) this blog!
 
 Additionally YAML provides node referencing and other cool features in the data language itself.
 And of course, remote referencing of nodes is also possible:
 
-    ~view    : gr.wavesoft.themes.personal
-    title    : Welcome to my personal homepage
-    sections :
-        
-        - section: Blog
-          ~src  : blog.yml
-          
-        - section: About
-          ~view 	: gr.wavesoft.views.about
-          name      : Ioannis Charalampidis
-          contact   : <nospam>@mailserver.com
-		  photo     : images/profile.jpg
-        
-        - section: Big data
-          ~src: big.yml
-
+```yaml
+~view    : gr.wavesoft.themes.personal
+title    : Welcome to my personal homepage
+sections :
+    
+    - section: Blog
+      ~src  : blog.yml
+      
+    - section: About
+      ~view 	: gr.wavesoft.views.about
+      name      : Ioannis Charalampidis
+      contact   : <nospam>@mailserver.com
+photo     : images/profile.jpg
+    
+    - section: Big data
+      ~src: big.yml
+```
 
 Ok, what about the view for this data set?
 
