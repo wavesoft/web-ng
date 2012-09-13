@@ -40,7 +40,13 @@ public class JarLoader {
             super (urls);
         }
         public void addFile (String path) throws MalformedURLException {
-            String urlPath = "jar:file://" + path + "!/";
+            String OS = System.getProperty("os.name").toUpperCase();
+            String urlPath = "jar:file://";
+            if (OS.contains("WIN")) {
+                urlPath += "/" + path.replace('\\', '/') + "!/";
+            } else {
+                urlPath += path + "!/";
+            }
             addURL(new URL (urlPath));
         }
     }
@@ -166,6 +172,7 @@ public class JarLoader {
         if (jarFile == null) throw new ClassNotFoundException("Unable to discover a jar file that contains this class!");
         try {
             // It automatically de-duplicates classes
+            systemLogger.debug("Loading class ",className, " from ",jarFile);
             jarLoader.addFile(jarFile);
         } catch (MalformedURLException ex) {
             systemLogger.exception(ex);
