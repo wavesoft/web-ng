@@ -52,7 +52,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
     private Integer pressedButton = -1;
     
     protected static int leftPadding = 0;
-    protected static int rightPadding = 0;
+    protected static int rightPadding = 40;
     protected static int topPadding = 15;
     
     protected static int TAB_SIZE = 200;
@@ -65,6 +65,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
     public interface TabChangeListener {
         public void tabChanged(int index, String key);
         public void tabClosed(int index, String key);
+        public void newTab();
     }
     
     private static class AnimationThread extends Thread {
@@ -82,6 +83,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
         
         @Override
         public void run() {
+            Thread.currentThread().setName("Animation-Tabs");
             while (active && !Thread.interrupted()) {
                 active = tabsInstance.animationFrame();
                 try {
@@ -302,6 +304,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
 
     @Override
     public void componentResized(ComponentEvent ce) {
+        newTabButton.y = getHeight() - newTabButton.height;
         resizeTabs(false);
     }
 
@@ -321,11 +324,17 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
     public void mouseClicked(MouseEvent me) {
         if (pressedButton != -1) {
             me.consume();
-            for (TabChangeListener l: tabChangeListeners) {
-                l.tabClosed(
-                    java.util.Arrays.asList(tabs).indexOf(buttons[pressedButton].tab), 
-                    buttons[pressedButton].key
-                    );
+            if ("#NEWTAB#".equals(buttons[pressedButton].key)) {
+                for (TabChangeListener l: tabChangeListeners) {
+                    l.newTab();
+                }
+            } else {
+                for (TabChangeListener l: tabChangeListeners) {
+                    l.tabClosed(
+                        java.util.Arrays.asList(tabs).indexOf(buttons[pressedButton].tab), 
+                        buttons[pressedButton].key
+                        );
+                }
             }
         }
         if (draggingItem != -1) {
@@ -415,6 +424,9 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
 
             // Update the actual position of this tab
             t.moveXW(me.getX() - this.dragOffset, null);
+            
+            // Repaint
+            updateNewTabPosition();
             repaint();
         }
     }
@@ -453,9 +465,21 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
         animationThread.start();
     }
     
+    private void updateNewTabPosition() {
+        int maxX = 0;
+        if (newTabButton == null) return;
+        for (int i=0; i<tabs.length; i++) {
+            // Update maxX for the newTabButton
+            if ((tabs[i].x + tabs[i].width) > maxX)
+                maxX = tabs[i].x + tabs[i].width;
+        }
+        newTabButton.x = maxX - 10;
+    }
+    
     private boolean animationFrame() {
         Boolean moved=false;
-
+        int maxX = 0;
+        
         // Update tabs position
         for (int i=0; i<tabs.length; i++) {
             Tab t = tabs[i];
@@ -487,10 +511,12 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
                 // Update UI
                 if (moved)
                     t.moveXW(cX, cW);
+                
             }
         }
         
         if (moved) {
+            updateNewTabPosition();
             repaint();
         }
         
@@ -525,8 +551,9 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
         buttons = new ImageButton[0];
         tabChangeListeners = new ArrayList<TabChangeListener>();
         
-        newTabButton = new ImageButton(this, 0, 0, null);
-        newTabButton.y = topPadding + 12;
+        newTabButton = new ImageButton(this, 0, 0, new javax.swing.ImageIcon(getClass().getResource("/com/wavesoft/webng/resources/btn-newtab.png")));
+        newTabButton.y = this.getHeight() - newTabButton.height;
+        newTabButton.key = "#NEWTAB#";
         addButton(newTabButton);
         
     }
@@ -610,7 +637,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
     public void resizeTabs(Boolean animated) {
         if (tabs.length == 0) return;
         int width = getWidth() - leftPadding - rightPadding;
-        int slice = width / tabs.length;
+        int slice = (width / tabs.length) + TAB_OVERLAP/2;
         if (slice > TAB_SIZE) slice=TAB_SIZE;
         int x = leftPadding;
         for (int i=0; i<tabs.length; i++) {
@@ -622,9 +649,8 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
             x += slice - TAB_OVERLAP/2;
         }
         
-        if (newTabButton != null)
-            newTabButton.x = x + TAB_OVERLAP - 10;
-        
+        updateNewTabPosition();
+                
         if (animated)
             startAnimation();
     }
@@ -658,7 +684,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
         g2.fillRect(0, 0, getWidth(), height);
         
         // Render the new tab
-        //newTabButton.render(g2);
+        newTabButton.render(g2);
         
         // Render inactive tabs
         Tab activeTab = null;

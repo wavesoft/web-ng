@@ -43,17 +43,34 @@ public class WebViewHome extends WebViewNG {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        imgBack = new com.wavesoft.webng.components.Image();
+
+        imgBack.setImage(new javax.swing.ImageIcon(getClass().getResource("/com/wavesoft/webng/resources/cloud.jpeg"))); // NOI18N
+        imgBack.setRepeat(com.wavesoft.webng.components.Image.RepeatConstants.Stretch);
+
+        org.jdesktop.layout.GroupLayout imgBackLayout = new org.jdesktop.layout.GroupLayout(imgBack);
+        imgBack.setLayout(imgBackLayout);
+        imgBackLayout.setHorizontalGroup(
+            imgBackLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 535, Short.MAX_VALUE)
+        );
+        imgBackLayout.setVerticalGroup(
+            imgBackLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 334, Short.MAX_VALUE)
+        );
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 434, Short.MAX_VALUE)
+            .add(imgBack, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 325, Short.MAX_VALUE)
+            .add(imgBack, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.wavesoft.webng.components.Image imgBack;
     // End of variables declaration//GEN-END:variables
 }

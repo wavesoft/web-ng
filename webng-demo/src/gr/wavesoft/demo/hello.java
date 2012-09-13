@@ -10,7 +10,11 @@
  */
 package gr.wavesoft.demo;
 
+import com.wavesoft.webng.api.BrowserWindow;
+import com.wavesoft.webng.api.HeadButton;
 import com.wavesoft.webng.api.WebViewNG;
+import com.wavesoft.webng.ui.SystemIcons;
+import javax.swing.Icon;
 
 /**
  *
@@ -21,6 +25,14 @@ public class hello extends WebViewNG {
     /** Creates new form hello */
     public hello() {
         initComponents();
+    }
+
+    @Override
+    public void webngSetBrowserWindow(BrowserWindow window) {
+        super.webngSetBrowserWindow(window);
+        
+        window.setTitle("Hello world!");
+        
     }
 
     /** This method is called from within the constructor to

@@ -1,5 +1,5 @@
 /browser/build/
-
-browser/app/.DS_Store
-
-webng-demo/.DS_Store
+*.DS_Store
+browser/src/com/wavesoft/webng/resources/btn-tab.png
+browser/nbproject/private/profiler/*.hprof
+browser/nbproject/private/profiler/*.nps

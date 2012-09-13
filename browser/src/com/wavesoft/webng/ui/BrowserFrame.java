@@ -27,6 +27,7 @@ import com.wavesoft.webng.api.WebViewNG;
 import com.wavesoft.webng.api.WebViewEventListener;
 import com.wavesoft.webng.io.JarLoader;
 import com.wavesoft.webng.render.WebViewError;
+import com.wavesoft.webng.render.WebViewHome;
 import com.wavesoft.webng.render.WebViewLoading;
 import com.wavesoft.webng.ui.Tabs.Tab;
 import java.awt.GradientPaint;
@@ -47,13 +48,20 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
     private Tab linkedTab = null;
     private Thread presenterThread = null;
     
+    // Some frequently used views
+    private WebViewLoading loadingView;
+    private WebViewHome homeView;
+    
     /** Creates new form PageFrame */
     public BrowserFrame() {
         initComponents();
         jViewPanel.getVerticalScrollBar().setUnitIncrement(16);
         jViewPanel.getHorizontalScrollBar().setUnitIncrement(16);
         
-        setView(new WebViewError("No view available", "<html><p>No view is currently available</p></html>"));
+        loadingView = new WebViewLoading();
+        homeView = new WebViewHome();
+        
+        setView(homeView);
     }
     
     public void focusOnLocationBar() {
@@ -106,6 +114,7 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
             webView.webngSetBrowserWindow(null);
             jViewPanel.remove(webView);
             webView = null;
+            System.gc();
         }
         
         // Add the new webView
@@ -240,6 +249,9 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
     }// </editor-fold>//GEN-END:initComponents
 
     private void sbHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sbHomeMouseClicked
+
+        navigateTo(homeView);
+        
         //navigateTo(loader.getViewByName("com.wavesoft.templates.basic.BlogHome"));
         /*
         WebNGSystem.downloadManager.download("http://localhost/", new DownloadListener() {
@@ -286,7 +298,7 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
 
     @Override
     public void navigateTo(String url) {
-        navigateTo(new WebViewLoading());
+        navigateTo(loadingView);
         presenterThread = new Thread(new PresenterThread(url, this));
         presenterThread.start();
     }

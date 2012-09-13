@@ -141,6 +141,13 @@ public class Image extends WebViewNG {
         initComponents();
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        image = null;
+        bImage = null;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

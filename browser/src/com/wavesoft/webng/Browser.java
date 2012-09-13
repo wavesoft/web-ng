@@ -194,5 +194,10 @@ public class Browser extends javax.swing.JFrame implements ComponentListener, Ta
         tabs.remove(index);
         if (tabs.isEmpty()) System.exit(0);
     }
+
+    @Override
+    public void newTab() {
+        addNewTab();
+    }
     
 }

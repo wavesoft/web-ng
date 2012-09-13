@@ -57,8 +57,10 @@ public class AnimationSync {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
+                Thread.currentThread().setName("Animation-Sync");
                 AnimationSync.broadcastTick(System.currentTimeMillis());                
             }
+            
         });
         
     }
