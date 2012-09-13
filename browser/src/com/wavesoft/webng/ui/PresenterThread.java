@@ -24,6 +24,13 @@ import com.wavesoft.webng.api.WebViewNG;
 import com.wavesoft.webng.io.AsyncEventListener;
 import com.wavesoft.webng.io.WebNGIO;
 import com.wavesoft.webng.render.WebViewError;
+import com.wavesoft.webng.wblang.WL;
+import com.wavesoft.webng.wblang.WLData;
+import com.wavesoft.webng.wblang.WLRemoteData;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,6 +38,7 @@ import com.wavesoft.webng.render.WebViewError;
  */
 public class PresenterThread implements Runnable {
     
+    private static Integer threadID = 0;
     PresenterEventListener listener;
     String url;
     
@@ -41,7 +49,21 @@ public class PresenterThread implements Runnable {
     
     @Override
     public void run() {
-        WebNGIO.viewFromClassName(url, new AsyncEventListener() {
+        Thread.currentThread().setName("Presenter-" + (threadID++).toString());
+        
+        // Validate URL
+        try {
+            URL uURL = new URL(url);
+        } catch (MalformedURLException ex) {
+            listener.viewChanged(new WebViewError("Invalid URL", ex));
+            return;
+        }
+        
+        // Prepare the node
+        WLData data = new WLRemoteData(url);
+        
+        // Get and render the view
+        data.getView(new AsyncEventListener() {
 
             @Override
             public void completed(Object result) {
@@ -53,6 +75,7 @@ public class PresenterThread implements Runnable {
                 listener.viewChanged(new WebViewError("Unable to display view", e));
             }
         });
+        
     }
     
 }

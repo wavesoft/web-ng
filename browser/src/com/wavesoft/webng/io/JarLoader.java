@@ -49,6 +49,7 @@ public class JarLoader {
             }
             addURL(new URL (urlPath));
         }
+        
     }
 
     private static JarFileLoader jarLoader = new JarFileLoader (new URL[] {});

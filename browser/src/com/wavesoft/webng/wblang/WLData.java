@@ -21,6 +21,7 @@
 package com.wavesoft.webng.wblang;
 
 import com.wavesoft.webng.api.WebViewNG;
+import com.wavesoft.webng.io.AsyncEventListener;
 import com.wavesoft.webng.io.WebNGIO;
 import com.wavesoft.webng.render.WebViewDefault;
 import java.net.MalformedURLException;
@@ -175,6 +176,12 @@ public class WLData {
         return value().toString();
     }
     
+    public Object get(String key, Object defaultValue) {
+        Object value = get(key);
+        if (value == null) return defaultValue;
+        return value;
+    }
+    
     public Object get(String key) {
         LinkedHashMap<String, WLData> value;
         if (dataType == DataType.HASH) {
@@ -227,6 +234,11 @@ public class WLData {
     public WebViewNG getView() {
         String view = getAttribute("view");
         return WebNGIO.viewFromClassName(view);
+    }
+    
+    public void getView(AsyncEventListener callback) {
+        String view = getAttribute("view");
+        WebNGIO.viewFromClassName(view, callback);
     }
     
     public void invalidate() {

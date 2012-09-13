@@ -63,8 +63,12 @@ public abstract class WebViewNG extends javax.swing.JPanel {
         listenerList.remove(WebViewEventListener.class, l);
     }
     
-    public void setData() {
-        
+    public void addDataListener(WebViewDataListener l) {
+        listenerList.add(WebViewDataListener.class, l);
+    }
+    
+    public void removeDataListener(WebViewDataListener l) {
+        listenerList.remove(WebViewDataListener.class, l);
     }
 
     /** This method is called from within the constructor to
