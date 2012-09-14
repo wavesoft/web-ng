@@ -28,15 +28,39 @@ import java.io.File;
  */
 public class WebNGSystem {
     
-    private static String getAppDataDir(String appName) {
+    public static final boolean isOSX;
+    public static final boolean isWindows;
+    public static final boolean isLinux;
+    
+    static {
         String OS = System.getProperty("os.name").toUpperCase();
+        if (OS.contains("WIN")) {
+            isWindows = true;
+            isOSX = false;
+            isLinux = false;
+        } else if (OS.contains("MAC")) {
+            isWindows = false;
+            isOSX = true;
+            isLinux = false;
+        } else if (OS.contains("NUX")) {
+            isWindows = false;
+            isOSX = false;
+            isLinux = true;
+        } else {
+            isWindows = false;
+            isOSX = false;
+            isLinux = false;
+        }
+    }
+    
+    private static String getAppDataDir(String appName) {
         
         // Find the appropriate directory based ont he OS
-        if (OS.contains("WIN"))
+        if (isWindows)
             return System.getenv("APPDATA") + '/' + appName;
-        else if (OS.contains("MAC"))
+        else if (isOSX)
             return System.getProperty("user.home") + "/Library/Application Support/" + appName;
-        else if (OS.contains("NUX"))
+        else if (isLinux)
             return System.getProperty("user.home") + "/." + appName;
         
         // Return linux-like default

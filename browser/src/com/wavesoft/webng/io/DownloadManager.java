@@ -67,6 +67,8 @@ public class DownloadManager {
         public DownloadListener listener;
         public DownloadType type;
         
+        public Exception innerException;
+        
         public DownloadJob(URL url,DownloadListener listener) {
             this.url = url;
             this.buffer = "";
@@ -75,6 +77,7 @@ public class DownloadManager {
             this.requestData = "";
             this.listener = listener;
             this.type = DownloadType.BUFFER;
+            this.innerException = null;
         }
         
         public DownloadJob(URL url, String requestMethod, String requestData, DownloadListener listener) {
@@ -85,6 +88,7 @@ public class DownloadManager {
             this.requestData = requestData;
             this.listener = listener;
             this.type = DownloadType.BUFFER;
+            this.innerException = null;
         }
         
         public DownloadJob(URL url, String filename, DownloadListener listener) {
@@ -95,6 +99,7 @@ public class DownloadManager {
             this.filename = filename;
             this.listener = listener;
             this.type = DownloadType.FILE;
+            this.innerException = null;
         }
         
         public void setFailure(int status, String statusMessage) {
@@ -144,6 +149,7 @@ public class DownloadManager {
                     
                 } catch (IOException ex) {
                     Logger.getLogger(DownloadManager.class.getName()).log(Level.SEVERE, null, ex);
+                    job.innerException = ex;
                     job.setFailure(601, "IO Exception: "+ex.getMessage());
                     continue; // With the next job
                 }
@@ -189,6 +195,7 @@ public class DownloadManager {
                     
                 } catch (IOException ex) {
                     Logger.getLogger(DownloadManager.class.getName()).log(Level.SEVERE, null, ex);
+                    job.innerException = ex;
                     job.setFailure(602, "IO Exception: "+ex.getMessage());
                     continue; // With the next job
                 }

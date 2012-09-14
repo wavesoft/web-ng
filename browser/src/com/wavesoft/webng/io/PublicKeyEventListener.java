@@ -1,5 +1,5 @@
 /*
- * BrowserWindow.java
+ * PublicKeyEventListener.java
  * 
  * BrowserNG - A workbench for the browser of the new generation
  * Copyright (C) 2012 Ioannis Charalampidis
@@ -18,22 +18,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
-package com.wavesoft.webng.api;
-import java.awt.Image;
+package com.wavesoft.webng.io;
+
+import java.awt.event.KeyEvent;
 
 /**
  *
  * @author icharala
  */
-public interface BrowserWindow {
+public interface PublicKeyEventListener {
     
-    public void navigateTo(String url);
-    public void navigateTo(WebViewNG view);
-    public void refresh();
-    
-    public void setIcon(Image icon);
-    public void setTitle(String title);
-    public void setHeadButtons(HeadButton[] buttons);
-    public void addWindowEventListener(WebViewEventListener l);
+    public void publicKeyPressed(KeyEvent ke);
+    public void publicKeyReleased(KeyEvent ke);
     
 }

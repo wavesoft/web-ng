@@ -1,5 +1,5 @@
 /*
- * BrowserWindow.java
+ * SystemViews.java
  * 
  * BrowserNG - A workbench for the browser of the new generation
  * Copyright (C) 2012 Ioannis Charalampidis
@@ -18,22 +18,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
-package com.wavesoft.webng.api;
-import java.awt.Image;
+package com.wavesoft.webng.ui;
+
+import com.wavesoft.webng.api.WebViewNG;
+import com.wavesoft.webng.render.WebViewError;
+import com.wavesoft.webng.ui.system.WebViewConsole;
 
 /**
  *
  * @author icharala
  */
-public interface BrowserWindow {
+public class SystemViews {
     
-    public void navigateTo(String url);
-    public void navigateTo(WebViewNG view);
-    public void refresh();
-    
-    public void setIcon(Image icon);
-    public void setTitle(String title);
-    public void setHeadButtons(HeadButton[] buttons);
-    public void addWindowEventListener(WebViewEventListener l);
+    public static WebViewNG getSystemView(String name) {
+        name = name.trim().toLowerCase();
+        if (!name.startsWith("webng:")) return null;
+        if ("webng:console".equals(name)) {
+            return new WebViewConsole();
+        } else {
+            return new WebViewError("Unknown system page", "You have enetered an unknown system page. Use webng:help for more information");
+        }
+    }
     
 }

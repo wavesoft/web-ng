@@ -23,13 +23,10 @@ package com.wavesoft.webng.wblang;
 import com.wavesoft.webng.api.WebViewNG;
 import com.wavesoft.webng.io.AsyncEventListener;
 import com.wavesoft.webng.io.WebNGIO;
-import com.wavesoft.webng.render.WebViewDefault;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

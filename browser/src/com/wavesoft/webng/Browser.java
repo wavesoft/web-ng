@@ -21,13 +21,16 @@
  */
 package com.wavesoft.webng;
 
+import com.wavesoft.webng.io.PublicKeyEventListener;
+import com.wavesoft.webng.io.PublicKeyEventManager;
 import com.wavesoft.webng.ui.BrowserFrame;
 import com.wavesoft.webng.ui.ComponentMover;
 import com.wavesoft.webng.ui.Tabs.TabChangeListener;
 import java.awt.CardLayout;
-import java.awt.HeadlessException;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -35,7 +38,7 @@ import java.util.UUID;
  * Basic browser class
  * @author Ioannis Charalampidis
  */
-public class Browser extends javax.swing.JFrame implements ComponentListener, TabChangeListener {
+public class Browser extends javax.swing.JFrame implements ComponentListener, TabChangeListener, PublicKeyEventListener {
 
     ComponentMover mover;
     ArrayList<BrowserFrame> tabs;
@@ -54,6 +57,11 @@ public class Browser extends javax.swing.JFrame implements ComponentListener, Ta
         
         // Add the default, new tab
         addNewTab();
+        
+        // Register the public key manager
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new PublicKeyEventManager(new Integer[]{
+            KeyEvent.VK_R, KeyEvent.VK_W, KeyEvent.VK_T
+        }));
     }
 
     public Browser(BrowserFrame frame) {
@@ -198,6 +206,38 @@ public class Browser extends javax.swing.JFrame implements ComponentListener, Ta
     @Override
     public void newTab() {
         addNewTab();
+    }
+
+    @Override
+    public void publicKeyPressed(KeyEvent ke) {
+        if (ke.getKeyCode() == KeyEvent.VK_W) {
+            
+            // Get current tab
+            int index = tabsHead.getSelectedTabIndex();
+            if (index < 0) return;
+            
+            // Close it
+            tabsHead.removeTab(index);
+            BrowserFrame frame = tabs.get(index);
+            panelViews.remove(frame);
+            tabs.remove(index);
+            
+            // Update view
+            tabsHead.revalidate();
+            repaint();
+            
+            // Exit if we ran out of tabs
+            if (tabs.isEmpty()) System.exit(0);
+            
+        } else if (ke.getKeyCode() == KeyEvent.VK_T) {
+            
+            addNewTab();
+            
+        }
+    }
+
+    @Override
+    public void publicKeyReleased(KeyEvent ke) {
     }
     
 }

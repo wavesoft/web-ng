@@ -35,10 +35,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javax.imageio.ImageIO;
 import javax.swing.Icon;
 
 /**
@@ -589,7 +587,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
     public Tab addTab(String title, String key) {
         int i = tabs.length;
         tabs = (Tab[]) resizeArray(tabs, i+1);
-        tabs[i] = new Tab(title, key, SystemIcons.tabDefaultIcon, this);
+        tabs[i] = new Tab(title, key, SystemIcons.tabIconDefault, this);
         if (i>0) tabs[i].x = tabs[i-1].anchorX + tabs[i-1].anchorW;
         addButton(tabs[i].tabClose);
         resizeTabs(true);
@@ -667,6 +665,14 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
         }
     }
     
+    public int getSelectedTabIndex() {
+        for (int i=tabs.length-1; i>=0; i--) {
+            if (tabs[i].selected) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     @Override
     public void paint(Graphics grphcs) {

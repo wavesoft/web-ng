@@ -20,6 +20,7 @@
  */
 package com.wavesoft.webng;
 
+import com.wavesoft.webng.io.WebNGSecurityManager;
 import com.wavesoft.webng.io.WebNGSystem;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,8 +38,7 @@ public class WebNG {
      */
     public static void main(String[] args) {
 
-        
-        // Setup system's look and feel
+        // Set system's look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (UnsupportedLookAndFeelException ex) {
@@ -51,35 +51,12 @@ public class WebNG {
             Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        // Initialize WebNG Security Manager
+        //System.setSecurityManager(new WebNGSecurityManager());
+        
         // Initialize WebIO
         WebNGSystem.Initialize();
         
-        /*
-        WLData data = new WLRemoteData("http://localhost/web-ng/test.php");
-        
-        Long diff;
-        Long time = System.currentTimeMillis();
-        
-        System.out.println(data.get("when"));
-        
-        diff = System.currentTimeMillis() - time;
-        time = System.currentTimeMillis();
-        System.out.println("It took "+diff+" ms");
-
-        System.out.println(data.get("when"));
-        
-        diff = System.currentTimeMillis() - time;
-        time = System.currentTimeMillis();
-        System.out.println("It took "+diff+" ms");
-
-        data.invalidate();
-        System.out.println(data.get("when"));
-        
-        diff = System.currentTimeMillis() - time;
-        time = System.currentTimeMillis();
-        System.out.println("It took "+diff+" ms");
-        */
-                
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -88,11 +65,6 @@ public class WebNG {
             }
 
         });
-        
-        /*
-        // Start AIK kernel
-        Kernel.start();
-        */
         
     }
     

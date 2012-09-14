@@ -20,8 +20,10 @@
  */
 package com.wavesoft.webng.wblang;
 
+import com.wavesoft.webng.io.SystemConsole;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,6 +34,8 @@ public class WLRemoteData extends WLData {
     protected URL url;
     private Boolean dataReady;
     private Object requestData;
+
+    private static SystemConsole.Logger systemLogger = new SystemConsole.Logger(WLRemoteData.class, "WLRemoteData");
 
     public WLRemoteData(String url) {
         super(null, null);
@@ -54,12 +58,15 @@ public class WLRemoteData extends WLData {
         this.dataType = DataType.UNKNOWN;
     }
     
-    private void download() {
+    public void download() throws Exception {
+        systemLogger.debug("Downloading URL ",url);
         Object dwlData = WL.download(url);
         if (dwlData == null) {
+            systemLogger.error("Invalid YAML Data arrived");
             this.dataReady = false;
             set(null);
         } else {
+            systemLogger.debug("Data parsed");
             this.dataReady = true;
             set(dwlData);
         }
@@ -72,9 +79,44 @@ public class WLRemoteData extends WLData {
 
     @Override
     public Object value() {
-        if (!dataReady) download();
+        if (!dataReady) try {
+            download();
+        } catch (Exception ex) {
+            return null;
+        }
         return super.value();
     }
+
+    @Override
+    public Object get(String key) {
+        if (!dataReady) try {
+            download();
+        } catch (Exception ex) {
+            return null;
+        }
+        return super.get(key);
+    }
+
+    @Override
+    public ArrayList<WLData> getArray(String key) {
+        if (!dataReady) try {
+            download();
+        } catch (Exception ex) {
+            return null;
+        }
+        return super.getArray(key);
+    }
+
+    @Override
+    public String getAttribute(String name) {
+        if (!dataReady) try {
+            download();
+        } catch (Exception ex) {
+            return null;
+        }
+        return super.getAttribute(name);
+    }
+    
 
     @Override
     public void invalidate() {

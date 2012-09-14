@@ -55,7 +55,7 @@ public class WebViewError extends WebViewNG {
         super.webngSetBrowserWindow(window);
         if (window == null) return;
         window.setTitle("Error");
-        window.setIcon(SystemIcons.tabErrorIcon);
+        window.setIcon(SystemIcons.tabIconError);
     }
     
     /** This method is called from within the constructor to

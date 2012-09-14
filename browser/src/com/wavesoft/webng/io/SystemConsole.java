@@ -23,6 +23,7 @@ package com.wavesoft.webng.io;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -35,6 +36,16 @@ public class SystemConsole {
     public static byte LOG_WARNING = 3;
     public static byte LOG_INFO = 2;
     public static byte LOG_DEBUG = 1;
+
+    private static ArrayList<SystemConsoleListener> listeners = new ArrayList<SystemConsoleListener>();
+    
+    public static void addConsoleListener(SystemConsoleListener l) {
+        listeners.add(l);
+    }
+    
+    public static void removeConsoleListener(SystemConsoleListener l) {
+        listeners.remove(l);
+    }
     
     public static class Logger {
         String className = "";
@@ -93,6 +104,10 @@ public class SystemConsole {
             System.out.println(ans);
         } else {
             System.err.println(ans);
+        }
+        
+        for (SystemConsoleListener l: listeners) {
+            l.log(level, ans);
         }
     }
     

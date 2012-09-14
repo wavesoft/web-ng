@@ -20,17 +20,15 @@
  */
 package com.wavesoft.webng.ui;
 
+import com.wavesoft.webng.api.WebViewDataListener;
 import com.wavesoft.webng.api.WebViewNG;
 import com.wavesoft.webng.io.AsyncEventListener;
-import com.wavesoft.webng.io.WebNGIO;
+import com.wavesoft.webng.io.SystemConsole;
 import com.wavesoft.webng.render.WebViewError;
-import com.wavesoft.webng.wblang.WL;
 import com.wavesoft.webng.wblang.WLData;
 import com.wavesoft.webng.wblang.WLRemoteData;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -38,6 +36,7 @@ import java.util.logging.Logger;
  */
 public class PresenterThread implements Runnable {
     
+    private static SystemConsole.Logger systemLogger = new SystemConsole.Logger(PresenterThread.class, "PresenterThread");
     private static Integer threadID = 0;
     PresenterEventListener listener;
     String url;
@@ -49,32 +48,58 @@ public class PresenterThread implements Runnable {
     
     @Override
     public void run() {
-        Thread.currentThread().setName("Presenter-" + (threadID++).toString());
+        String Name = "Presenter-" + (threadID++).toString();
+        systemLogger.debug("Presenter thread ",Name, " started!");
         
-        // Validate URL
         try {
-            URL uURL = new URL(url);
-        } catch (MalformedURLException ex) {
-            listener.viewChanged(new WebViewError("Invalid URL", ex));
-            return;
+            Thread.currentThread().setName(Name);
+
+            // Validate URL
+            try {
+                URL uURL = new URL(url);
+            } catch (MalformedURLException ex) {
+                listener.viewChanged(new WebViewError("Invalid URL", ex));
+                return;
+            }
+
+            // Prepare the node
+            systemLogger.debug("Fetching data from ",url);
+            final WLRemoteData data = new WLRemoteData(url);
+            
+            // Check for download errors
+            try {
+                data.download();
+            } catch (Exception ex) {
+                listener.viewChanged(new WebViewError("URL Inaccessible", ex));
+                return;
+            }
+           
+            // Get and render the view
+            data.getView(new AsyncEventListener() {
+
+                @Override
+                public void completed(Object result) {
+
+                    // Update view
+                    listener.viewChanged((WebViewNG) result);
+
+                    // Update data
+                    listener.dataChanged(data);
+
+                }
+
+                @Override
+                public void failed(Exception e, Object result) {
+                    listener.viewChanged(new WebViewError("Unable to display view", e));
+                }
+            });
+            
+        } catch (Exception e) {
+            listener.viewChanged(new WebViewError("Unexpected exception occured", e));
+            
         }
         
-        // Prepare the node
-        WLData data = new WLRemoteData(url);
-        
-        // Get and render the view
-        data.getView(new AsyncEventListener() {
-
-            @Override
-            public void completed(Object result) {
-                listener.viewChanged((WebViewNG) result);
-            }
-
-            @Override
-            public void failed(Exception e, Object result) {
-                listener.viewChanged(new WebViewError("Unable to display view", e));
-            }
-        });
+        systemLogger.debug("Presenter thread ",Name, " completed!");
         
     }
     

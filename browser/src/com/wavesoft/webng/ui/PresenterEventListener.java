@@ -20,6 +20,7 @@
  */
 package com.wavesoft.webng.ui;
 import com.wavesoft.webng.api.WebViewNG;
+import com.wavesoft.webng.wblang.WLData;
 
 /**
  *
@@ -30,5 +31,6 @@ public interface PresenterEventListener {
     public void statusChanged(String status);
     public void progressChanged(int value, int max);
     public void viewChanged(WebViewNG view);
+    public void dataChanged(WLData data);
     
 }

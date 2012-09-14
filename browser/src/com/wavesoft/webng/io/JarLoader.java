@@ -32,17 +32,16 @@ import java.util.logging.Logger;
  */
 public class JarLoader {
     
-    private static SystemConsole.Logger securityLogger = new SystemConsole.Logger(JarDiscovery.class, "Security");
-    private static SystemConsole.Logger systemLogger = new SystemConsole.Logger(JarDiscovery.class, "JarLoader");
+    private static SystemConsole.Logger securityLogger = new SystemConsole.Logger(JarLoader.class, "Security");
+    private static SystemConsole.Logger systemLogger = new SystemConsole.Logger(JarLoader.class, "JarLoader");
 
     public static class JarFileLoader extends URLClassLoader {
         public JarFileLoader (URL[] urls) {
             super (urls);
         }
         public void addFile (String path) throws MalformedURLException {
-            String OS = System.getProperty("os.name").toUpperCase();
             String urlPath = "jar:file://";
-            if (OS.contains("WIN")) {
+            if (WebNGSystem.isWindows) {
                 urlPath += "/" + path.replace('\\', '/') + "!/";
             } else {
                 urlPath += path + "!/";

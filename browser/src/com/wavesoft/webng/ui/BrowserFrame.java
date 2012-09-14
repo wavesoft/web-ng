@@ -23,30 +23,37 @@ package com.wavesoft.webng.ui;
 
 import com.wavesoft.webng.api.BrowserWindow;
 import com.wavesoft.webng.api.HeadButton;
+import com.wavesoft.webng.api.WebViewDataListener;
 import com.wavesoft.webng.api.WebViewNG;
 import com.wavesoft.webng.api.WebViewEventListener;
 import com.wavesoft.webng.io.JarLoader;
+import com.wavesoft.webng.io.PublicKeyEventListener;
 import com.wavesoft.webng.render.WebViewError;
 import com.wavesoft.webng.render.WebViewHome;
 import com.wavesoft.webng.render.WebViewLoading;
 import com.wavesoft.webng.ui.Tabs.Tab;
+import com.wavesoft.webng.wblang.WLData;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
  *
  * @author icharala
  */
-public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, PresenterEventListener {
+public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, PresenterEventListener, PublicKeyEventListener {
     
     private WebViewNG webView;
     private ArrayList<SmoothButton> headButtons = new ArrayList<SmoothButton>();
     private JarLoader loader = new JarLoader();
     private Tab linkedTab = null;
     private Thread presenterThread = null;
+    private String pageURL;
     
     // Some frequently used views
     private WebViewLoading loadingView;
@@ -62,6 +69,14 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
         homeView = new WebViewHome();
         
         setView(homeView);
+        addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                System.out.println(ke.toString());
+            }
+            
+        });
     }
     
     public void focusOnLocationBar() {
@@ -174,7 +189,7 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
         jHeadButtons.setOpaque(false);
         jHeadButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        sbHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/wavesoft/webng/resources/home.png"))); // NOI18N
+        sbHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/wavesoft/webng/resources/refresh.png"))); // NOI18N
         sbHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sbHomeMouseClicked(evt);
@@ -219,15 +234,15 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jHeadBarPanelLayout.createSequentialGroup()
                 .add(jHeadButtons, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLocationBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                .add(jLocationBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jToolButtons, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
         jHeadBarPanelLayout.setVerticalGroup(
             jHeadBarPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jHeadButtons, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(jToolButtons, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-            .add(jLocationBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+            .add(jHeadButtons, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+            .add(jToolButtons, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+            .add(jLocationBar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
 
         jViewPanel.setBorder(null);
@@ -237,20 +252,22 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jHeadBarPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(jViewPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .add(jViewPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jHeadBarPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(0, 0, 0)
-                .add(jViewPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
+                .add(jViewPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void sbHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sbHomeMouseClicked
 
-        navigateTo(homeView);
+        refresh();
+        
+        //navigateTo(homeView);
         
         //navigateTo(loader.getViewByName("com.wavesoft.templates.basic.BlogHome"));
         /*
@@ -276,8 +293,39 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
 
     private void jLocationBarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLocationBarKeyPressed
 
+        // ENTER PRESSED
         if ((evt.getKeyCode() == 13) || (evt.getKeyCode() == 10)) {
-            navigateTo(jLocationBar.getText());
+            String URL = jLocationBar.getText();
+            
+            // Check what to render
+            if (URL.toLowerCase().startsWith("webng:")) {
+                // WEBNG: System views
+                
+                URL = URL.toLowerCase();
+                jLocationBar.setText(URL);
+                jLocationBar.selectAll();
+                navigateTo(SystemViews.getSystemView(URL));
+                
+            } else {
+                // All the rest: URLS
+
+                // Simplify some URL USAGES
+                if (!URL.matches("(?im)^\\w+:.+")) {
+                    URL = "http://" + URL;
+                }
+                if (URL.endsWith("/")) {
+                    URL += "index.yml";
+                }
+                
+                // Update possible changes in the URL
+                jLocationBar.setText(URL);
+                jLocationBar.selectAll();
+
+                // Navigate
+                navigateTo(URL);
+                
+            }
+            
         }
         
     }//GEN-LAST:event_jLocationBarKeyPressed
@@ -299,12 +347,14 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
     @Override
     public void navigateTo(String url) {
         navigateTo(loadingView);
+        pageURL = url;
         presenterThread = new Thread(new PresenterThread(url, this));
         presenterThread.start();
     }
 
     @Override
     public void navigateTo(WebViewNG view) {
+        updateHeadButtons(null);
         setView(view);
         revalidate();
     }
@@ -325,6 +375,7 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
 
     @Override
     public void setHeadButtons(HeadButton[] buttons) {
+        updateHeadButtons(buttons);
     }
 
     @Override
@@ -347,5 +398,35 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
     public void viewChanged(WebViewNG view) {
         navigateTo(view);
     }
+
+    @Override
+    public void dataChanged(WLData data) {
+        // Notify listening entities that data are ready
+        WebViewDataListener[] listeners = webView.getListeners(WebViewDataListener.class);
+        for (WebViewDataListener l: listeners) {
+            l.dataReady(data);
+        }
+    }
+
+    @Override
+    public void refresh() {
+        if (pageURL != null) {
+            presenterThread = new Thread(new PresenterThread(pageURL, this));
+            presenterThread.start();
+        }
+    }
+
+    @Override
+    public void publicKeyPressed(KeyEvent ke) {
+        if (ke.getKeyCode() == KeyEvent.VK_R) {
+            ke.consume();
+            refresh();
+        }
+    }
+
+    @Override
+    public void publicKeyReleased(KeyEvent ke) {
+    }
+
     
 }

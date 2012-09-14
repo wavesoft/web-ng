@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 
 /**
  *
@@ -32,25 +33,43 @@ import javax.imageio.ImageIO;
  */
 public class SystemIcons {
     
-    public static final Image tabDefaultIcon;
-    public static final Image tabErrorIcon;
-    
+    public static final Image tabIconDefault;
+    public static final Image tabIconError;
+    public static final Image tabIconConsole;
+
+    public static final Icon iconError;
+    public static final Icon iconWarn;
+    public static final Icon iconInfo;
+    public static final Icon iconDebug;
+
     static {
         
-        Image im1 = null;
+        Image im = null;
         try {
-            im1 = ImageIO.read(SystemIcons.class.getResource("/com/wavesoft/webng/resources/page-icon.png"));
+            im = ImageIO.read(SystemIcons.class.getResource("/com/wavesoft/webng/resources/page-icon.png"));
         } catch (IOException ex) {
         }
-        tabDefaultIcon = im1;
+        tabIconDefault = im;
         
-        Image im2 = null;
+        im = null;
         try {
-            im2 = ImageIO.read(SystemIcons.class.getResource("/com/wavesoft/webng/resources/error-icon.png"));
+            im = ImageIO.read(SystemIcons.class.getResource("/com/wavesoft/webng/resources/error-icon.png"));
         } catch (IOException ex) {
         }
-        tabErrorIcon = im2;
+        tabIconError = im;
+        
+        im = null;
+        try {
+            im = ImageIO.read(SystemIcons.class.getResource("/com/wavesoft/webng/resources/console-icon.png"));
+        } catch (IOException ex) {
+        }
+        tabIconConsole = im;
 
+        iconError =     new javax.swing.ImageIcon(SystemIcons.class.getResource("/com/wavesoft/webng/resources/icons/error.png"));
+        iconWarn =      new javax.swing.ImageIcon(SystemIcons.class.getResource("/com/wavesoft/webng/resources/icons/warning.png"));
+        iconInfo =      new javax.swing.ImageIcon(SystemIcons.class.getResource("/com/wavesoft/webng/resources/icons/info.png"));
+        iconDebug =     new javax.swing.ImageIcon(SystemIcons.class.getResource("/com/wavesoft/webng/resources/icons/debug.png"));
+        
     }
     
 }
