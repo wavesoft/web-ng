@@ -22,6 +22,7 @@ package com.wavesoft.webng.ui;
 
 import com.wavesoft.webng.api.WebViewNG;
 import com.wavesoft.webng.render.WebViewError;
+import com.wavesoft.webng.render.WebViewHome;
 import com.wavesoft.webng.ui.system.WebViewConsole;
 
 /**
@@ -35,6 +36,8 @@ public class SystemViews {
         if (!name.startsWith("webng:")) return null;
         if ("webng:console".equals(name)) {
             return new WebViewConsole();
+        } else if ("webng:home".equals(name)) {
+            return new WebViewHome();
         } else {
             return new WebViewError("Unknown system page", "You have enetered an unknown system page. Use webng:help for more information");
         }

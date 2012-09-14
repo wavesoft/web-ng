@@ -169,7 +169,7 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
         jHeadBarPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         jHeadBarPanel.setOpaque(false);
 
-        jLocationBar.setText("jTextField1");
+        jLocationBar.setText("webng:home");
         jLocationBar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jLocationBarActionPerformed(evt);
@@ -295,37 +295,7 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
 
         // ENTER PRESSED
         if ((evt.getKeyCode() == 13) || (evt.getKeyCode() == 10)) {
-            String URL = jLocationBar.getText();
-            
-            // Check what to render
-            if (URL.toLowerCase().startsWith("webng:")) {
-                // WEBNG: System views
-                
-                URL = URL.toLowerCase();
-                jLocationBar.setText(URL);
-                jLocationBar.selectAll();
-                navigateTo(SystemViews.getSystemView(URL));
-                
-            } else {
-                // All the rest: URLS
-
-                // Simplify some URL USAGES
-                if (!URL.matches("(?im)^\\w+:.+")) {
-                    URL = "http://" + URL;
-                }
-                if (URL.endsWith("/")) {
-                    URL += "index.yml";
-                }
-                
-                // Update possible changes in the URL
-                jLocationBar.setText(URL);
-                jLocationBar.selectAll();
-
-                // Navigate
-                navigateTo(URL);
-                
-            }
-            
+            navigateTo(jLocationBar.getText());
         }
         
     }//GEN-LAST:event_jLocationBarKeyPressed
@@ -346,10 +316,40 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
 
     @Override
     public void navigateTo(String url) {
-        navigateTo(loadingView);
-        pageURL = url;
-        presenterThread = new Thread(new PresenterThread(url, this));
-        presenterThread.start();
+        
+        // Check what to render
+        if (url.toLowerCase().startsWith("webng:")) {
+            // WEBNG: System views
+
+            url = url.toLowerCase();
+            jLocationBar.setText(url);
+            jLocationBar.selectAll();
+            navigateTo(SystemViews.getSystemView(url));
+
+        } else {
+            // All the rest: URLS
+
+            // Simplify some URL USAGES
+            if (!url.matches("(?im)^\\w+:.+")) {
+                url = "http://" + url;
+            }
+            if (url.endsWith("/")) {
+                url += "index.yml";
+            }
+
+            // Update possible changes in the URL
+            jLocationBar.setText(url);
+            jLocationBar.selectAll();
+
+            // Navigate
+            navigateTo(loadingView);
+            pageURL = url;
+            jLocationBar.setText(url);
+            presenterThread = new Thread(new PresenterThread(url, this));
+            presenterThread.start();
+
+        } 
+            
     }
 
     @Override

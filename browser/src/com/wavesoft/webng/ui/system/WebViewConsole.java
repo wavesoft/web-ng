@@ -248,9 +248,10 @@ public class WebViewConsole extends WebViewNG implements SystemConsoleListener, 
           && e.getChanged().equals(this)
           && (e.getChangeFlags() & HierarchyEvent.DISPLAYABILITY_CHANGED) != 0) {
         
-            SystemConsole.removeConsoleListener(this);
-            SystemConsole.info("Console window closed");
-
+            if (!isVisible()) {
+                SystemConsole.removeConsoleListener(this);
+                SystemConsole.info("Console window closed");
+            }
       }
     }
 

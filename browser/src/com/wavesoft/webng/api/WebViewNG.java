@@ -27,7 +27,7 @@ import java.awt.Component;
  * @author icharala
  */
 public abstract class WebViewNG extends javax.swing.JPanel {
-    private BrowserWindow browserWindow = null;
+    protected BrowserWindow browserWindow = null;
     
     /** Creates new form WebViewNG */
     public WebViewNG() {

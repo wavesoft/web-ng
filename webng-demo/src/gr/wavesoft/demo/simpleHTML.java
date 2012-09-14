@@ -1,6 +1,6 @@
 /*
- * hello.java
- *
+ * simpleHTML.java
+ * 
  * BrowserNG - A workbench for the browser of the new generation
  * Copyright (C) 2012 Ioannis Charalampidis
  * 
@@ -17,33 +17,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * Created on Sep 12, 2012, 9:15:39 PM
+ * Created on Sep 14, 2012, 2:12:07 PM
  */
 package gr.wavesoft.demo;
 
-import com.wavesoft.webng.api.BrowserWindow;
-import com.wavesoft.webng.api.HeadButton;
+import com.wavesoft.webng.api.WebViewDataListener;
 import com.wavesoft.webng.api.WebViewNG;
-import com.wavesoft.webng.ui.SystemIcons;
-import javax.swing.Icon;
+import com.wavesoft.webng.wblang.WLData;
 
 /**
  *
  * @author icharala
  */
-public class hello extends WebViewNG {
+public class simpleHTML extends WebViewNG implements WebViewDataListener {
 
-    /** Creates new form hello */
-    public hello() {
+    /** Creates new form simpleHTML */
+    public simpleHTML() {
         initComponents();
-    }
-
-    @Override
-    public void webngSetBrowserWindow(BrowserWindow window) {
-        super.webngSetBrowserWindow(window);
-        
-        window.setTitle("Hello world!");
-        
+        addDataListener(this);
     }
 
     /** This method is called from within the constructor to
@@ -56,22 +47,14 @@ public class hello extends WebViewNG {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
-        jLabel1.setText("Hello world!");
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24));
+        jLabel1.setText("(Title)");
 
-        jScrollPane1.setBorder(null);
-        jScrollPane1.setOpaque(false);
-
-        jTextArea1.setBackground(getBackground());
-        jTextArea1.setColumns(20);
-        jTextArea1.setEditable(false);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("If you can see this page it means that your browser has successfully managed to download and render the testing view gr.wavesoft.demo.hello!");
-        jScrollPane1.setViewportView(jTextArea1);
+        jLabel2.setText("jLabel2");
+        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel2.setAutoscrolls(true);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -80,7 +63,7 @@ public class hello extends WebViewNG {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                    .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                     .add(jLabel1))
                 .addContainerGap())
         );
@@ -90,13 +73,22 @@ public class hello extends WebViewNG {
                 .addContainerGap()
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void dataReady(WLData data) {
+        jLabel1.setText(data.get("title", "").toString());
+        jLabel2.setText("<html>"+data.get("body", "").toString()+"</html>");
+    }
+
+    @Override
+    public void dataInvalidated() {
+    }
 }
