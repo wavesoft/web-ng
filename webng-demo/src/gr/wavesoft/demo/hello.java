@@ -21,10 +21,10 @@
  */
 package gr.wavesoft.demo;
 
-import com.wavesoft.webng.api.BrowserWindow;
-import com.wavesoft.webng.api.HeadButton;
-import com.wavesoft.webng.api.WebViewNG;
-import com.wavesoft.webng.ui.SystemIcons;
+import gr.wavesoft.webng.api.BrowserWindow;
+import gr.wavesoft.webng.api.HeadButton;
+import gr.wavesoft.webng.api.WebViewNG;
+import gr.wavesoft.webng.ui.SystemIcons;
 import javax.swing.Icon;
 
 /**

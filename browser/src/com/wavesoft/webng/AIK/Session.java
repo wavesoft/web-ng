@@ -20,7 +20,7 @@
  */
 package com.wavesoft.webng.AIK;
 
-import com.wavesoft.webng.io.SystemConsole;
+import gr.wavesoft.webng.io.SystemConsole;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;

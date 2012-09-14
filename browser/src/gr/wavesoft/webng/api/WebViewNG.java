@@ -1,5 +1,5 @@
 /*
- * simpleHTML.java
+ * WebViewNG.java
  * 
  * BrowserNG - A workbench for the browser of the new generation
  * Copyright (C) 2012 Ioannis Charalampidis
@@ -17,24 +17,58 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * Created on Sep 14, 2012, 2:12:07 PM
+ * Created on Jul 19, 2012, 9:42:52 AM
  */
-package gr.wavesoft.demo;
-
-import gr.wavesoft.webng.api.WebViewDataListener;
-import gr.wavesoft.webng.api.WebViewNG;
-import gr.wavesoft.webng.wblang.WLData;
+package gr.wavesoft.webng.api;
+import java.awt.Component;
 
 /**
  *
  * @author icharala
  */
-public class simpleHTML extends WebViewNG implements WebViewDataListener {
-
-    /** Creates new form simpleHTML */
-    public simpleHTML() {
+public abstract class WebViewNG extends javax.swing.JPanel {
+    protected BrowserWindow browserWindow = null;
+    
+    /** Creates new form WebViewNG */
+    public WebViewNG() {
         initComponents();
-        addDataListener(this);
+    }
+
+    @Override
+    public Component add(Component cmpnt) {
+        
+        // If we are adding a WebViewNG, update
+        // some special information
+        if (cmpnt instanceof WebViewNG) {
+            ((WebViewNG) cmpnt).webngSetBrowserWindow(browserWindow);
+        }
+        
+        // Add the component as usual
+        return super.add(cmpnt);
+    }
+    
+    public void webngSetBrowserWindow(BrowserWindow window) {
+        browserWindow = window;
+    }
+    
+    public BrowserWindow getWindow() {
+        return browserWindow;
+    }
+    
+    public void addViewEventListener(WebViewEventListener l) {
+        listenerList.add(WebViewEventListener.class, l);
+    }
+    
+    public void removeViewEventListener(WebViewEventListener l) {
+        listenerList.remove(WebViewEventListener.class, l);
+    }
+    
+    public void addDataListener(WebViewDataListener l) {
+        listenerList.add(WebViewDataListener.class, l);
+    }
+    
+    public void removeDataListener(WebViewDataListener l) {
+        listenerList.remove(WebViewDataListener.class, l);
     }
 
     /** This method is called from within the constructor to
@@ -46,49 +80,19 @@ public class simpleHTML extends WebViewNG implements WebViewDataListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24));
-        jLabel1.setText("(Title)");
-
-        jLabel2.setText("jLabel2");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel2.setAutoscrolls(true);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                    .add(jLabel1))
-                .addContainerGap())
+            .add(0, 63, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jLabel1)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(0, 56, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void dataReady(WLData data) {
-        jLabel1.setText(data.get("title", "").toString());
-        jLabel2.setText("<html>"+data.get("body", "").toString()+"</html>");
-    }
-
-    @Override
-    public void dataInvalidated() {
-    }
 }

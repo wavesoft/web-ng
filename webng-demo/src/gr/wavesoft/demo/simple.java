@@ -21,9 +21,9 @@
  */
 package gr.wavesoft.demo;
 
-import com.wavesoft.webng.api.WebViewDataListener;
-import com.wavesoft.webng.api.WebViewNG;
-import com.wavesoft.webng.wblang.WLData;
+import gr.wavesoft.webng.api.WebViewDataListener;
+import gr.wavesoft.webng.api.WebViewNG;
+import gr.wavesoft.webng.wblang.WLData;
 
 /**
  *

@@ -1,6 +1,6 @@
 /*
- * simpleHTML.java
- * 
+ * FadingComponent.java
+ *
  * BrowserNG - A workbench for the browser of the new generation
  * Copyright (C) 2012 Ioannis Charalampidis
  * 
@@ -17,24 +17,49 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * Created on Sep 14, 2012, 2:12:07 PM
+ * Created on Aug 22, 2012, 11:58:49 PM
  */
-package gr.wavesoft.demo;
+package gr.wavesoft.webng.components;
 
-import gr.wavesoft.webng.api.WebViewDataListener;
-import gr.wavesoft.webng.api.WebViewNG;
-import gr.wavesoft.webng.wblang.WLData;
+import java.awt.AlphaComposite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.image.BufferedImage;
 
 /**
  *
  * @author icharala
  */
-public class simpleHTML extends WebViewNG implements WebViewDataListener {
+public class FadingComponent extends javax.swing.JPanel implements ComponentListener {
 
-    /** Creates new form simpleHTML */
-    public simpleHTML() {
+    BufferedImage biFront, biBack;
+    
+    /** Creates new form FadingComponent */
+    public FadingComponent() {
         initComponents();
-        addDataListener(this);
+        resetBuffers();
+        addComponentListener(this);
+    }
+    
+    private void resetBuffers() {
+        biFront = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        biBack = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+    }
+
+    @Override
+    public void paint(Graphics grphcs) {
+        if (biFront == null) return;
+        super.paint(biFront.getGraphics());
+        
+        Graphics2D g2d = (Graphics2D) grphcs;
+        g2d.setComposite(AlphaComposite.getInstance(
+             AlphaComposite.SRC_OVER, 0.2f));
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2d.drawImage(biFront, 0, 0, this);
     }
 
     /** This method is called from within the constructor to
@@ -46,49 +71,34 @@ public class simpleHTML extends WebViewNG implements WebViewDataListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24));
-        jLabel1.setText("(Title)");
-
-        jLabel2.setText("jLabel2");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel2.setAutoscrolls(true);
-
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                    .add(jLabel1))
-                .addContainerGap())
+            .add(0, 52, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jLabel1)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(0, 37, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void dataReady(WLData data) {
-        jLabel1.setText(data.get("title", "").toString());
-        jLabel2.setText("<html>"+data.get("body", "").toString()+"</html>");
+    public void componentResized(ComponentEvent ce) {
+        resetBuffers();
     }
 
     @Override
-    public void dataInvalidated() {
+    public void componentMoved(ComponentEvent ce) {
+    }
+
+    @Override
+    public void componentShown(ComponentEvent ce) {
+    }
+
+    @Override
+    public void componentHidden(ComponentEvent ce) {
     }
 }

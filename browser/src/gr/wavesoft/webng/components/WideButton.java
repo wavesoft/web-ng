@@ -1,5 +1,5 @@
 /*
- * simpleHTML.java
+ * WideButton.java
  * 
  * BrowserNG - A workbench for the browser of the new generation
  * Copyright (C) 2012 Ioannis Charalampidis
@@ -17,24 +17,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * Created on Sep 14, 2012, 2:12:07 PM
+ * Created on Jul 19, 2012, 4:14:24 PM
  */
-package gr.wavesoft.demo;
+package gr.wavesoft.webng.components;
 
-import gr.wavesoft.webng.api.WebViewDataListener;
-import gr.wavesoft.webng.api.WebViewNG;
-import gr.wavesoft.webng.wblang.WLData;
+import javax.swing.Icon;
 
 /**
  *
  * @author icharala
  */
-public class simpleHTML extends WebViewNG implements WebViewDataListener {
+public class WideButton extends javax.swing.JPanel {
 
-    /** Creates new form simpleHTML */
-    public simpleHTML() {
+    private Icon icon = null;
+    
+    public void setIcon(Icon icon) {
+        this.icon = icon;
+        repaint();
+    }
+    
+    public Icon getIcon() {
+        return this.icon;
+    }
+
+    /** Creates new form WideButton */
+    public WideButton() {
         initComponents();
-        addDataListener(this);
     }
 
     /** This method is called from within the constructor to
@@ -46,49 +54,19 @@ public class simpleHTML extends WebViewNG implements WebViewDataListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24));
-        jLabel1.setText("(Title)");
-
-        jLabel2.setText("jLabel2");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel2.setAutoscrolls(true);
+        setOpaque(false);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                    .add(jLabel1))
-                .addContainerGap())
+            .add(0, 182, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jLabel1)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(0, 140, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void dataReady(WLData data) {
-        jLabel1.setText(data.get("title", "").toString());
-        jLabel2.setText("<html>"+data.get("body", "").toString()+"</html>");
-    }
-
-    @Override
-    public void dataInvalidated() {
-    }
 }

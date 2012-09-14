@@ -6,7 +6,7 @@ package com.wavesoft.webng.AIK;
 
 import com.wavesoft.webng.AIK.Triggers.DownloadTrigger;
 import com.wavesoft.webng.AIK.Triggers.TimedTrigger;
-import com.wavesoft.webng.io.DownloadManager.DownloadJob;
+import gr.wavesoft.webng.io.DownloadManager.DownloadJob;
 
 /**
  *

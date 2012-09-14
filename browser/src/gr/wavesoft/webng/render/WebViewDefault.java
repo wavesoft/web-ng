@@ -1,5 +1,5 @@
 /*
- * simpleHTML.java
+ * WebViewDefault.java
  * 
  * BrowserNG - A workbench for the browser of the new generation
  * Copyright (C) 2012 Ioannis Charalampidis
@@ -17,24 +17,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * Created on Sep 14, 2012, 2:12:07 PM
+ * Created on Jul 30, 2012, 10:24:53 PM
+ * 
  */
-package gr.wavesoft.demo;
+package gr.wavesoft.webng.render;
 
-import gr.wavesoft.webng.api.WebViewDataListener;
 import gr.wavesoft.webng.api.WebViewNG;
-import gr.wavesoft.webng.wblang.WLData;
 
 /**
  *
  * @author icharala
  */
-public class simpleHTML extends WebViewNG implements WebViewDataListener {
+public class WebViewDefault extends WebViewNG {
 
-    /** Creates new form simpleHTML */
-    public simpleHTML() {
+    /** Creates new form WebViewDefault */
+    public WebViewDefault() {
         initComponents();
-        addDataListener(this);
     }
 
     /** This method is called from within the constructor to
@@ -46,49 +44,36 @@ public class simpleHTML extends WebViewNG implements WebViewDataListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        image1 = new gr.wavesoft.webng.components.Image();
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24));
-        jLabel1.setText("(Title)");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setOpaque(false);
 
-        jLabel2.setText("jLabel2");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel2.setAutoscrolls(true);
+        image1.setImage(new javax.swing.ImageIcon(getClass().getResource("/gr/wavesoft/webng/resources/image-question.png"))); // NOI18N
+
+        org.jdesktop.layout.GroupLayout image1Layout = new org.jdesktop.layout.GroupLayout(image1);
+        image1.setLayout(image1Layout);
+        image1Layout.setHorizontalGroup(
+            image1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 204, Short.MAX_VALUE)
+        );
+        image1Layout.setVerticalGroup(
+            image1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 270, Short.MAX_VALUE)
+        );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                    .add(jLabel1))
-                .addContainerGap())
+            .add(image1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jLabel1)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(image1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private gr.wavesoft.webng.components.Image image1;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void dataReady(WLData data) {
-        jLabel1.setText(data.get("title", "").toString());
-        jLabel2.setText("<html>"+data.get("body", "").toString()+"</html>");
-    }
-
-    @Override
-    public void dataInvalidated() {
-    }
 }
