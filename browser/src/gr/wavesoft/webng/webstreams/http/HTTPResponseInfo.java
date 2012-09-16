@@ -50,16 +50,13 @@ public class HTTPResponseInfo extends ResponseInfo {
         } else {
             
             // Check for expiresTTL if Cache-Control was not found
-            cc = c.getHeaderField("Expires");
-            if (cc != null) {
+            Long expiresTime = c.getHeaderFieldDate("Expires", 0);
+            if (expiresTime != 0) {
                 
-                // Convert to TTL
-                Long expiresTime = HTTPTransport.GMTToMillis(cc);
-                if (cc != null) {
-                    expiresTime = expiresTime - System.currentTimeMillis();
-                    cacheInfo.useCache = true;
-                    cacheInfo.expiresTTL = expiresTime;
-                }
+                expiresTime = expiresTime - System.currentTimeMillis();
+                cacheInfo.useCache = true;
+                cacheInfo.expiresTTL = expiresTime;
+                
             }
             
         }
@@ -70,7 +67,7 @@ public class HTTPResponseInfo extends ResponseInfo {
             cacheInfo.customDetails = cc;
         }
         
-        // Update content-size
+        // Update content size
         cc = c.getHeaderField("Content-Length");
         if (cc != null) {
             contentSize = Long.parseLong(cc);

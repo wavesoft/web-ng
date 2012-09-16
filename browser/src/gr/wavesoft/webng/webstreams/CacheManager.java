@@ -164,12 +164,12 @@ public class CacheManager {
     }
     
     public void reheatCacheToken(CacheItem tok) {
-        tok.dateProbed = System.currentTimeMillis()/1000;
+        tok.dateProbed = System.currentTimeMillis();
         tok.save();
     }
     
     public void updateCacheToken(CacheItem tok, Long softTTL, String customDetails) {
-        tok.dateUpdated = System.currentTimeMillis()/1000;
+        tok.dateUpdated = System.currentTimeMillis();
         if (softTTL != null)
             tok.softTTL = softTTL;
         if (customDetails != null)
@@ -221,8 +221,8 @@ public class CacheManager {
                 } else {
                     
                     // Update cache dates
-                    tok.dateProbed = System.currentTimeMillis()/1000;
-                    tok.dateUpdated = System.currentTimeMillis()/1000;
+                    tok.dateProbed = System.currentTimeMillis();
+                    tok.dateUpdated = System.currentTimeMillis();
                     
                     // Update cache timeouts
                     if (info.cacheInfo != null) {

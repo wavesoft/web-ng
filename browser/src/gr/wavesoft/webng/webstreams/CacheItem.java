@@ -143,14 +143,14 @@ public class CacheItem {
     
     public Boolean isExpired() {
         if (dateUpdated == 0l) return true;
-        Long time = System.currentTimeMillis()/1000;
-        return (dateUpdated+hardTTL) < time;
+        Long time = System.currentTimeMillis();
+        return (dateUpdated+hardTTL*1000) < time;
     }
     
     public Boolean isWarm() {
         if (dateProbed == 0l) return false;
-        Long time = System.currentTimeMillis()/1000;
-        return (dateProbed+softTTL) >= time;
+        Long time = System.currentTimeMillis();
+        return (dateProbed+softTTL*1000) >= time;
     }
     
 }

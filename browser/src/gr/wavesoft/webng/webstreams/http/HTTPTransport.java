@@ -43,6 +43,8 @@ import java.util.logging.Logger;
 public class HTTPTransport implements Transport {
 
     private static final SystemConsole.Logger systemLogger = new SystemConsole.Logger(HTTPTransport.class, "HTTPTransport");
+    
+    /*
     private static final SimpleDateFormat gmtReader;
     private static final SimpleDateFormat gmtParser;
 
@@ -72,6 +74,7 @@ public class HTTPTransport implements Transport {
             return 0l;
         }
     }
+     */
     
     @Override
     public Boolean isCompatibleFor(StreamRequest req) {
@@ -94,7 +97,7 @@ public class HTTPTransport implements Transport {
             } else {
                 
                 // Check if it's modified since probe time
-                connection.setRequestProperty("If-Modified-Since", millisToGMT(tok.dateProbed));
+                connection.setIfModifiedSince(tok.dateProbed);
                 
             }
             
