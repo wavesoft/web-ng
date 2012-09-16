@@ -1,5 +1,5 @@
 /*
- * ResponseInfo.java
+ * ResponseCryptoInfo.java
  * 
  * BrowserNG - A workbench for the browser of the new generation
  * Copyright (C) 2012 Ioannis Charalampidis
@@ -20,14 +20,14 @@
  */
 package gr.wavesoft.webng.webstreams;
 
+import java.security.cert.Certificate;
+
 /**
  *
  * @author icharala
  */
-public class ResponseInfo {
+public class ResponseCryptoInfo {
     
-    public ResponseCacheInfo cacheInfo = null;
-    public Long contentSize = null;
-    public ResponseCryptoInfo cryptoInfo = null;
+    public Certificate certificaes[];
     
 }

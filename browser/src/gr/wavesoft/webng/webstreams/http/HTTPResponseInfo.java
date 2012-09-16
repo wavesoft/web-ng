@@ -21,8 +21,13 @@
 package gr.wavesoft.webng.webstreams.http;
 
 import gr.wavesoft.webng.webstreams.ResponseCacheInfo;
+import gr.wavesoft.webng.webstreams.ResponseCryptoInfo;
 import gr.wavesoft.webng.webstreams.ResponseInfo;
 import java.net.HttpURLConnection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLPeerUnverifiedException;
 
 /**
  *
@@ -71,6 +76,19 @@ public class HTTPResponseInfo extends ResponseInfo {
         cc = c.getHeaderField("Content-Length");
         if (cc != null) {
             contentSize = Long.parseLong(cc);
+        }
+        
+        // Proess HTTPS crypto info
+        if (c instanceof HttpsURLConnection) {
+            HttpsURLConnection cs = (HttpsURLConnection) c;
+            
+            cryptoInfo = new ResponseCryptoInfo();
+            
+            try {
+                cryptoInfo.certificaes = cs.getServerCertificates();
+            } catch (SSLPeerUnverifiedException ex) {
+                Logger.getLogger(HTTPResponseInfo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
