@@ -20,8 +20,17 @@
  */
 package gr.wavesoft.webng;
 
-import gr.wavesoft.webng.io.WebNGSecurityManager;
+import gr.wavesoft.webng.io.SystemConsole;
 import gr.wavesoft.webng.io.WebNGSystem;
+import gr.wavesoft.webng.webstreams.RStreamCallback;
+import gr.wavesoft.webng.webstreams.ResponseInfo;
+import gr.wavesoft.webng.webstreams.WebStreamContext;
+import gr.wavesoft.webng.webstreams.http.HTTPRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -37,7 +46,7 @@ public class WebNG {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        
         // Set system's look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -57,6 +66,41 @@ public class WebNG {
         // Initialize WebIO
         WebNGSystem.Initialize();
         
+        /*
+        WebStreamContext ctx = new WebStreamContext();
+        try {
+            ctx.openRStream(new HTTPRequest("http://localhost/web-ng/big.yml"), new RStreamCallback() {
+
+                @Override
+                public void streamFailed() {
+                    SystemConsole.error("UNABLE TO FETCH STREAM");
+                }
+
+                @Override
+                public void streamReady(InputStream is, ResponseInfo info) {
+                    try {
+                        BufferedReader bufReader = new BufferedReader(new InputStreamReader(is));
+                        StringBuilder strBuffer = new StringBuilder();
+
+                        // Download
+                        char[] charBuf = new char[1024];
+                        int len = 0;
+                        while ((len = bufReader.read(charBuf))>0) {
+                            strBuffer.append(charBuf, 0, len);
+                        }
+                        SystemConsole.error("GOT RESPONSE: "+strBuffer.toString());
+                    } catch (IOException ex) {
+                        Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         */
+        
+            
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
 

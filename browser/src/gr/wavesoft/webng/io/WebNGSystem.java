@@ -20,7 +20,19 @@
  */
 package gr.wavesoft.webng.io;
 
+import gr.wavesoft.webng.webstreams.WebStreamContext;
+import gr.wavesoft.webng.webstreams.WebStreamFactory;
+import gr.wavesoft.webng.webstreams.http.HTTPTransport;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Formatter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,6 +43,10 @@ public class WebNGSystem {
     public static final boolean isOSX;
     public static final boolean isWindows;
     public static final boolean isLinux;
+    
+    public static MessageDigest SHA1Digest = null;
+
+    private static SystemConsole.Logger systemLogger = new SystemConsole.Logger(WebNGSystem.class, "System");
     
     static {
         String OS = System.getProperty("os.name").toUpperCase();
@@ -82,7 +98,45 @@ public class WebNGSystem {
         
         // Initialize JarIO
         WebNGIO.Initialize(webNGdir);
+        
+        // Setup cache
+        mkdirIfMissing(webNGdir+"/cache");
+        WebStreamContext.Initialize(webNGdir+"/cache");
+        WebStreamFactory.Initialize();
+        
+        // Register default transports
+        WebStreamFactory.registerTransport(new HTTPTransport());
                 
     }
     
+    public static String SHA1Sum(String buffer) {
+        if (SHA1Digest == null) {
+            try {
+                SHA1Digest = MessageDigest.getInstance("SHA-1");
+            } catch (NoSuchAlgorithmException ex) {
+                systemLogger.error("Unable to load SHA1 digest!");
+                return null;
+            }
+        }
+        try {
+            return byteArray2Hex(SHA1Digest.digest(buffer.getBytes("UTF8")));
+        } catch (UnsupportedEncodingException ex) {
+            systemLogger.except(ex);
+            return null;
+        }
+    }
+    
+    private static String byteArray2Hex(final byte[] hash) {
+        Formatter formatter = new Formatter();
+        for (byte b : hash) {
+            formatter.format("%02x", b);
+        }
+        return formatter.toString();
+    }
+    
+    public static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
+      List<T> list = new ArrayList<T>(c);
+      java.util.Collections.sort(list);
+      return list;
+    }
 }

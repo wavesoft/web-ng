@@ -109,6 +109,18 @@ public class WebNGIO {
                     + "expire    INTEGER"
                     + ")");
 
+            stat.executeUpdate("CREATE TABLE IF NOT EXISTS cache_store ("
+                    + "id        INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "key       VARCHAR(1024),"
+                    + "custom    TEXT,"
+                    + "state     INTEGER,"
+                    + "softttl   INTEGER,"
+                    + "hardttl   INTEGER,"
+                    + "updated   INTEGER,"
+                    + "probed    INTEGER,"
+                    + "size      INTEGER"
+                    + ")");
+            
             stat.close();
             
         } catch (SQLException ex) {
