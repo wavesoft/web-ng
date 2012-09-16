@@ -28,7 +28,7 @@ import java.io.OutputStream;
  */
 public interface WStreamCallback {
     
-    public void streamFailed();
+    public void streamFailed(Exception e);
     public void streamReady(OutputStream os, ResponseInfo info);
    
 }

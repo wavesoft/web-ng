@@ -20,6 +20,8 @@
  */
 package gr.wavesoft.webng.webstreams;
 
+import java.io.IOException;
+
 /**
  *
  * @author icharala
@@ -33,7 +35,7 @@ public interface Transport {
      */
     public Boolean isCompatibleFor(StreamRequest req);
     
-    public Boolean isResourceModified(StreamRequest req, CacheItem tok);
+    public Boolean isResourceModified(StreamRequest req, CacheItem tok) throws IOException;
     
     public void openRStream(StreamRequest req, RStreamCallback callback) throws UnsupportedOperationException;
     

@@ -28,7 +28,7 @@ import java.io.InputStream;
  */
 public interface RStreamCallback {
     
-    public void streamFailed();
+    public void streamFailed(Exception e);
     public void streamReady(InputStream is, ResponseInfo info);
     
 }

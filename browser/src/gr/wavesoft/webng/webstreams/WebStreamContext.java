@@ -21,6 +21,11 @@
 package gr.wavesoft.webng.webstreams;
 
 import gr.wavesoft.webng.io.SystemConsole;
+import java.io.IOException;
+import java.net.NoRouteToHostException;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -44,7 +49,7 @@ public class WebStreamContext {
         Transport t = WebStreamFactory.getTransport(req, WebStreamFactory.DIRECTION_READ);
         if (t == null) {
             systemLogger.warn("Unable to find transport layer for request ", req);
-            callback.streamFailed();
+            callback.streamFailed(new IOException("Unable to find transport layer for request "+req.toString()));
             return;
         }
         if (req.useCache) {
@@ -57,19 +62,38 @@ public class WebStreamContext {
                 cache.openCachedRStream(tok, callback);
                 
             } else if (!tok.isExpired()) {
-                // Cache is cold, but not yet expired. Check via transport
-                // if the cache is still valid...
-                if (t.isResourceModified(req, tok)) {
-                    
-                    // Nope, it's expired. Update...
-                    t.openRStream(req, cache.cacheResponse(tok, callback));
-                    
-                } else {
-                    
-                    // Yes, it's still valid
-                    cache.reheatCacheToken(tok);
-                    cache.openCachedRStream(tok, callback);
-                    
+                try {
+                    // Cache is cold, but not yet expired. Check via transport
+                    // if the cache is still valid...
+                    if (t.isResourceModified(req, tok)) {
+                        
+                        // Nope, it's expired. Update...
+                        t.openRStream(req, cache.cacheResponse(tok, callback));
+                        
+                    } else {
+                        
+                        // Yes, it's still valid
+                        cache.reheatCacheToken(tok);
+                        cache.openCachedRStream(tok, callback);
+                        
+                    }
+                } catch (IOException ex) {
+                        
+                    // If we got a DNS or Route error, ignore warm cache,
+                    // just fetch data from cache.
+                    if ((ex instanceof NoRouteToHostException) || (ex instanceof UnknownHostException)) {
+                        
+                        // Open cached stream
+                        systemLogger.info("Fetching cold cache for token ",tok, " because of error: ", ex);
+                        cache.openCachedRStream(tok, callback);
+                        
+                    } else {
+                        
+                        // Otherwise, just forward the failure
+                        callback.streamFailed(ex);
+                        return;
+                        
+                    }
                 }
                 
             } else {
@@ -95,7 +119,7 @@ public class WebStreamContext {
         Transport t = WebStreamFactory.getTransport(req, WebStreamFactory.DIRECTION_WRITE);
         if (t == null) {
             systemLogger.warn("Unable to find transport layer for request ", req);
-            callback.streamFailed();
+            callback.streamFailed(new IOException("Unable to find transport layer for request "+req.toString()));
             return;
         }
         t.openWStream(req, callback);
@@ -110,7 +134,7 @@ public class WebStreamContext {
         Transport t = WebStreamFactory.getTransport(req, WebStreamFactory.DIRECTION_READ | WebStreamFactory.DIRECTION_WRITE);
         if (t == null) {
             systemLogger.warn("Unable to find transport layer for request ", req);
-            callback.streamFailed();
+            callback.streamFailed(new IOException("Unable to find transport layer for request "+req.toString()));
             return;
         }
         t.openRWStream(req, callback);

@@ -29,7 +29,7 @@ import java.io.OutputStream;
  */
 public interface RWStreamCallback {
     
-    public void streamFailed();
+    public void streamFailed(Exception e);
     public void streamReady(InputStream is, OutputStream os, ResponseInfo info);
     
 }

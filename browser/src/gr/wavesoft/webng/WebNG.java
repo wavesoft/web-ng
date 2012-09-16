@@ -66,13 +66,12 @@ public class WebNG {
         // Initialize WebIO
         WebNGSystem.Initialize();
         
-        /*
         WebStreamContext ctx = new WebStreamContext();
         try {
-            ctx.openRStream(new HTTPRequest("http://localhost/web-ng/big.yml"), new RStreamCallback() {
+            ctx.openRStream(new HTTPRequest("http://www.google.gr/"), new RStreamCallback() {
 
                 @Override
-                public void streamFailed() {
+                public void streamFailed(Exception e) {
                     SystemConsole.error("UNABLE TO FETCH STREAM");
                 }
 
@@ -98,9 +97,9 @@ public class WebNG {
         } catch (MalformedURLException ex) {
             Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
         }
-         */
-        
+       
             
+        /*
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -109,6 +108,7 @@ public class WebNG {
             }
 
         });
+         */
         
     }
     

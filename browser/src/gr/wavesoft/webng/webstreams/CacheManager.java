@@ -29,6 +29,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.NoRouteToHostException;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -140,22 +142,22 @@ public class CacheManager {
                 fis.close();
             } catch (FileNotFoundException ex) {
                 systemLogger.except(ex);
-                callback.streamFailed();
+                callback.streamFailed(ex);
             } catch (IOException ex) {
                 systemLogger.except(ex);
-                callback.streamFailed();
+                callback.streamFailed(ex);
             } finally {
                 try {
                     fis.close();
                 } catch (IOException ex) {
                     systemLogger.except(ex);
-                    callback.streamFailed();
+                    callback.streamFailed(ex);
                 }
             }
             
         } else {
             systemLogger.warn("Cannot find cache file ", f);
-            callback.streamFailed();
+            callback.streamFailed(new IOException("Cannot find cache file "+f.toString()));
         }
     }
     
@@ -166,6 +168,14 @@ public class CacheManager {
     public void reheatCacheToken(CacheItem tok) {
         tok.dateProbed = System.currentTimeMillis();
         tok.save();
+    }
+    
+    public void deleteCache(CacheItem tok) {
+        File f = new File(baseDir + "/" + tok.key + ".cache");
+        if (f.exists()) {
+            f.delete();
+        }
+        tok.delete();
     }
     
     public void updateCacheToken(CacheItem tok, Long softTTL, String customDetails) {
@@ -200,8 +210,8 @@ public class CacheManager {
         return new RStreamCallback() {
 
             @Override
-            public void streamFailed() {
-                callback.streamFailed();
+            public void streamFailed(Exception e) {
+                callback.streamFailed(e);
             }
 
             @Override
@@ -265,9 +275,16 @@ public class CacheManager {
 
                         @Override
                         public int read() throws IOException {
-                            int i = is.read();
-                            os.write(i);
-                            return i;
+                            try {
+                                int i = is.read();
+                                os.write(i);
+                                return i;
+                            } catch (IOException e) {
+                                os.close();
+                                deleteCache(tok);
+                                callback.streamFailed(e);
+                                throw e;
+                            }
                         }
 
                         @Override
@@ -294,9 +311,16 @@ public class CacheManager {
 
                         @Override
                         public int read(byte[] bytes) throws IOException {
-                            int i = is.read(bytes);
-                            os.write(bytes,0,i);
-                            return i;
+                            try {
+                                int i = is.read(bytes);
+                                os.write(bytes,0,i);
+                                return i;
+                            } catch (IOException e) {
+                                os.close();
+                                deleteCache(tok);
+                                callback.streamFailed(e);
+                                throw e;
+                            }
                         }
 
                         @Override

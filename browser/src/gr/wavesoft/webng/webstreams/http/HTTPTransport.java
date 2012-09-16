@@ -82,33 +82,28 @@ public class HTTPTransport implements Transport {
     }
 
     @Override
-    public Boolean isResourceModified(StreamRequest req, CacheItem tok) {
-        try {
-            URLConnection connection = req.url.openConnection();
-            ((HttpURLConnection)connection).setRequestMethod("HEAD");
-            
-            // If we have customData, it means that the server responded with an ETag
-            if (!tok.customDetails.isEmpty()) {
-                
-                // Check if it's modified since probe time
-                connection.setRequestProperty("If-None-Match", tok.customDetails);
-                
-            // Otherwise use classic Last-Modified cache validation
-            } else {
-                
-                // Check if it's modified since probe time
-                connection.setIfModifiedSince(tok.dateProbed);
-                
-            }
-            
-            // Return TRUE if response is not HTTP_NOT_MODIFIED
-            int code = ((HttpURLConnection)connection).getResponseCode();
-            return (code != HttpURLConnection.HTTP_NOT_MODIFIED);
-            
-        } catch (IOException ex) {
-            systemLogger.except(ex);
-            return false;
+    public Boolean isResourceModified(StreamRequest req, CacheItem tok) throws IOException {
+        URLConnection connection = req.url.openConnection();
+        ((HttpURLConnection)connection).setRequestMethod("HEAD");
+
+        // If we have customData, it means that the server responded with an ETag
+        if (!tok.customDetails.isEmpty()) {
+
+            // Check if it's modified since probe time
+            connection.setRequestProperty("If-None-Match", tok.customDetails);
+
+        // Otherwise use classic Last-Modified cache validation
+        } else {
+
+            // Check if it's modified since probe time
+            connection.setIfModifiedSince(tok.dateProbed);
+
         }
+
+        // Return TRUE if response is not HTTP_NOT_MODIFIED
+        int code = ((HttpURLConnection)connection).getResponseCode();
+        return (code != HttpURLConnection.HTTP_NOT_MODIFIED);
+            
     }
 
     @Override
@@ -125,7 +120,7 @@ public class HTTPTransport implements Transport {
             
         } catch (IOException ex) {
             systemLogger.except(ex);
-            callback.streamFailed();
+            callback.streamFailed(ex);
         }
     }
 
