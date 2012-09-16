@@ -277,16 +277,43 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
             int xP = x + CURVE_WIDTH - 2;
             int yP = (height-topPadding+fm.getHeight())/2 - 3 + topPadding;
             
-            if (this.img != null) {
+            int availTitleSpace = tabClose.x - 5 - xP;
+            
+            if ((this.img != null) && (availTitleSpace >= 16)) {
+                
+                // Calculate image clipping
                 g2.drawImage(img, 
                     xP, topPadding+4, xP+16, topPadding+4+16, 
                     0, 0, img.getHeight(null), img.getHeight(null), 
                     null);
-                
+
                 xP += 20;
+                availTitleSpace -= 20;
+                if (availTitleSpace < 0)
+                    availTitleSpace = 0;
             }
             
-            g2.drawString(title, xP, yP);
+            // Clip title based on the text size
+            String renderTitle = title;
+            int txt_w = fm.stringWidth(title);
+            if (txt_w > availTitleSpace) {
+                int txt_dots = fm.stringWidth("..");
+                if (txt_dots > availTitleSpace) {
+                    renderTitle = "";
+                } else {
+                    renderTitle = "";
+                    for (int i=0; i<title.length(); i++) {
+                        char c = title.charAt(i);
+                        if (fm.stringWidth(renderTitle + c) + txt_dots > availTitleSpace) {
+                            break;
+                        }
+                        renderTitle += title.charAt(i);
+                    }
+                    renderTitle += "..";
+                }
+            }
+            
+            g2.drawString(renderTitle, xP, yP);
             
             // ============================
             // Draw close button
