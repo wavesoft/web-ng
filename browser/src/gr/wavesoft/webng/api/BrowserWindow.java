@@ -19,6 +19,10 @@
  * 
  */
 package gr.wavesoft.webng.api;
+import gr.wavesoft.webng.webstreams.StreamRequest;
+import gr.wavesoft.webng.webstreams.RStreamCallback;
+import gr.wavesoft.webng.webstreams.RWStreamCallback;
+import gr.wavesoft.webng.webstreams.WStreamCallback;
 import java.awt.Image;
 
 /**
@@ -35,5 +39,9 @@ public interface BrowserWindow {
     public void setTitle(String title);
     public void setHeadButtons(HeadButton[] buttons);
     public void addWindowEventListener(WebViewEventListener l);
+    
+    public void openRStream(String url, RStreamCallback callback);
+    public void openWStream(String url, WStreamCallback callback);
+    public void openRWStream(String url, RWStreamCallback callback);
     
 }

@@ -28,25 +28,36 @@ import gr.wavesoft.webng.api.WebViewNG;
 import gr.wavesoft.webng.api.WebViewEventListener;
 import gr.wavesoft.webng.io.JarLoader;
 import gr.wavesoft.webng.io.PublicKeyEventListener;
+import gr.wavesoft.webng.io.SystemConsole;
 import gr.wavesoft.webng.render.WebViewError;
 import gr.wavesoft.webng.render.WebViewHome;
 import gr.wavesoft.webng.render.WebViewLoading;
 import gr.wavesoft.webng.ui.Tabs.Tab;
 import gr.wavesoft.webng.wblang.WLData;
+import gr.wavesoft.webng.webstreams.RStreamCallback;
+import gr.wavesoft.webng.webstreams.RWStreamCallback;
+import gr.wavesoft.webng.webstreams.WStreamCallback;
+import gr.wavesoft.webng.webstreams.WebStreamContext;
+import gr.wavesoft.webng.webstreams.http.HTTPRequest;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author icharala
  */
 public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, PresenterEventListener, PublicKeyEventListener {
+    
+    private static SystemConsole.Logger systemLogger = new SystemConsole.Logger(BrowserFrame.class, "BrowserWindow");
     
     private WebViewNG webView;
     private ArrayList<SmoothButton> headButtons = new ArrayList<SmoothButton>();
@@ -59,6 +70,9 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
     private WebViewLoading loadingView;
     private WebViewHome homeView;
     
+    // The streams object
+    private WebStreamContext streams;
+    
     /** Creates new form PageFrame */
     public BrowserFrame() {
         initComponents();
@@ -67,6 +81,7 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
         
         loadingView = new WebViewLoading();
         homeView = new WebViewHome();
+        streams = new WebStreamContext();
         
         setView(homeView);
         addKeyListener(new KeyAdapter() {
@@ -426,6 +441,33 @@ public class BrowserFrame extends javax.swing.JPanel implements BrowserWindow, P
 
     @Override
     public void publicKeyReleased(KeyEvent ke) {
+    }
+
+    @Override
+    public void openRStream(String url, RStreamCallback callback) {
+        try {
+            streams.openRStream(new HTTPRequest(url), callback);
+        } catch (MalformedURLException ex) {
+            systemLogger.except(ex);
+        }
+    }
+
+    @Override
+    public void openWStream(String url, WStreamCallback callback) {
+        try {
+            streams.openWStream(new HTTPRequest(url), callback);
+        } catch (MalformedURLException ex) {
+            systemLogger.except(ex);
+        }
+    }
+
+    @Override
+    public void openRWStream(String url, RWStreamCallback callback) {
+        try {
+            streams.openRWStream(new HTTPRequest(url), callback);
+        } catch (MalformedURLException ex) {
+            systemLogger.except(ex);
+        }
     }
 
     

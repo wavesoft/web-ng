@@ -21,17 +21,57 @@
  */
 package gr.wavesoft.webng.render;
 
+import gr.wavesoft.webng.api.BrowserWindow;
 import gr.wavesoft.webng.api.WebViewNG;
+import gr.wavesoft.webng.webstreams.RStreamCallback;
+import gr.wavesoft.webng.webstreams.ResponseInfo;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author icharala
  */
-public class WebViewHome extends WebViewNG {
+public class WebViewHome extends WebViewNG  {
 
     /** Creates new form WebViewHome */
     public WebViewHome() {
         initComponents();
+    }
+    
+    private void setIcon(InputStream is) {
+        if (is == null) {
+            jLabel4.setIcon(null);
+            return;
+        }
+        try {
+            jLabel4.setIcon(new javax.swing.ImageIcon(ImageIO.read(is)));
+        } catch (IOException ex) {
+            Logger.getLogger(WebViewHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void webngSetBrowserWindow(BrowserWindow window) {
+        super.webngSetBrowserWindow(window);
+        if (window == null) return;
+        
+        window.openRStream("http://webng.wavesoft.gr/itworks.png", new RStreamCallback() {
+
+            @Override
+            public void streamFailed(Exception e) {
+                setIcon(null);
+            }
+
+            @Override
+            public void streamReady(InputStream is, ResponseInfo info) {
+                setIcon(is);
+            }
+            
+        });
     }
 
     /** This method is called from within the constructor to
@@ -49,6 +89,8 @@ public class WebViewHome extends WebViewNG {
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         imgBack.setImage(new javax.swing.ImageIcon(getClass().getResource("/gr/wavesoft/webng/resources/cloud.jpeg"))); // NOI18N
         imgBack.setRepeat(gr.wavesoft.webng.components.Image.RepeatConstants.Stretch);
@@ -78,6 +120,8 @@ public class WebViewHome extends WebViewNG {
             }
         });
 
+        jLabel3.setText("Testing web streams:");
+
         org.jdesktop.layout.GroupLayout imgBackLayout = new org.jdesktop.layout.GroupLayout(imgBack);
         imgBack.setLayout(imgBackLayout);
         imgBackLayout.setHorizontalGroup(
@@ -89,7 +133,9 @@ public class WebViewHome extends WebViewNG {
                     .add(jLabel1)
                     .add(jButton1)
                     .add(jLabel2)
-                    .add(jButton3))
+                    .add(jButton3)
+                    .add(jLabel3)
+                    .add(jLabel4))
                 .addContainerGap(170, Short.MAX_VALUE))
         );
         imgBackLayout.setVerticalGroup(
@@ -105,7 +151,11 @@ public class WebViewHome extends WebViewNG {
                 .add(jLabel2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButton3)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jLabel3)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jLabel4)
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -139,5 +189,7 @@ public class WebViewHome extends WebViewNG {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

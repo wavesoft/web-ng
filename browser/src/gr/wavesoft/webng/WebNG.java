@@ -66,6 +66,7 @@ public class WebNG {
         // Initialize WebIO
         WebNGSystem.Initialize();
         
+        /*
         WebStreamContext ctx = new WebStreamContext();
         try {
             ctx.openRStream(new HTTPRequest("http://www.google.gr/"), new RStreamCallback() {
@@ -97,9 +98,8 @@ public class WebNG {
         } catch (MalformedURLException ex) {
             Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+       */
             
-        /*
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -108,7 +108,6 @@ public class WebNG {
             }
 
         });
-         */
         
     }
     
