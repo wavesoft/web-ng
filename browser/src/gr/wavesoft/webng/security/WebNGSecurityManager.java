@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
-package gr.wavesoft.webng.io;
+package gr.wavesoft.webng.security;
 
 import java.io.FileDescriptor;
 import java.security.Permission;

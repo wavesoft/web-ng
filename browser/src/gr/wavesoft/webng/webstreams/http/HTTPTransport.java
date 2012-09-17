@@ -20,6 +20,8 @@
  */
 package gr.wavesoft.webng.webstreams.http;
 import gr.wavesoft.webng.io.SystemConsole;
+import gr.wavesoft.webng.security.WebNGHostnamVerifier;
+import gr.wavesoft.webng.security.WebNGSSLSocketFactory;
 import gr.wavesoft.webng.webstreams.CacheItem;
 import gr.wavesoft.webng.webstreams.RStreamCallback;
 import gr.wavesoft.webng.webstreams.RWStreamCallback;
@@ -35,6 +37,10 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
 
 /**
  *
@@ -44,38 +50,6 @@ public class HTTPTransport implements Transport {
 
     private static final SystemConsole.Logger systemLogger = new SystemConsole.Logger(HTTPTransport.class, "HTTPTransport");
     
-    /*
-    private static final SimpleDateFormat gmtReader;
-    private static final SimpleDateFormat gmtParser;
-
-    static {
-        gmtReader = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss");
-        gmtReader.setTimeZone(TimeZone.getTimeZone("GMT"));
-        gmtParser = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z");
-        gmtParser.setTimeZone(TimeZone.getTimeZone("GMT"));
-    }
-
-    public static String millisToGMT(Long millis) {
-        // gmtReader has no timezone in order to place a string "GMT"
-        return gmtReader.format(millis)+" GMT";
-    }
-    
-    public static Long GMTToMillis(String GMTDate) {
-        // Properly format timezone
-        if (GMTDate.endsWith(" GMT"))
-            GMTDate = GMTDate.substring(0, GMTDate.length()-4)+" -0000";
-        
-        // Try to parse the string given
-        try {
-            Date d = gmtReader.parse(GMTDate);
-            return d.getTime();
-        } catch (ParseException ex) {
-            systemLogger.except(ex);
-            return 0l;
-        }
-    }
-     */
-    
     @Override
     public Boolean isCompatibleFor(StreamRequest req) {
         return (req instanceof HTTPRequest);
@@ -83,14 +57,22 @@ public class HTTPTransport implements Transport {
 
     @Override
     public Boolean isResourceModified(StreamRequest req, CacheItem tok) throws IOException {
+        
+        // Prepare head-only URL connection
         URLConnection connection = req.url.openConnection();
         ((HttpURLConnection)connection).setRequestMethod("HEAD");
+        
+        // If we have SSL, add our custom socket factory and hostname verifier
+        if (connection instanceof HttpsURLConnection) {
+            ((HttpsURLConnection)connection).setHostnameVerifier(WebNGHostnamVerifier.getDefault());
+            ((HttpsURLConnection)connection).setSSLSocketFactory(new WebNGSSLSocketFactory());
+        }
 
         // If we have customData, it means that the server responded with an ETag
-        if (!tok.customDetails.isEmpty()) {
+        if (!tok.customData.isEmpty()) {
 
             // Check if it's modified since probe time
-            connection.setRequestProperty("If-None-Match", tok.customDetails);
+            connection.setRequestProperty("If-None-Match", tok.customData);
 
         // Otherwise use classic Last-Modified cache validation
         } else {
@@ -109,13 +91,25 @@ public class HTTPTransport implements Transport {
     @Override
     public void openRStream(StreamRequest req, RStreamCallback callback) throws UnsupportedOperationException {
         try {
+            
+            // Prepare read-only URL connection
             URLConnection u = req.url.openConnection();
             u.setDoOutput(true);
             u.setReadTimeout(10000);
-            ((HttpURLConnection)u).setRequestMethod("GET");
             
+            // Specify request method (Currently it's only GET for R-Streams)
+            ((HttpURLConnection)u).setRequestMethod("GET");
+        
+            // If we have SSL, add our custom socket factory and hostname verifier
+            if (u instanceof HttpsURLConnection) {
+                ((HttpsURLConnection)u).setHostnameVerifier(WebNGHostnamVerifier.getDefault());
+                ((HttpsURLConnection)u).setSSLSocketFactory(new WebNGSSLSocketFactory());
+            }
+            
+            // Establish connection
             u.connect();
             
+            // Notify the endpoints that the stream is ready
             callback.streamReady(u.getInputStream(), new HTTPResponseInfo((HttpURLConnection)u));
             
         } catch (IOException ex) {

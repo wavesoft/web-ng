@@ -49,6 +49,8 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
     private Integer dragOffset = 0;
     private Integer pressedButton = -1;
     
+    private Boolean lockSize = false;
+    
     protected static int leftPadding = 0;
     protected static int rightPadding = 40;
     protected static int topPadding = 15;
@@ -142,6 +144,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
         public ImageButton tabClose;
         public String key;
         public Boolean dragging = false;
+        public Integer index;
         
         private static int   CURVE_WIDTH = 20;
         private static float CURVED_EDGE[] = new float[] {
@@ -162,6 +165,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
             this.anchorW = 10;
             this.anchorX = 0;
             this.width = 0;
+            this.index = 0;
             this.tabClose = new ImageButton(cmp, x, 0, new javax.swing.ImageIcon(getClass().getResource("/gr/wavesoft/webng/resources/btn-close.png")));
             this.tabClose.key = key;
             this.tabClose.tab = this;
@@ -330,7 +334,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
     @Override
     public void componentResized(ComponentEvent ce) {
         newTabButton.y = getHeight() - newTabButton.height;
-        resizeTabs(false);
+        updateTabs(false);
     }
 
     @Override
@@ -355,10 +359,16 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
                 }
             } else {
                 for (TabChangeListener l: tabChangeListeners) {
+                    
+                    // Prohibit tabs from resizing
+                    lockSize = true;
+                    
+                    // Close tab
                     l.tabClosed(
-                        java.util.Arrays.asList(tabs).indexOf(buttons[pressedButton].tab), 
+                        buttons[pressedButton].tab.index,
                         buttons[pressedButton].key
                         );
+                    
                 }
             }
         }
@@ -369,12 +379,28 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
 
     @Override
     public void mousePressed(MouseEvent me) {
+        
+        // Update mouse collisions
+        int x = me.getX(), y = me.getY();
+        int foundButton = -1;
+        for (int i=0; i<buttons.length; i++) {
+            if (buttons[i].hitsCursor(x,y)) {
+                buttons[i].state = 1;
+                foundButton = i;
+            } else {
+                buttons[i].state = 0;
+            }
+        }
+
+        // Process buttons
         if (pressedButton != -1) {
             me.consume();
             buttons[pressedButton].state = 2;
             repaint();
             return;
         }
+        
+        // Process drag
         draggingItem = getTabFromXY(me.getX(), me.getY());
         if (draggingItem != -1) {
             if (tabs.length > 1) {
@@ -441,7 +467,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
                     draggingItem = placement;
                     
                     // Resize items
-                    resizeTabs(true);
+                    updateTabs(true);
                     
                 }
                 
@@ -471,6 +497,10 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
         if (pressedButton != foundButton) {
             pressedButton = foundButton;
             repaint();
+        }
+        if (lockSize) {
+            lockSize = false;
+            updateTabs(true);
         }
     }
     
@@ -583,6 +613,13 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
         
     }
     
+    public int getTabIndexByKey(String key) {
+        for (int i=0; i<tabs.length; i++) {
+            if (tabs[i].key.equals(key)) return i;
+        }
+        return -1;
+    }
+    
     public void addTabChangeListener(TabChangeListener l) {
         tabChangeListeners.add(l);
     }
@@ -617,7 +654,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
         tabs[i] = new Tab(title, key, SystemIcons.tabIconDefault, this);
         if (i>0) tabs[i].x = tabs[i-1].anchorX + tabs[i-1].anchorW;
         addButton(tabs[i].tabClose);
-        resizeTabs(true);
+        updateTabs(true);
         selectTab(i);
         return tabs[i];
     }
@@ -633,7 +670,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
             }
         }
         tabs = newTabs;
-        resizeTabs(true);
+        updateTabs(true);
         if (index<tabs.length) {
             selectTab(index);
         } else if (index>0) {            
@@ -659,7 +696,7 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
         buttons = newButtons;
     }
     
-    public void resizeTabs(Boolean animated) {
+    public void updateTabs(Boolean animated) {
         if (tabs.length == 0) return;
         int width = getWidth() - leftPadding - rightPadding;
         int slice = (width / tabs.length) + TAB_OVERLAP/2;
@@ -670,8 +707,9 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
                 tabs[i].moveXW(x, slice);
             }
             tabs[i].anchorX = x;
-            tabs[i].anchorW = slice;
-            x += slice - TAB_OVERLAP/2;
+            if (!lockSize) tabs[i].anchorW = slice;
+            x += tabs[i].anchorW - TAB_OVERLAP/2;
+            tabs[i].index = i;
         }
         
         updateNewTabPosition();
@@ -690,6 +728,15 @@ public class Tabs extends javax.swing.JPanel implements MouseListener, MouseMoti
         for (TabChangeListener l: tabChangeListeners) {
             l.tabChanged(tab, k);
         }
+    }
+    
+    public String getSelectedTabKey() {
+        for (int i=tabs.length-1; i>=0; i--) {
+            if (tabs[i].selected) {
+                return tabs[i].key;
+            }
+        }
+        return null;
     }
     
     public int getSelectedTabIndex() {

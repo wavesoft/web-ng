@@ -32,6 +32,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -41,7 +42,7 @@ import java.util.UUID;
 public class Browser extends javax.swing.JFrame implements ComponentListener, TabChangeListener, PublicKeyEventListener {
 
     ComponentMover mover;
-    ArrayList<BrowserFrame> tabs;
+    HashMap<String, BrowserFrame> tabs;
     
     /** Creates new form Browser */
     public Browser() {
@@ -49,7 +50,7 @@ public class Browser extends javax.swing.JFrame implements ComponentListener, Ta
         
         // Setup variables
         mover = new ComponentMover(this, tabsHead);
-        tabs = new ArrayList<BrowserFrame>();
+        tabs = new HashMap<String, BrowserFrame>();
         
         // Setup listeners
         addComponentListener(this);
@@ -69,7 +70,7 @@ public class Browser extends javax.swing.JFrame implements ComponentListener, Ta
         
         // Setup variables
         mover = new ComponentMover(this, tabsHead);
-        tabs = new ArrayList<BrowserFrame>();
+        tabs = new HashMap<String, BrowserFrame>();
         
         // Setup listeners
         addComponentListener(this);
@@ -83,7 +84,7 @@ public class Browser extends javax.swing.JFrame implements ComponentListener, Ta
     public void addNewTab() {
         String id = UUID.randomUUID().toString();
         BrowserFrame view = new BrowserFrame();
-        tabs.add(view);
+        tabs.put(id, view);
         panelViews.add(view, id);
         view.setTab(tabsHead.addTab(view.getTitle(), id));
         tabsHead.revalidate();
@@ -191,15 +192,15 @@ public class Browser extends javax.swing.JFrame implements ComponentListener, Ta
     public void tabChanged(int index, String key) {
         CardLayout cl = (CardLayout)(panelViews.getLayout());
         cl.show(panelViews, key);
-        tabs.get(index).focusOnLocationBar();
+        tabs.get(key).focusOnLocationBar();
     }
 
     @Override
     public void tabClosed(int index, String key) {
         tabsHead.removeTab(index);
-        BrowserFrame frame = tabs.get(index);
+        BrowserFrame frame = tabs.get(key);
         panelViews.remove(frame);
-        tabs.remove(index);
+        tabs.remove(key);
         if (tabs.isEmpty()) System.exit(0);
     }
 
@@ -217,10 +218,11 @@ public class Browser extends javax.swing.JFrame implements ComponentListener, Ta
             if (index < 0) return;
             
             // Close it
+            String key = tabsHead.getSelectedTabKey();
             tabsHead.removeTab(index);
-            BrowserFrame frame = tabs.get(index);
+            BrowserFrame frame = tabs.get(key);
             panelViews.remove(frame);
-            tabs.remove(index);
+            tabs.remove(key);
             
             // Update view
             tabsHead.revalidate();

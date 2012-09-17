@@ -29,8 +29,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.NoRouteToHostException;
-import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -183,7 +181,7 @@ public class CacheManager {
         if (softTTL != null)
             tok.softTTL = softTTL;
         if (customDetails != null)
-            tok.customDetails = customDetails;
+            tok.customData = customDetails;
         tok.save();
     }
 
@@ -239,7 +237,7 @@ public class CacheManager {
                         if (info.cacheInfo.expiresTTL != null)
                             tok.softTTL = info.cacheInfo.expiresTTL;
                         if (info.cacheInfo.customDetails != null)
-                            tok.customDetails = info.cacheInfo.customDetails;
+                            tok.customData = info.cacheInfo.customDetails;
                     }
                     
                     // Update cache item size
