@@ -23,7 +23,6 @@ package gr.wavesoft.webng;
 
 import gr.wavesoft.webng.io.PublicKeyEventListener;
 import gr.wavesoft.webng.io.PublicKeyEventManager;
-import gr.wavesoft.webng.ui.BrowserFrame;
 import gr.wavesoft.webng.ui.ComponentMover;
 import gr.wavesoft.webng.ui.Tabs.TabChangeListener;
 import java.awt.CardLayout;

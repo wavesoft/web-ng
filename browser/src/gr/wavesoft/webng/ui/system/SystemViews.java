@@ -18,12 +18,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
-package gr.wavesoft.webng.ui;
+package gr.wavesoft.webng.ui.system;
 
 import gr.wavesoft.webng.api.WebViewNG;
 import gr.wavesoft.webng.render.WebViewError;
 import gr.wavesoft.webng.render.WebViewHome;
-import gr.wavesoft.webng.ui.system.WebViewConsole;
 
 /**
  *
@@ -36,8 +35,13 @@ public class SystemViews {
         if (!name.startsWith("webng:")) return null;
         if ("webng:console".equals(name)) {
             return new WebViewConsole();
+            
+        } else if ("webng:certificates".equals(name)) {
+            return new WebViewCertificates();
+            
         } else if ("webng:home".equals(name)) {
             return new WebViewHome();
+            
         } else {
             return new WebViewError("Unknown system page", "You have enetered an unknown system page. Use webng:help for more information");
         }
