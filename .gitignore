@@ -1,6 +1,8 @@
 *.DS_Store
 /browser/build/
+/browser/dist/
 /webng-demo/build/
+/webng-demo/dist/
 browser/src/com/wavesoft/webng/resources/btn-tab.png
 browser/nbproject/private/profiler/*.hprof
 browser/nbproject/private/profiler/*.nps
