@@ -75,65 +75,58 @@ public class WebNG {
             }
             
         });
+            
+        /*
+        WebNGKeyStore ks = new WebNGKeyStore(new File("test.store"));
         try {
-            Thread.sleep(10000);
-            
-            /*
-            WebNGKeyStore ks = new WebNGKeyStore(new File("test.store"));
-            try {
-                ks.installRootCertificate(new File("/Users/icharala/Documents/harca.cer"));
-            } catch (KeyStoreException ex) {
-                Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
-            }
-             */
-            
-            /*
-            WebStreamContext ctx = new WebStreamContext();
-            try {
-                ctx.openRStream(new HTTPRequest("http://www.google.gr/"), new RStreamCallback() {
-
-                    @Override
-                    public void streamFailed(Exception e) {
-                        SystemConsole.error("UNABLE TO FETCH STREAM");
-                    }
-
-                    @Override
-                    public void streamReady(InputStream is, ResponseInfo info) {
-                        try {
-                            BufferedReader bufReader = new BufferedReader(new InputStreamReader(is));
-                            StringBuilder strBuffer = new StringBuilder();
-
-                            // Download
-                            char[] charBuf = new char[1024];
-                            int len = 0;
-                            while ((len = bufReader.read(charBuf))>0) {
-                                strBuffer.append(charBuf, 0, len);
-                            }
-                            SystemConsole.error("GOT RESPONSE: "+strBuffer.toString());
-                        } catch (IOException ex) {
-                            Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                });
-                
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           */
-                
-            // Create and display the form
-            /*
-            java.awt.EventQueue.invokeLater(new Runnable() {
-
-                public void run() {
-                    new Browser().setVisible(true);
-                }
-
-            });
-             */
-        } catch (InterruptedException ex) {
+            ks.installRootCertificate(new File("/Users/icharala/Documents/harca.cer"));
+        } catch (KeyStoreException ex) {
             Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
         }
+         */
+
+        /*
+        WebStreamContext ctx = new WebStreamContext();
+        try {
+            ctx.openRStream(new HTTPRequest("http://www.google.gr/"), new RStreamCallback() {
+
+                @Override
+                public void streamFailed(Exception e) {
+                    SystemConsole.error("UNABLE TO FETCH STREAM");
+                }
+
+                @Override
+                public void streamReady(InputStream is, ResponseInfo info) {
+                    try {
+                        BufferedReader bufReader = new BufferedReader(new InputStreamReader(is));
+                        StringBuilder strBuffer = new StringBuilder();
+
+                        // Download
+                        char[] charBuf = new char[1024];
+                        int len = 0;
+                        while ((len = bufReader.read(charBuf))>0) {
+                            strBuffer.append(charBuf, 0, len);
+                        }
+                        SystemConsole.error("GOT RESPONSE: "+strBuffer.toString());
+                    } catch (IOException ex) {
+                        Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       */
+
+        // Create and display the form
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new Browser().setVisible(true);
+            }
+
+        });
         
     }
     

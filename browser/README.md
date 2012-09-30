@@ -1,6 +1,6 @@
 
-Browser ources
-===============
+Browser sources
+================
 
 Here are the sources of the browser application. The build process of the project 
 is managed by [Maven](http://maven.apache.org/) in order to automatically resolve all
