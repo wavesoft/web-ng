@@ -70,7 +70,7 @@ public class WebNGIO {
     public static void Initialize(String webNGdir) {
         
         // Initialize library
-        setupDB(webNGdir+"/data.sqlite3");
+        setupDB(webNGdir+"/system.db");
         
         // Create cache and jar loader
         JarCache.setupJarCache(webNGdir+"/jarbox");

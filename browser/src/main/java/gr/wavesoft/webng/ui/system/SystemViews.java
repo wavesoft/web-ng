@@ -42,6 +42,10 @@ public class SystemViews {
         } else if ("webng:home".equals(name)) {
             return new WebViewHome();
             
+        } else if ("webng:test".equals(name)) {
+            return new TestPanel();
+            
+            
         } else {
             return new WebViewError("Unknown system page", "You have enetered an unknown system page. Use webng:help for more information");
         }

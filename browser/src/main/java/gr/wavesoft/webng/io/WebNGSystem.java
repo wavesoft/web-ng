@@ -21,7 +21,9 @@
 package gr.wavesoft.webng.io;
 
 import gr.wavesoft.webng.io.dlib.Aether;
-import gr.wavesoft.webng.io.http.HTTPStreams;
+import gr.wavesoft.webng.io.cache.WebNGCache;
+import gr.wavesoft.webng.io.web.WebStreams;
+import gr.wavesoft.webng.security.WebNGKeyStore;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -102,11 +104,15 @@ public class WebNGSystem {
         // Initialize JarIO
         WebNGIO.Initialize(webNGdir);
         
-        // Setup HTTP cache
+        // Setup System cache
         mkdirIfMissing(webNGdir+"/cache");
-        //WebStreamContext.Initialize(webNGdir+"/cache");
-        //WebStreamFactory.Initialize();
-        HTTPStreams.Initialize(webNGdir+"/cache");
+        WebNGCache.Initialize(webNGdir+"/cache");
+        
+        // Setup system security
+        WebNGKeyStore.Initialize(webNGdir+"/keystore.db");
+        
+        // Setup streams
+        WebStreams.Initialize();
         
         // Register default transports
         //WebStreamFactory.registerTransport(new HTTPTransport());

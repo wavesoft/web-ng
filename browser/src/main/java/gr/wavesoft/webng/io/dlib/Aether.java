@@ -83,6 +83,7 @@ public class Aether {
             CollectRequest collectRequest = new CollectRequest();
             collectRequest.setRoot( dependency );
             collectRequest.addRepository( central );
+            
             DependencyNode node = repoSystem.collectDependencies( repoSession, collectRequest ).getRoot();
 
             DependencyRequest dependencyRequest = new DependencyRequest( node, null );

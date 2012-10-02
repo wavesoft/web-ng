@@ -21,9 +21,16 @@
 package gr.wavesoft.webng;
 
 import gr.wavesoft.webng.io.WebNGSystem;
-import gr.wavesoft.webng.io.http.HTTPRequestListener;
-import gr.wavesoft.webng.io.http.HTTPResponse;
-import gr.wavesoft.webng.io.http.HTTPStreams;
+import gr.wavesoft.webng.io.dlib.Aether;
+import gr.wavesoft.webng.io.web.BufferedResponse;
+import gr.wavesoft.webng.io.web.FileResponse;
+import gr.wavesoft.webng.io.web.StreamResponse;
+import gr.wavesoft.webng.io.web.WebRequest;
+import gr.wavesoft.webng.io.web.WebRequestListener;
+import gr.wavesoft.webng.io.web.WebResponse;
+import gr.wavesoft.webng.io.web.WebStreams;
+import gr.wavesoft.webng.security.WebNGSecurityManager;
+import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -53,28 +60,39 @@ public class WebNG {
             Logger.getLogger(WebNG.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // Initialize WebNG Security Manager
-        //System.setSecurityManager(new WebNGSecurityManager());
-        
         // Initialize WebIO
         WebNGSystem.Initialize();
         
-//        HTTPStreams.download("http://pgl.yoyo.org/http/browser-headers.php", new HTTPRequestListener() {
-        HTTPStreams.download("http://web.scott.k12.va.us/martha2/dmbtest.gif", new HTTPRequestListener() {
+        // Initialize WebNG Security Manager
+        //System.setSecurityManager(new WebNGSecurityManager());
+        
+        //Aether.resolveDependency("javax.media", "jmf", "2.1.1e");
+        
+        /*
+//        WebStreams.download("http://pgl.yoyo.org/http/browser-headers.php", new WebRequestListener() {
+//        WebStreams.download("http://ipv4.download.thinkbroadband.com/1GB.zip", WebRequest.RESPONSE_STREAM, new WebRequestListener() {
+//        WebStreams.download("http://ipv4.download.thinkbroadband.com/10MB.zip", "test1gb.zip", new WebRequestListener() {
+        WebStreams.download("https://www.google.com/", new WebRequestListener() {
 
-            public void httpProgress(Integer value, Integer max) {
-                throw new UnsupportedOperationException("Not supported yet.");
+            public void httpProgress(Long value, Long max) {
+                Double v = 100d*value/max;
+                DecimalFormat fmt = new DecimalFormat("#.##");
+                System.out.println("Downloading "+ fmt.format(v) + "%");
             }
 
-            public void httpCompleted(HTTPResponse response) {
-                throw new UnsupportedOperationException("Not supported yet.");
+            public void httpCompleted(WebResponse response) {
+                //StreamResponse sr = (StreamResponse) response;
+                //System.out.println("Got response stream "+sr.contentType+" (sz=" + sr.contentSize + ") HTTP "+sr.statusText);
+                System.out.println("Got buffer: "+((BufferedResponse)response).buffer);
+                //System.out.println("Got file: "+((FileResponse)response).file.getAbsolutePath());
             }
 
             public void httpFailed(Exception e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                System.err.println("Exception: "+e.getMessage());
             }
             
         });
+         */
             
         /*
         WebNGKeyStore ks = new WebNGKeyStore(new File("test.store"));

@@ -27,9 +27,21 @@ import java.io.IOException;
 import java.security.KeyStoreException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateParsingException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JTree;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 import sun.security.x509.X500Name;
 import sun.security.x509.X509CertImpl;
 
@@ -39,29 +51,76 @@ import sun.security.x509.X509CertImpl;
  */
 public class WebViewCertificates extends WebViewNG {
 
-    DefaultListModel caCerts;
-    
+    DefaultTreeModel caCerts;
+     
     /** Creates new form WebViewCertificates */
     public WebViewCertificates() {
         initComponents();
-        caCerts = new DefaultListModel();
-        jList1.setModel(caCerts);
         updateCertList();
+        
+    }
+    
+    private void expandAll(JTree tree, TreePath parent, boolean expand) {
+        // Traverse children
+        TreeNode node = (TreeNode)parent.getLastPathComponent();
+        if (node.getChildCount() >= 0) {
+            for (Enumeration e=node.children(); e.hasMoreElements(); ) {
+                TreeNode n = (TreeNode)e.nextElement();
+                TreePath path = parent.pathByAddingChild(n);
+                expandAll(tree, path, expand);
+            }
+        }
+
+        // Expansion or collapse must be done bottom-up
+        if (expand) {
+            tree.expandPath(parent);
+        } else {
+            tree.collapsePath(parent);
+        }
     }
     
     private void updateCertList() {
         try {
-            WebNGKeyStore ks = new WebNGKeyStore(new File("test.store"));
-            caCerts.clear();
-            for (Certificate c: ks.getRootCertificates()) {
+            
+            // Build map
+            HashMap<String, ArrayList<String>> certs = new HashMap<String, ArrayList<String>>();
+            for (Certificate c: WebNGKeyStore.getRootCertificates()) {
                 if (c instanceof X509CertImpl) {
-                    X500Name cm = (X500Name) ((X509CertImpl)c).get(X509CertImpl.SUBJECT_DN);
-                    String cn = cm.getCommonName();
-                    caCerts.addElement(cn);
-                } else {
-                    caCerts.addElement("");
+                    X509CertImpl cert = (X509CertImpl) c;
+                    
+                    X500Name issuer = (X500Name) cert.get(X509CertImpl.ISSUER_DN);
+                    String issName = issuer.getOrganization();
+                    if (issName == null) issName = issuer.getOrganizationalUnit();
+                    if (issName == null) issName = issuer.getCommonName();
+                    
+                    if (!certs.containsKey(issName)) certs.put(issName, new ArrayList<String>());
+                    ArrayList<String> issuerCerts = certs.get(issName);
+                    
+                    X500Name subj = (X500Name) cert.get(X509CertImpl.SUBJECT_DN);
+                    String subjName = subj.getCommonName();
+                    if (subjName == null) subjName = subj.getOrganizationalUnit();
+                    if (subjName == null) subjName = subj.getOrganization();
+                    issuerCerts.add(subjName);
                 }
             }
+            
+            // Build tree
+            DefaultMutableTreeNode root = new DefaultMutableTreeNode();
+            for (String k: certs.keySet()) {
+                DefaultMutableTreeNode group = new DefaultMutableTreeNode(k);
+                for (String c: certs.get(k)) {
+                    DefaultMutableTreeNode e = new DefaultMutableTreeNode(c);
+                    group.add(e);
+                }
+                root.add(group);
+            }
+            
+            DefaultTreeModel dtm = new DefaultTreeModel(root);
+            jTree1.setModel(dtm);
+            jTree1.setRootVisible(false);
+
+            expandAll(jTree1, new TreePath(root), true);
+            
         } catch (IOException ex) {
             Logger.getLogger(WebViewCertificates.class.getName()).log(Level.SEVERE, null, ex);
         } catch (CertificateParsingException ex) {
@@ -69,6 +128,25 @@ public class WebViewCertificates extends WebViewNG {
         } catch (KeyStoreException ex) {
             Logger.getLogger(WebViewCertificates.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
+        
+        JFileChooser fc = new JFileChooser();
+        fc.addChoosableFileFilter(new FileNameExtensionFilter("PEM Certificate", "pem"));
+        fc.addChoosableFileFilter(new FileNameExtensionFilter("DER Certificate", "der"));
+        fc.addChoosableFileFilter(new FileNameExtensionFilter("CRT Certificate", "crt"));
+        fc.showOpenDialog(getRootPane());
+        File f = fc.getSelectedFile();
+        if (f != null) {
+            try {
+                WebNGKeyStore.installRootCertificate(f);
+            } catch (KeyStoreException ex) {
+                JOptionPane.showMessageDialog(null, "Import error", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        updateCertList();
     }
 
     /** This method is called from within the constructor to
@@ -83,43 +161,67 @@ public class WebViewCertificates extends WebViewNG {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jTree1 = new javax.swing.JTree();
+        roundedButton1 = new gr.wavesoft.webng.ui.RoundedButton();
+        roundedButton2 = new gr.wavesoft.webng.ui.RoundedButton();
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        jScrollPane1.setViewportView(jTree1);
+
+        roundedButton1.setText("Remove selected");
+        roundedButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundedButton1ActionPerformed(evt);
+            }
         });
-        jScrollPane1.setViewportView(jList1);
 
-        jButton1.setText("Import");
+        org.jdesktop.layout.GroupLayout roundedButton1Layout = new org.jdesktop.layout.GroupLayout(roundedButton1);
+        roundedButton1.setLayout(roundedButton1Layout);
+        roundedButton1Layout.setHorizontalGroup(
+            roundedButton1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 142, Short.MAX_VALUE)
+        );
+        roundedButton1Layout.setVerticalGroup(
+            roundedButton1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 33, Short.MAX_VALUE)
+        );
 
-        jButton2.setText("Remove selected");
+        roundedButton2.setText("Import");
+
+        org.jdesktop.layout.GroupLayout roundedButton2Layout = new org.jdesktop.layout.GroupLayout(roundedButton2);
+        roundedButton2.setLayout(roundedButton2Layout);
+        roundedButton2Layout.setHorizontalGroup(
+            roundedButton2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 106, Short.MAX_VALUE)
+        );
+        roundedButton2Layout.setVerticalGroup(
+            roundedButton2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 33, Short.MAX_VALUE)
+        );
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
-                .add(154, 154, 154)
-                .add(jButton2)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jButton1))
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                .addContainerGap(111, Short.MAX_VALUE)
+                .add(roundedButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(roundedButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(15, 15, 15))
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButton1)
-                    .add(jButton2)))
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(roundedButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(roundedButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Root CA", jPanel3);
+        jTabbedPane1.addTab("Root Certificate Authorities", jPanel3);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -127,23 +229,28 @@ public class WebViewCertificates extends WebViewNG {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jTabbedPane1)
+                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void roundedButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roundedButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTree jTree1;
+    private gr.wavesoft.webng.ui.RoundedButton roundedButton1;
+    private gr.wavesoft.webng.ui.RoundedButton roundedButton2;
     // End of variables declaration//GEN-END:variables
 }

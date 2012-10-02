@@ -45,16 +45,21 @@ import sun.security.x509.X509CertImpl;
 public class WebNGKeyStore {
 
     private static final SystemConsole.Logger systemLogger = new SystemConsole.Logger(WebNGKeyStore.class, "Security");
-    private static final String password = "AEkm3l1i3!(FP#a031i04_!#MDa3j9apd";
-    private KeyStore ks;
-    private File store;
+    //private static final String password = "AEkm3l1i3!(FP#a031i04_!#MDa3j9apd";
+    private static final String password = "changeit";
+    private static KeyStore ks;
+    private static File store;
     
-    public WebNGKeyStore(File store) {
-        this.store = store;
+    public static void Initialize(String store) {
+        WebNGKeyStore.store = new File(store);
         load();
     }
     
-    private void load() {
+    public static KeyStore getKeyStore() {
+        return ks;
+    }
+    
+    private static void load() {
         try {
             
             // Create a new keystore
@@ -80,7 +85,7 @@ public class WebNGKeyStore {
         }
     }
     
-    private void save() {
+    private static void save() {
         try {
             
             // Dump keystore to file
@@ -99,7 +104,7 @@ public class WebNGKeyStore {
         }
     }
     
-    public Boolean containsAlias(String alias) {
+    public static Boolean containsAlias(String alias) {
         try {
             return ks.containsAlias(alias);
         } catch (KeyStoreException ex) {
@@ -108,7 +113,7 @@ public class WebNGKeyStore {
         }
     }
     
-    public Certificate[] getRootCertificates() throws KeyStoreException {
+    public static Certificate[] getRootCertificates() throws KeyStoreException {
         ArrayList<Certificate> l = new ArrayList<Certificate>();
         Enumeration<String> keys = ks.aliases();
         while (keys.hasMoreElements()) {
@@ -117,17 +122,19 @@ public class WebNGKeyStore {
         return l.toArray(new Certificate[0]);
     }
     
-    public void installRootCertificate(Certificate c, String alias) throws KeyStoreException {
+    public static void installRootCertificate(Certificate c, String alias) throws KeyStoreException {
         ks.setCertificateEntry(alias, c);
     }
     
-    public void installRootCertificate(File file) throws KeyStoreException {
+    public static void installRootCertificate(File file) throws KeyStoreException {
         try {
             FileInputStream fis = new FileInputStream(file);
             X509CertImpl cert = new X509CertImpl(fis);
             
             X500Name cm = (X500Name) cert.get(X509CertImpl.SUBJECT_DN);
             String cn = cm.getCommonName();
+            if (cn == null) cn = cm.getGivenName();
+            if (cn == null) cn = cm.getOrganizationalUnit();
             ks.setCertificateEntry(cn, cert);
             save();
             
@@ -138,6 +145,10 @@ public class WebNGKeyStore {
         } catch (CertificateException ex) {
             Logger.getLogger(WebNGKeyStore.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static void uninstallRootCertificate(String alias) {
+        
     }
     
 }

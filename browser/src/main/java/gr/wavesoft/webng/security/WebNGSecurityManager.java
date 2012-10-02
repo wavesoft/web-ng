@@ -21,6 +21,7 @@
 package gr.wavesoft.webng.security;
 
 import java.io.FileDescriptor;
+import java.net.SocketPermission;
 import java.security.Permission;
 
 /**
@@ -54,6 +55,7 @@ public class WebNGSecurityManager extends SecurityManager {
 
     @Override
     public void checkPermission(Permission prmsn) {
+        System.out.println(prmsn.getClass().toString());
         if (prmsn.getName().equals("accessClassInPackage.sun.reflect")) return;
         System.out.println(getCallingClass().toString()+ " wants permission: "+ prmsn.getName());
         //super.checkPermission(prmsn);
