@@ -132,22 +132,21 @@ public class RoundedButtonBeanInfo extends SimpleBeanInfo {
     private static final int PROPERTY_topLevelAncestor = 90;
     private static final int PROPERTY_transferHandler = 91;
     private static final int PROPERTY_treeLock = 92;
-    private static final int PROPERTY_UI = 93;
-    private static final int PROPERTY_UIClassID = 94;
-    private static final int PROPERTY_valid = 95;
-    private static final int PROPERTY_validateRoot = 96;
-    private static final int PROPERTY_verifyInputWhenFocusTarget = 97;
-    private static final int PROPERTY_vetoableChangeListeners = 98;
-    private static final int PROPERTY_visible = 99;
-    private static final int PROPERTY_visibleRect = 100;
-    private static final int PROPERTY_width = 101;
-    private static final int PROPERTY_x = 102;
-    private static final int PROPERTY_y = 103;
+    private static final int PROPERTY_UIClassID = 93;
+    private static final int PROPERTY_valid = 94;
+    private static final int PROPERTY_validateRoot = 95;
+    private static final int PROPERTY_verifyInputWhenFocusTarget = 96;
+    private static final int PROPERTY_vetoableChangeListeners = 97;
+    private static final int PROPERTY_visible = 98;
+    private static final int PROPERTY_visibleRect = 99;
+    private static final int PROPERTY_width = 100;
+    private static final int PROPERTY_x = 101;
+    private static final int PROPERTY_y = 102;
 
     // Property array 
     /*lazy PropertyDescriptor*/
     private static PropertyDescriptor[] getPdescriptor(){
-        PropertyDescriptor[] properties = new PropertyDescriptor[104];
+        PropertyDescriptor[] properties = new PropertyDescriptor[103];
     
         try {
             properties[PROPERTY_accessibleContext] = new PropertyDescriptor ( "accessibleContext", gr.wavesoft.webng.ui.RoundedButton.class, "getAccessibleContext", null ); // NOI18N
@@ -189,6 +188,7 @@ public class RoundedButtonBeanInfo extends SimpleBeanInfo {
             properties[PROPERTY_focusTraversalPolicyProvider] = new PropertyDescriptor ( "focusTraversalPolicyProvider", gr.wavesoft.webng.ui.RoundedButton.class, "isFocusTraversalPolicyProvider", "setFocusTraversalPolicyProvider" ); // NOI18N
             properties[PROPERTY_focusTraversalPolicySet] = new PropertyDescriptor ( "focusTraversalPolicySet", gr.wavesoft.webng.ui.RoundedButton.class, "isFocusTraversalPolicySet", null ); // NOI18N
             properties[PROPERTY_font] = new PropertyDescriptor ( "font", gr.wavesoft.webng.ui.RoundedButton.class, "getFont", "setFont" ); // NOI18N
+            properties[PROPERTY_font].setPreferred ( true );
             properties[PROPERTY_fontSet] = new PropertyDescriptor ( "fontSet", gr.wavesoft.webng.ui.RoundedButton.class, "isFontSet", null ); // NOI18N
             properties[PROPERTY_foreground] = new PropertyDescriptor ( "foreground", gr.wavesoft.webng.ui.RoundedButton.class, "getForeground", "setForeground" ); // NOI18N
             properties[PROPERTY_foregroundSet] = new PropertyDescriptor ( "foregroundSet", gr.wavesoft.webng.ui.RoundedButton.class, "isForegroundSet", null ); // NOI18N
@@ -245,7 +245,6 @@ public class RoundedButtonBeanInfo extends SimpleBeanInfo {
             properties[PROPERTY_topLevelAncestor] = new PropertyDescriptor ( "topLevelAncestor", gr.wavesoft.webng.ui.RoundedButton.class, "getTopLevelAncestor", null ); // NOI18N
             properties[PROPERTY_transferHandler] = new PropertyDescriptor ( "transferHandler", gr.wavesoft.webng.ui.RoundedButton.class, "getTransferHandler", "setTransferHandler" ); // NOI18N
             properties[PROPERTY_treeLock] = new PropertyDescriptor ( "treeLock", gr.wavesoft.webng.ui.RoundedButton.class, "getTreeLock", null ); // NOI18N
-            properties[PROPERTY_UI] = new PropertyDescriptor ( "UI", gr.wavesoft.webng.ui.RoundedButton.class, "getUI", "setUI" ); // NOI18N
             properties[PROPERTY_UIClassID] = new PropertyDescriptor ( "UIClassID", gr.wavesoft.webng.ui.RoundedButton.class, "getUIClassID", null ); // NOI18N
             properties[PROPERTY_valid] = new PropertyDescriptor ( "valid", gr.wavesoft.webng.ui.RoundedButton.class, "isValid", null ); // NOI18N
             properties[PROPERTY_validateRoot] = new PropertyDescriptor ( "validateRoot", gr.wavesoft.webng.ui.RoundedButton.class, "isValidateRoot", null ); // NOI18N
@@ -287,7 +286,6 @@ public class RoundedButtonBeanInfo extends SimpleBeanInfo {
     
         try {
             eventSets[EVENT_actionListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "actionListener", java.awt.event.ActionListener.class, new String[] {"actionPerformed"}, "addActionListener", "removeActionListener" ); // NOI18N
-            eventSets[EVENT_actionListener].setPreferred ( true );
             eventSets[EVENT_ancestorListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "ancestorListener", javax.swing.event.AncestorListener.class, new String[] {"ancestorAdded", "ancestorRemoved", "ancestorMoved"}, "addAncestorListener", "removeAncestorListener" ); // NOI18N
             eventSets[EVENT_componentListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "componentListener", java.awt.event.ComponentListener.class, new String[] {"componentResized", "componentMoved", "componentShown", "componentHidden"}, "addComponentListener", "removeComponentListener" ); // NOI18N
             eventSets[EVENT_containerListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "containerListener", java.awt.event.ContainerListener.class, new String[] {"componentAdded", "componentRemoved"}, "addContainerListener", "removeContainerListener" ); // NOI18N
@@ -742,7 +740,7 @@ public class RoundedButtonBeanInfo extends SimpleBeanInfo {
             methods[METHOD_unregisterKeyboardAction139].setDisplayName ( "" );
             methods[METHOD_update140] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("update", new Class[] {java.awt.Graphics.class})); // NOI18N
             methods[METHOD_update140].setDisplayName ( "" );
-            methods[METHOD_updateUI141] = new MethodDescriptor(javax.swing.JPanel.class.getMethod("updateUI", new Class[] {})); // NOI18N
+            methods[METHOD_updateUI141] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("updateUI", new Class[] {})); // NOI18N
             methods[METHOD_updateUI141].setDisplayName ( "" );
             methods[METHOD_validate142] = new MethodDescriptor(java.awt.Container.class.getMethod("validate", new Class[] {})); // NOI18N
             methods[METHOD_validate142].setDisplayName ( "" );

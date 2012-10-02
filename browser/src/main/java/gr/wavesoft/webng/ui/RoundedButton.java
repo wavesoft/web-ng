@@ -28,7 +28,6 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -175,6 +174,7 @@ public class RoundedButton extends JComponent {
     private void initComponents() {
 
         setOpaque(false);
+        setSize(new java.awt.Dimension(77, 26));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 RoundedButton.this.mousePressed(evt);

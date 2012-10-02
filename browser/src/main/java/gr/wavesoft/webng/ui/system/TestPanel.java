@@ -21,52 +21,51 @@
  */
 package gr.wavesoft.webng.ui.system;
 
+import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
 import gr.wavesoft.webng.api.WebViewNG;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.media.CannotRealizeException;
-import javax.media.Manager;
-import javax.media.NoPlayerException;
-import javax.media.Player;
+import java.io.InputStream;
+import uk.co.caprica.vlcj.binding.internal.libvlc_instance_t;
+import uk.co.caprica.vlcj.player.embedded.DefaultEmbeddedMediaPlayer;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
+import uk.co.caprica.vlcj.player.embedded.videosurface.CanvasVideoSurface;
+import uk.co.caprica.vlcj.binding.LibVlc;
+import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
+import uk.co.caprica.vlcj.runtime.RuntimeUtil;
+
 
 /**
  *
  * @author icharala
  */
 public class TestPanel extends WebViewNG {
+    EmbeddedMediaPlayerComponent mediaPlayerComponent;
 
     /** Creates new form TestPanel */
     public TestPanel() {
         initComponents();
-        try {
-            Manager.setHint( Manager.LIGHTWEIGHT_RENDERER, true );
-            
-            Player mediaPlayer = Manager.createRealizedPlayer(new URL("file:/Users/icharala/Movies/Watchmen[2009]DvDrip[Eng]-FXG/Watchmen[2009]DvDrip[Eng]-FXG.avi"));
-            
-            Component video = mediaPlayer.getVisualComponent();
-            Component controls = mediaPlayer.getControlPanelComponent();
-             if ( video != null )
-               	 add( video, BorderLayout.CENTER ); // add video component
-   
-             if ( controls != null )
-             add( controls, BorderLayout.SOUTH ); // add controls
-   
-             mediaPlayer.start(); // start playing the media clip
-                 
-        } catch (NoPlayerException ex) {
-            Logger.getLogger(TestPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (CannotRealizeException ex) {
-            Logger.getLogger(TestPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(TestPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(TestPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        NativeLibrary.addSearchPath(
+          RuntimeUtil.getLibVlcLibraryName(), "/Applications/VLC.app/Contents/MacOS/lib"
+        );
+        Native.loadLibrary(RuntimeUtil.getLibVlcLibraryName(), LibVlc.class);
+        
+        mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
+        
+        jPanel1.add(mediaPlayerComponent);
+        mediaPlayerComponent.setVisible(true);
+        
+        
+    }
+    
+    private void playStream(InputStream is) {
+        
+        LibVlc vlc = LibVlc.INSTANCE;
+        libvlc_instance_t inst = vlc.libvlc_new(0, new String[]{ });
+        
+        EmbeddedMediaPlayer p = new DefaultEmbeddedMediaPlayer(vlc, inst);
+        
+        CanvasVideoSurface surf = new CanvasVideoSurface(null, null);
         
     }
 
@@ -79,8 +78,60 @@ public class TestPanel extends WebViewNG {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setLayout(new java.awt.BorderLayout());
+        jPanel1 = new javax.swing.JPanel();
+        roundedButton1 = new gr.wavesoft.webng.ui.RoundedButton();
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        roundedButton1.setText("Play");
+        roundedButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundedButton1ActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout roundedButton1Layout = new org.jdesktop.layout.GroupLayout(roundedButton1);
+        roundedButton1.setLayout(roundedButton1Layout);
+        roundedButton1Layout.setHorizontalGroup(
+            roundedButton1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 77, Short.MAX_VALUE)
+        );
+        roundedButton1Layout.setVerticalGroup(
+            roundedButton1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 26, Short.MAX_VALUE)
+        );
+
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                    .add(roundedButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                .add(9, 9, 9)
+                .add(roundedButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void roundedButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton1ActionPerformed
+
+        mediaPlayerComponent.getMediaPlayer(); //.playMedia("/Users/icharala/Downloads/barsandtone.flv");
+
+    }//GEN-LAST:event_roundedButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private gr.wavesoft.webng.ui.RoundedButton roundedButton1;
     // End of variables declaration//GEN-END:variables
 }
