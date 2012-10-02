@@ -36,6 +36,7 @@ public class SystemIcons {
     public static final Image tabIconDefault;
     public static final Image tabIconError;
     public static final Image tabIconConsole;
+    public static final Image tabIconRosette;
 
     public static final Icon iconError;
     public static final Icon iconWarn;
@@ -64,6 +65,13 @@ public class SystemIcons {
         } catch (IOException ex) {
         }
         tabIconConsole = im;
+        
+        im = null;
+        try {
+            im = ImageIO.read(SystemIcons.class.getResource("/gr/wavesoft/webng/resources/rosette.png"));
+        } catch (IOException ex) {
+        }
+        tabIconRosette = im;
 
         iconError =     new javax.swing.ImageIcon(SystemIcons.class.getResource("/gr/wavesoft/webng/resources/icons/error.png"));
         iconWarn =      new javax.swing.ImageIcon(SystemIcons.class.getResource("/gr/wavesoft/webng/resources/icons/warning.png"));

@@ -20,8 +20,11 @@
  * Created on Sep 17, 2012, 3:36:27 PM
  */
 package gr.wavesoft.webng.ui.system;
+import gr.wavesoft.webng.api.BrowserWindow;
+import gr.wavesoft.webng.api.HeadButton;
 import gr.wavesoft.webng.api.WebViewNG;
 import gr.wavesoft.webng.security.WebNGKeyStore;
+import gr.wavesoft.webng.ui.SystemIcons;
 import java.io.File;
 import java.io.IOException;
 import java.security.KeyStoreException;
@@ -129,26 +132,18 @@ public class WebViewCertificates extends WebViewNG {
             Logger.getLogger(WebViewCertificates.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        
-        
-        JFileChooser fc = new JFileChooser();
-        fc.addChoosableFileFilter(new FileNameExtensionFilter("PEM Certificate", "pem"));
-        fc.addChoosableFileFilter(new FileNameExtensionFilter("DER Certificate", "der"));
-        fc.addChoosableFileFilter(new FileNameExtensionFilter("CRT Certificate", "crt"));
-        fc.showOpenDialog(getRootPane());
-        File f = fc.getSelectedFile();
-        if (f != null) {
-            try {
-                WebNGKeyStore.installRootCertificate(f);
-            } catch (KeyStoreException ex) {
-                JOptionPane.showMessageDialog(null, "Import error", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        
-        updateCertList();
     }
 
+    @Override
+    public void webngSetBrowserWindow(BrowserWindow window) {
+        super.webngSetBrowserWindow(window);
+        if (window == null) return;
+        
+        window.setIcon(SystemIcons.tabIconRosette);
+        window.setTitle("Certificates");
+
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -164,6 +159,8 @@ public class WebViewCertificates extends WebViewNG {
         jTree1 = new javax.swing.JTree();
         roundedButton1 = new gr.wavesoft.webng.ui.RoundedButton();
         roundedButton2 = new gr.wavesoft.webng.ui.RoundedButton();
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         jScrollPane1.setViewportView(jTree1);
 
@@ -186,6 +183,11 @@ public class WebViewCertificates extends WebViewNG {
         );
 
         roundedButton2.setText("Import");
+        roundedButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundedButton2ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout roundedButton2Layout = new org.jdesktop.layout.GroupLayout(roundedButton2);
         roundedButton2.setLayout(roundedButton2Layout);
@@ -203,22 +205,20 @@ public class WebViewCertificates extends WebViewNG {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
+                .addContainerGap(87, Short.MAX_VALUE)
                 .add(roundedButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(roundedButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(15, 15, 15))
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .add(roundedButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                     .add(roundedButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(roundedButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .add(roundedButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Root Certificate Authorities", jPanel3);
@@ -229,21 +229,41 @@ public class WebViewCertificates extends WebViewNG {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void roundedButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_roundedButton1ActionPerformed
+
+    private void roundedButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton2ActionPerformed
+        
+        JFileChooser fc = new JFileChooser();
+        fc.addChoosableFileFilter(new FileNameExtensionFilter("PEM Certificate", "pem"));
+        fc.addChoosableFileFilter(new FileNameExtensionFilter("DER Certificate", "der"));
+        fc.addChoosableFileFilter(new FileNameExtensionFilter("CRT Certificate", "crt"));
+        fc.showOpenDialog(getRootPane());
+        File f = fc.getSelectedFile();
+        if (f != null) {
+            try {
+                WebNGKeyStore.installRootCertificate(f);
+            } catch (KeyStoreException ex) {
+                JOptionPane.showMessageDialog(null, "Import error", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        updateCertList();
+        
+    }//GEN-LAST:event_roundedButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel3;
