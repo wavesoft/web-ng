@@ -32,7 +32,6 @@ public class SystemViews {
     
     public static WebViewNG getSystemView(String name) {
         name = name.trim().toLowerCase();
-        if (!name.startsWith("webng:")) return null;
         if ("webng:console".equals(name)) {
             return new WebViewConsole();
             

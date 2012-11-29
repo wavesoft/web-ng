@@ -20,8 +20,9 @@
  * Created on Oct 2, 2012, 3:07:03 AM
  * 
  */
-package gr.wavesoft.webng.ui;
+package gr.wavesoft.webng.components;
 
+import gr.wavesoft.webng.ui.Colorset;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.GradientPaint;

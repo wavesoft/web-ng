@@ -26,6 +26,8 @@ import gr.wavesoft.webng.io.PublicKeyEventManager;
 import gr.wavesoft.webng.ui.ComponentMover;
 import gr.wavesoft.webng.ui.Tabs.TabChangeListener;
 import java.awt.CardLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -240,5 +242,6 @@ public class Browser extends javax.swing.JFrame implements ComponentListener, Ta
     @Override
     public void publicKeyReleased(KeyEvent ke) {
     }
+    
     
 }

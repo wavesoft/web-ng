@@ -18,11 +18,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
-package gr.wavesoft.webng.io.dlib;
+package gr.wavesoft.webng.io.repos;
 
 import gr.wavesoft.webng.io.JarLoader;
 import gr.wavesoft.webng.io.SystemConsole;
 import java.io.File;
+import java.io.IOError;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import org.apache.maven.repository.internal.MavenRepositorySystemSession;
 import org.codehaus.plexus.DefaultPlexusContainer;
@@ -34,10 +36,13 @@ import org.sonatype.aether.graph.Dependency;
 import org.sonatype.aether.graph.DependencyNode;
 import org.sonatype.aether.repository.LocalRepository;
 import org.sonatype.aether.repository.RemoteRepository;
+import org.sonatype.aether.resolution.ArtifactRequest;
 import org.sonatype.aether.resolution.DependencyRequest;
 import org.sonatype.aether.resolution.DependencyResolutionException;
 import org.sonatype.aether.util.artifact.DefaultArtifact;
+import org.sonatype.aether.util.graph.DefaultDependencyNode;
 import org.sonatype.aether.util.graph.PreorderNodeListGenerator;
+import org.sonatype.aether.util.repository.DefaultMirrorSelector;
 
 /**
  * Using the code snippets from https://docs.sonatype.org/display/AETHER/Home
@@ -61,7 +66,7 @@ public class Aether {
 
         LocalRepository localRepo = new LocalRepository( folder );
         session.setLocalRepositoryManager( system.newLocalRepositoryManager( localRepo ) );
-
+        
         return session;
     }
 
@@ -69,27 +74,34 @@ public class Aether {
         try {
             repoSystem = newRepositorySystem();
             repoSession = newSession(repoSystem, folder);
+            
         } catch (Exception ex) {
             systemLogger.except(ex);
         }
     }
     
-    public static void resolveDependency(String group, String artifact, String version) {
+    public static void resolveDependency(String group, String artifact, String version) throws IOException {
         try {
-            Dependency dependency =
-                new Dependency( new DefaultArtifact( group + ":"+artifact+":"+version ), "runtime" );
-            RemoteRepository central = new RemoteRepository( "central", "default", "http://repo1.maven.org/maven2/" );
-
+            
+            // Prepare the request
             CollectRequest collectRequest = new CollectRequest();
+            
+            // Create the run-time artifact dependency
+            Dependency dependency = new Dependency( new DefaultArtifact( group + ":"+artifact+":"+version ), "runtime" );
             collectRequest.setRoot( dependency );
+            
+            // Pick default repository
+            RemoteRepository central = new RemoteRepository( "central", "runtime", "http://repo1.maven.org/maven2/" );
             collectRequest.addRepository( central );
             
+            // Pick custom repository
+            collectRequest.addRepository( AetherCore.getPeerRepository(group) );
+                        
+            // Stert collecting dependencies
             DependencyNode node = repoSystem.collectDependencies( repoSession, collectRequest ).getRoot();
-
             DependencyRequest dependencyRequest = new DependencyRequest( node, null );
-
             repoSystem.resolveDependencies( repoSession, dependencyRequest  );
-
+            
             // Generate a visitor node
             PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();
             node.accept( nlg );
@@ -102,10 +114,13 @@ public class Aether {
             
         } catch (MalformedURLException ex) {
             systemLogger.except(ex);
+            throw new IOException("Unable to locate the dependency URL", ex);
         } catch (DependencyResolutionException ex) {
             systemLogger.except(ex);
+            throw new IOException("An I/O error occured", ex);
         } catch (DependencyCollectionException ex) {
             systemLogger.except(ex);
+            throw new IOException("Unable to collect dependencies", ex);
         }
 
     }

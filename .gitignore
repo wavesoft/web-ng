@@ -3,5 +3,7 @@
 /browser/dist/
 /webng-demo/build/
 /webng-demo/dist/
-browser/src/resources/gr/wavesoft/webng/resources/btn-tab.png
-browser/target
+/browser/src/resources/gr/wavesoft/webng/resources/btn-tab.png
+/browser/target
+/browser/src/main/java/gr/wavesoft/webng/io/streams/TEST.java
+/samples/

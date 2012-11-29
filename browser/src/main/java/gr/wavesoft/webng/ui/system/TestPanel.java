@@ -33,7 +33,6 @@ import uk.co.caprica.vlcj.binding.LibVlc;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
-
 /**
  *
  * @author icharala
@@ -79,7 +78,8 @@ public class TestPanel extends WebViewNG {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        roundedButton1 = new gr.wavesoft.webng.ui.RoundedButton();
+        roundedButton1 = new gr.wavesoft.webng.components.RoundedButton();
+        roundedButton2 = new gr.wavesoft.webng.components.RoundedButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -102,6 +102,19 @@ public class TestPanel extends WebViewNG {
             .add(0, 26, Short.MAX_VALUE)
         );
 
+        roundedButton2.setText("This is some text on the button");
+
+        org.jdesktop.layout.GroupLayout roundedButton2Layout = new org.jdesktop.layout.GroupLayout(roundedButton2);
+        roundedButton2.setLayout(roundedButton2Layout);
+        roundedButton2Layout.setHorizontalGroup(
+            roundedButton2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 312, Short.MAX_VALUE)
+        );
+        roundedButton2Layout.setVerticalGroup(
+            roundedButton2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 26, Short.MAX_VALUE)
+        );
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,8 +122,11 @@ public class TestPanel extends WebViewNG {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                    .add(roundedButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .add(roundedButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(roundedButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -119,19 +135,22 @@ public class TestPanel extends WebViewNG {
                 .addContainerGap()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                 .add(9, 9, 9)
-                .add(roundedButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(roundedButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(roundedButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void roundedButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundedButton1ActionPerformed
 
-        mediaPlayerComponent.getMediaPlayer(); //.playMedia("/Users/icharala/Downloads/barsandtone.flv");
+        mediaPlayerComponent.getMediaPlayer().playMedia("/Users/icharala/...");
 
     }//GEN-LAST:event_roundedButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private gr.wavesoft.webng.ui.RoundedButton roundedButton1;
+    private gr.wavesoft.webng.components.RoundedButton roundedButton1;
+    private gr.wavesoft.webng.components.RoundedButton roundedButton2;
     // End of variables declaration//GEN-END:variables
 }

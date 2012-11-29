@@ -21,7 +21,8 @@
 package gr.wavesoft.webng;
 
 import gr.wavesoft.webng.io.WebNGSystem;
-import gr.wavesoft.webng.io.dlib.Aether;
+import gr.wavesoft.webng.io.repos.Aether;
+import gr.wavesoft.webng.io.repos.AetherCore;
 import gr.wavesoft.webng.io.web.BufferedResponse;
 import gr.wavesoft.webng.io.web.FileResponse;
 import gr.wavesoft.webng.io.web.StreamResponse;
@@ -30,6 +31,7 @@ import gr.wavesoft.webng.io.web.WebRequestListener;
 import gr.wavesoft.webng.io.web.WebResponse;
 import gr.wavesoft.webng.io.web.WebStreams;
 import gr.wavesoft.webng.security.WebNGSecurityManager;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +68,11 @@ public class WebNG {
         // Initialize WebNG Security Manager
         //System.setSecurityManager(new WebNGSecurityManager());
         
-        //Aether.resolveDependency("javax.media", "jmf", "2.1.1e");
+        try {
+            Aether.resolveDependency("gr.wavesoft", "samples", "1.0-SNAPSHOT");
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
         
         /*
 //        WebStreams.download("http://pgl.yoyo.org/http/browser-headers.php", new WebRequestListener() {
@@ -138,6 +144,7 @@ public class WebNG {
        */
 
         // Create and display the form
+        /*
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -145,6 +152,7 @@ public class WebNG {
             }
 
         });
+         */
         
     }
     

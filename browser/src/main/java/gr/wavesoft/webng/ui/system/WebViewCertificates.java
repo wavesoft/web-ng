@@ -157,13 +157,13 @@ public class WebViewCertificates extends WebViewNG {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree2 = new javax.swing.JTree();
-        roundedButton3 = new gr.wavesoft.webng.ui.RoundedButton();
-        roundedButton4 = new gr.wavesoft.webng.ui.RoundedButton();
+        roundedButton3 = new gr.wavesoft.webng.components.RoundedButton();
+        roundedButton4 = new gr.wavesoft.webng.components.RoundedButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
-        roundedButton1 = new gr.wavesoft.webng.ui.RoundedButton();
-        roundedButton2 = new gr.wavesoft.webng.ui.RoundedButton();
+        roundedButton1 = new gr.wavesoft.webng.components.RoundedButton();
+        roundedButton2 = new gr.wavesoft.webng.components.RoundedButton();
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
@@ -180,11 +180,11 @@ public class WebViewCertificates extends WebViewNG {
         roundedButton3.setLayout(roundedButton3Layout);
         roundedButton3Layout.setHorizontalGroup(
             roundedButton3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 142, Short.MAX_VALUE)
+            .add(0, 132, Short.MAX_VALUE)
         );
         roundedButton3Layout.setVerticalGroup(
             roundedButton3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 33, Short.MAX_VALUE)
+            .add(0, 25, Short.MAX_VALUE)
         );
 
         roundedButton4.setText("Import");
@@ -202,7 +202,7 @@ public class WebViewCertificates extends WebViewNG {
         );
         roundedButton4Layout.setVerticalGroup(
             roundedButton4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 33, Short.MAX_VALUE)
+            .add(0, 25, Short.MAX_VALUE)
         );
 
         org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
@@ -210,7 +210,7 @@ public class WebViewCertificates extends WebViewNG {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addContainerGap()
                 .add(roundedButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(roundedButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -219,11 +219,11 @@ public class WebViewCertificates extends WebViewNG {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(roundedButton3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(roundedButton4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(roundedButton4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(roundedButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
         );
 
         jTabbedPane1.addTab("Users", jPanel4);
@@ -349,9 +349,9 @@ public class WebViewCertificates extends WebViewNG {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTree jTree1;
     private javax.swing.JTree jTree2;
-    private gr.wavesoft.webng.ui.RoundedButton roundedButton1;
-    private gr.wavesoft.webng.ui.RoundedButton roundedButton2;
-    private gr.wavesoft.webng.ui.RoundedButton roundedButton3;
-    private gr.wavesoft.webng.ui.RoundedButton roundedButton4;
+    private gr.wavesoft.webng.components.RoundedButton roundedButton1;
+    private gr.wavesoft.webng.components.RoundedButton roundedButton2;
+    private gr.wavesoft.webng.components.RoundedButton roundedButton3;
+    private gr.wavesoft.webng.components.RoundedButton roundedButton4;
     // End of variables declaration//GEN-END:variables
 }

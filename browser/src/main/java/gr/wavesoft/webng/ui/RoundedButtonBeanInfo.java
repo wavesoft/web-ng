@@ -33,7 +33,7 @@ public class RoundedButtonBeanInfo extends SimpleBeanInfo {
     // Bean descriptor//GEN-FIRST:BeanDescriptor
     /*lazy BeanDescriptor*/
     private static BeanDescriptor getBdescriptor(){
-        BeanDescriptor beanDescriptor = new BeanDescriptor  ( gr.wavesoft.webng.ui.RoundedButton.class , null ); // NOI18N//GEN-HEADEREND:BeanDescriptor
+        BeanDescriptor beanDescriptor = new BeanDescriptor  ( gr.wavesoft.webng.components.RoundedButton.class , null ); // NOI18N//GEN-HEADEREND:BeanDescriptor
 
         // Here you can add code for customizing the BeanDescriptor.
 
@@ -149,112 +149,112 @@ public class RoundedButtonBeanInfo extends SimpleBeanInfo {
         PropertyDescriptor[] properties = new PropertyDescriptor[103];
     
         try {
-            properties[PROPERTY_accessibleContext] = new PropertyDescriptor ( "accessibleContext", gr.wavesoft.webng.ui.RoundedButton.class, "getAccessibleContext", null ); // NOI18N
-            properties[PROPERTY_actionListeners] = new PropertyDescriptor ( "actionListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getActionListeners", null ); // NOI18N
-            properties[PROPERTY_actionMap] = new PropertyDescriptor ( "actionMap", gr.wavesoft.webng.ui.RoundedButton.class, "getActionMap", "setActionMap" ); // NOI18N
-            properties[PROPERTY_alignmentX] = new PropertyDescriptor ( "alignmentX", gr.wavesoft.webng.ui.RoundedButton.class, "getAlignmentX", "setAlignmentX" ); // NOI18N
-            properties[PROPERTY_alignmentY] = new PropertyDescriptor ( "alignmentY", gr.wavesoft.webng.ui.RoundedButton.class, "getAlignmentY", "setAlignmentY" ); // NOI18N
-            properties[PROPERTY_ancestorListeners] = new PropertyDescriptor ( "ancestorListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getAncestorListeners", null ); // NOI18N
-            properties[PROPERTY_autoscrolls] = new PropertyDescriptor ( "autoscrolls", gr.wavesoft.webng.ui.RoundedButton.class, "getAutoscrolls", "setAutoscrolls" ); // NOI18N
-            properties[PROPERTY_background] = new PropertyDescriptor ( "background", gr.wavesoft.webng.ui.RoundedButton.class, "getBackground", "setBackground" ); // NOI18N
-            properties[PROPERTY_backgroundSet] = new PropertyDescriptor ( "backgroundSet", gr.wavesoft.webng.ui.RoundedButton.class, "isBackgroundSet", null ); // NOI18N
-            properties[PROPERTY_baselineResizeBehavior] = new PropertyDescriptor ( "baselineResizeBehavior", gr.wavesoft.webng.ui.RoundedButton.class, "getBaselineResizeBehavior", null ); // NOI18N
-            properties[PROPERTY_border] = new PropertyDescriptor ( "border", gr.wavesoft.webng.ui.RoundedButton.class, "getBorder", "setBorder" ); // NOI18N
-            properties[PROPERTY_bounds] = new PropertyDescriptor ( "bounds", gr.wavesoft.webng.ui.RoundedButton.class, "getBounds", "setBounds" ); // NOI18N
-            properties[PROPERTY_colorModel] = new PropertyDescriptor ( "colorModel", gr.wavesoft.webng.ui.RoundedButton.class, "getColorModel", null ); // NOI18N
-            properties[PROPERTY_component] = new IndexedPropertyDescriptor ( "component", gr.wavesoft.webng.ui.RoundedButton.class, null, null, "getComponent", null ); // NOI18N
-            properties[PROPERTY_componentCount] = new PropertyDescriptor ( "componentCount", gr.wavesoft.webng.ui.RoundedButton.class, "getComponentCount", null ); // NOI18N
-            properties[PROPERTY_componentListeners] = new PropertyDescriptor ( "componentListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getComponentListeners", null ); // NOI18N
-            properties[PROPERTY_componentOrientation] = new PropertyDescriptor ( "componentOrientation", gr.wavesoft.webng.ui.RoundedButton.class, "getComponentOrientation", "setComponentOrientation" ); // NOI18N
-            properties[PROPERTY_componentPopupMenu] = new PropertyDescriptor ( "componentPopupMenu", gr.wavesoft.webng.ui.RoundedButton.class, "getComponentPopupMenu", "setComponentPopupMenu" ); // NOI18N
-            properties[PROPERTY_components] = new PropertyDescriptor ( "components", gr.wavesoft.webng.ui.RoundedButton.class, "getComponents", null ); // NOI18N
-            properties[PROPERTY_containerListeners] = new PropertyDescriptor ( "containerListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getContainerListeners", null ); // NOI18N
-            properties[PROPERTY_cursor] = new PropertyDescriptor ( "cursor", gr.wavesoft.webng.ui.RoundedButton.class, "getCursor", "setCursor" ); // NOI18N
-            properties[PROPERTY_cursorSet] = new PropertyDescriptor ( "cursorSet", gr.wavesoft.webng.ui.RoundedButton.class, "isCursorSet", null ); // NOI18N
-            properties[PROPERTY_debugGraphicsOptions] = new PropertyDescriptor ( "debugGraphicsOptions", gr.wavesoft.webng.ui.RoundedButton.class, "getDebugGraphicsOptions", "setDebugGraphicsOptions" ); // NOI18N
-            properties[PROPERTY_displayable] = new PropertyDescriptor ( "displayable", gr.wavesoft.webng.ui.RoundedButton.class, "isDisplayable", null ); // NOI18N
-            properties[PROPERTY_doubleBuffered] = new PropertyDescriptor ( "doubleBuffered", gr.wavesoft.webng.ui.RoundedButton.class, "isDoubleBuffered", "setDoubleBuffered" ); // NOI18N
-            properties[PROPERTY_dropTarget] = new PropertyDescriptor ( "dropTarget", gr.wavesoft.webng.ui.RoundedButton.class, "getDropTarget", "setDropTarget" ); // NOI18N
-            properties[PROPERTY_enabled] = new PropertyDescriptor ( "enabled", gr.wavesoft.webng.ui.RoundedButton.class, "isEnabled", "setEnabled" ); // NOI18N
-            properties[PROPERTY_focusable] = new PropertyDescriptor ( "focusable", gr.wavesoft.webng.ui.RoundedButton.class, "isFocusable", "setFocusable" ); // NOI18N
-            properties[PROPERTY_focusCycleRoot] = new PropertyDescriptor ( "focusCycleRoot", gr.wavesoft.webng.ui.RoundedButton.class, "isFocusCycleRoot", "setFocusCycleRoot" ); // NOI18N
-            properties[PROPERTY_focusCycleRootAncestor] = new PropertyDescriptor ( "focusCycleRootAncestor", gr.wavesoft.webng.ui.RoundedButton.class, "getFocusCycleRootAncestor", null ); // NOI18N
-            properties[PROPERTY_focusListeners] = new PropertyDescriptor ( "focusListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getFocusListeners", null ); // NOI18N
-            properties[PROPERTY_focusOwner] = new PropertyDescriptor ( "focusOwner", gr.wavesoft.webng.ui.RoundedButton.class, "isFocusOwner", null ); // NOI18N
-            properties[PROPERTY_focusTraversable] = new PropertyDescriptor ( "focusTraversable", gr.wavesoft.webng.ui.RoundedButton.class, "isFocusTraversable", null ); // NOI18N
-            properties[PROPERTY_focusTraversalKeys] = new IndexedPropertyDescriptor ( "focusTraversalKeys", gr.wavesoft.webng.ui.RoundedButton.class, null, null, null, "setFocusTraversalKeys" ); // NOI18N
-            properties[PROPERTY_focusTraversalKeysEnabled] = new PropertyDescriptor ( "focusTraversalKeysEnabled", gr.wavesoft.webng.ui.RoundedButton.class, "getFocusTraversalKeysEnabled", "setFocusTraversalKeysEnabled" ); // NOI18N
-            properties[PROPERTY_focusTraversalPolicy] = new PropertyDescriptor ( "focusTraversalPolicy", gr.wavesoft.webng.ui.RoundedButton.class, "getFocusTraversalPolicy", "setFocusTraversalPolicy" ); // NOI18N
-            properties[PROPERTY_focusTraversalPolicyProvider] = new PropertyDescriptor ( "focusTraversalPolicyProvider", gr.wavesoft.webng.ui.RoundedButton.class, "isFocusTraversalPolicyProvider", "setFocusTraversalPolicyProvider" ); // NOI18N
-            properties[PROPERTY_focusTraversalPolicySet] = new PropertyDescriptor ( "focusTraversalPolicySet", gr.wavesoft.webng.ui.RoundedButton.class, "isFocusTraversalPolicySet", null ); // NOI18N
-            properties[PROPERTY_font] = new PropertyDescriptor ( "font", gr.wavesoft.webng.ui.RoundedButton.class, "getFont", "setFont" ); // NOI18N
+            properties[PROPERTY_accessibleContext] = new PropertyDescriptor ( "accessibleContext", gr.wavesoft.webng.components.RoundedButton.class, "getAccessibleContext", null ); // NOI18N
+            properties[PROPERTY_actionListeners] = new PropertyDescriptor ( "actionListeners", gr.wavesoft.webng.components.RoundedButton.class, "getActionListeners", null ); // NOI18N
+            properties[PROPERTY_actionMap] = new PropertyDescriptor ( "actionMap", gr.wavesoft.webng.components.RoundedButton.class, "getActionMap", "setActionMap" ); // NOI18N
+            properties[PROPERTY_alignmentX] = new PropertyDescriptor ( "alignmentX", gr.wavesoft.webng.components.RoundedButton.class, "getAlignmentX", "setAlignmentX" ); // NOI18N
+            properties[PROPERTY_alignmentY] = new PropertyDescriptor ( "alignmentY", gr.wavesoft.webng.components.RoundedButton.class, "getAlignmentY", "setAlignmentY" ); // NOI18N
+            properties[PROPERTY_ancestorListeners] = new PropertyDescriptor ( "ancestorListeners", gr.wavesoft.webng.components.RoundedButton.class, "getAncestorListeners", null ); // NOI18N
+            properties[PROPERTY_autoscrolls] = new PropertyDescriptor ( "autoscrolls", gr.wavesoft.webng.components.RoundedButton.class, "getAutoscrolls", "setAutoscrolls" ); // NOI18N
+            properties[PROPERTY_background] = new PropertyDescriptor ( "background", gr.wavesoft.webng.components.RoundedButton.class, "getBackground", "setBackground" ); // NOI18N
+            properties[PROPERTY_backgroundSet] = new PropertyDescriptor ( "backgroundSet", gr.wavesoft.webng.components.RoundedButton.class, "isBackgroundSet", null ); // NOI18N
+            properties[PROPERTY_baselineResizeBehavior] = new PropertyDescriptor ( "baselineResizeBehavior", gr.wavesoft.webng.components.RoundedButton.class, "getBaselineResizeBehavior", null ); // NOI18N
+            properties[PROPERTY_border] = new PropertyDescriptor ( "border", gr.wavesoft.webng.components.RoundedButton.class, "getBorder", "setBorder" ); // NOI18N
+            properties[PROPERTY_bounds] = new PropertyDescriptor ( "bounds", gr.wavesoft.webng.components.RoundedButton.class, "getBounds", "setBounds" ); // NOI18N
+            properties[PROPERTY_colorModel] = new PropertyDescriptor ( "colorModel", gr.wavesoft.webng.components.RoundedButton.class, "getColorModel", null ); // NOI18N
+            properties[PROPERTY_component] = new IndexedPropertyDescriptor ( "component", gr.wavesoft.webng.components.RoundedButton.class, null, null, "getComponent", null ); // NOI18N
+            properties[PROPERTY_componentCount] = new PropertyDescriptor ( "componentCount", gr.wavesoft.webng.components.RoundedButton.class, "getComponentCount", null ); // NOI18N
+            properties[PROPERTY_componentListeners] = new PropertyDescriptor ( "componentListeners", gr.wavesoft.webng.components.RoundedButton.class, "getComponentListeners", null ); // NOI18N
+            properties[PROPERTY_componentOrientation] = new PropertyDescriptor ( "componentOrientation", gr.wavesoft.webng.components.RoundedButton.class, "getComponentOrientation", "setComponentOrientation" ); // NOI18N
+            properties[PROPERTY_componentPopupMenu] = new PropertyDescriptor ( "componentPopupMenu", gr.wavesoft.webng.components.RoundedButton.class, "getComponentPopupMenu", "setComponentPopupMenu" ); // NOI18N
+            properties[PROPERTY_components] = new PropertyDescriptor ( "components", gr.wavesoft.webng.components.RoundedButton.class, "getComponents", null ); // NOI18N
+            properties[PROPERTY_containerListeners] = new PropertyDescriptor ( "containerListeners", gr.wavesoft.webng.components.RoundedButton.class, "getContainerListeners", null ); // NOI18N
+            properties[PROPERTY_cursor] = new PropertyDescriptor ( "cursor", gr.wavesoft.webng.components.RoundedButton.class, "getCursor", "setCursor" ); // NOI18N
+            properties[PROPERTY_cursorSet] = new PropertyDescriptor ( "cursorSet", gr.wavesoft.webng.components.RoundedButton.class, "isCursorSet", null ); // NOI18N
+            properties[PROPERTY_debugGraphicsOptions] = new PropertyDescriptor ( "debugGraphicsOptions", gr.wavesoft.webng.components.RoundedButton.class, "getDebugGraphicsOptions", "setDebugGraphicsOptions" ); // NOI18N
+            properties[PROPERTY_displayable] = new PropertyDescriptor ( "displayable", gr.wavesoft.webng.components.RoundedButton.class, "isDisplayable", null ); // NOI18N
+            properties[PROPERTY_doubleBuffered] = new PropertyDescriptor ( "doubleBuffered", gr.wavesoft.webng.components.RoundedButton.class, "isDoubleBuffered", "setDoubleBuffered" ); // NOI18N
+            properties[PROPERTY_dropTarget] = new PropertyDescriptor ( "dropTarget", gr.wavesoft.webng.components.RoundedButton.class, "getDropTarget", "setDropTarget" ); // NOI18N
+            properties[PROPERTY_enabled] = new PropertyDescriptor ( "enabled", gr.wavesoft.webng.components.RoundedButton.class, "isEnabled", "setEnabled" ); // NOI18N
+            properties[PROPERTY_focusable] = new PropertyDescriptor ( "focusable", gr.wavesoft.webng.components.RoundedButton.class, "isFocusable", "setFocusable" ); // NOI18N
+            properties[PROPERTY_focusCycleRoot] = new PropertyDescriptor ( "focusCycleRoot", gr.wavesoft.webng.components.RoundedButton.class, "isFocusCycleRoot", "setFocusCycleRoot" ); // NOI18N
+            properties[PROPERTY_focusCycleRootAncestor] = new PropertyDescriptor ( "focusCycleRootAncestor", gr.wavesoft.webng.components.RoundedButton.class, "getFocusCycleRootAncestor", null ); // NOI18N
+            properties[PROPERTY_focusListeners] = new PropertyDescriptor ( "focusListeners", gr.wavesoft.webng.components.RoundedButton.class, "getFocusListeners", null ); // NOI18N
+            properties[PROPERTY_focusOwner] = new PropertyDescriptor ( "focusOwner", gr.wavesoft.webng.components.RoundedButton.class, "isFocusOwner", null ); // NOI18N
+            properties[PROPERTY_focusTraversable] = new PropertyDescriptor ( "focusTraversable", gr.wavesoft.webng.components.RoundedButton.class, "isFocusTraversable", null ); // NOI18N
+            properties[PROPERTY_focusTraversalKeys] = new IndexedPropertyDescriptor ( "focusTraversalKeys", gr.wavesoft.webng.components.RoundedButton.class, null, null, null, "setFocusTraversalKeys" ); // NOI18N
+            properties[PROPERTY_focusTraversalKeysEnabled] = new PropertyDescriptor ( "focusTraversalKeysEnabled", gr.wavesoft.webng.components.RoundedButton.class, "getFocusTraversalKeysEnabled", "setFocusTraversalKeysEnabled" ); // NOI18N
+            properties[PROPERTY_focusTraversalPolicy] = new PropertyDescriptor ( "focusTraversalPolicy", gr.wavesoft.webng.components.RoundedButton.class, "getFocusTraversalPolicy", "setFocusTraversalPolicy" ); // NOI18N
+            properties[PROPERTY_focusTraversalPolicyProvider] = new PropertyDescriptor ( "focusTraversalPolicyProvider", gr.wavesoft.webng.components.RoundedButton.class, "isFocusTraversalPolicyProvider", "setFocusTraversalPolicyProvider" ); // NOI18N
+            properties[PROPERTY_focusTraversalPolicySet] = new PropertyDescriptor ( "focusTraversalPolicySet", gr.wavesoft.webng.components.RoundedButton.class, "isFocusTraversalPolicySet", null ); // NOI18N
+            properties[PROPERTY_font] = new PropertyDescriptor ( "font", gr.wavesoft.webng.components.RoundedButton.class, "getFont", "setFont" ); // NOI18N
             properties[PROPERTY_font].setPreferred ( true );
-            properties[PROPERTY_fontSet] = new PropertyDescriptor ( "fontSet", gr.wavesoft.webng.ui.RoundedButton.class, "isFontSet", null ); // NOI18N
-            properties[PROPERTY_foreground] = new PropertyDescriptor ( "foreground", gr.wavesoft.webng.ui.RoundedButton.class, "getForeground", "setForeground" ); // NOI18N
-            properties[PROPERTY_foregroundSet] = new PropertyDescriptor ( "foregroundSet", gr.wavesoft.webng.ui.RoundedButton.class, "isForegroundSet", null ); // NOI18N
-            properties[PROPERTY_graphics] = new PropertyDescriptor ( "graphics", gr.wavesoft.webng.ui.RoundedButton.class, "getGraphics", null ); // NOI18N
-            properties[PROPERTY_graphicsConfiguration] = new PropertyDescriptor ( "graphicsConfiguration", gr.wavesoft.webng.ui.RoundedButton.class, "getGraphicsConfiguration", null ); // NOI18N
-            properties[PROPERTY_height] = new PropertyDescriptor ( "height", gr.wavesoft.webng.ui.RoundedButton.class, "getHeight", null ); // NOI18N
-            properties[PROPERTY_hierarchyBoundsListeners] = new PropertyDescriptor ( "hierarchyBoundsListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getHierarchyBoundsListeners", null ); // NOI18N
-            properties[PROPERTY_hierarchyListeners] = new PropertyDescriptor ( "hierarchyListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getHierarchyListeners", null ); // NOI18N
-            properties[PROPERTY_ignoreRepaint] = new PropertyDescriptor ( "ignoreRepaint", gr.wavesoft.webng.ui.RoundedButton.class, "getIgnoreRepaint", "setIgnoreRepaint" ); // NOI18N
-            properties[PROPERTY_inheritsPopupMenu] = new PropertyDescriptor ( "inheritsPopupMenu", gr.wavesoft.webng.ui.RoundedButton.class, "getInheritsPopupMenu", "setInheritsPopupMenu" ); // NOI18N
-            properties[PROPERTY_inputContext] = new PropertyDescriptor ( "inputContext", gr.wavesoft.webng.ui.RoundedButton.class, "getInputContext", null ); // NOI18N
-            properties[PROPERTY_inputMap] = new PropertyDescriptor ( "inputMap", gr.wavesoft.webng.ui.RoundedButton.class, "getInputMap", null ); // NOI18N
-            properties[PROPERTY_inputMethodListeners] = new PropertyDescriptor ( "inputMethodListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getInputMethodListeners", null ); // NOI18N
-            properties[PROPERTY_inputMethodRequests] = new PropertyDescriptor ( "inputMethodRequests", gr.wavesoft.webng.ui.RoundedButton.class, "getInputMethodRequests", null ); // NOI18N
-            properties[PROPERTY_inputVerifier] = new PropertyDescriptor ( "inputVerifier", gr.wavesoft.webng.ui.RoundedButton.class, "getInputVerifier", "setInputVerifier" ); // NOI18N
-            properties[PROPERTY_insets] = new PropertyDescriptor ( "insets", gr.wavesoft.webng.ui.RoundedButton.class, "getInsets", null ); // NOI18N
-            properties[PROPERTY_keyListeners] = new PropertyDescriptor ( "keyListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getKeyListeners", null ); // NOI18N
-            properties[PROPERTY_layout] = new PropertyDescriptor ( "layout", gr.wavesoft.webng.ui.RoundedButton.class, "getLayout", "setLayout" ); // NOI18N
-            properties[PROPERTY_lightweight] = new PropertyDescriptor ( "lightweight", gr.wavesoft.webng.ui.RoundedButton.class, "isLightweight", null ); // NOI18N
-            properties[PROPERTY_locale] = new PropertyDescriptor ( "locale", gr.wavesoft.webng.ui.RoundedButton.class, "getLocale", "setLocale" ); // NOI18N
-            properties[PROPERTY_location] = new PropertyDescriptor ( "location", gr.wavesoft.webng.ui.RoundedButton.class, "getLocation", "setLocation" ); // NOI18N
-            properties[PROPERTY_locationOnScreen] = new PropertyDescriptor ( "locationOnScreen", gr.wavesoft.webng.ui.RoundedButton.class, "getLocationOnScreen", null ); // NOI18N
-            properties[PROPERTY_managingFocus] = new PropertyDescriptor ( "managingFocus", gr.wavesoft.webng.ui.RoundedButton.class, "isManagingFocus", null ); // NOI18N
-            properties[PROPERTY_maximumSize] = new PropertyDescriptor ( "maximumSize", gr.wavesoft.webng.ui.RoundedButton.class, "getMaximumSize", "setMaximumSize" ); // NOI18N
-            properties[PROPERTY_maximumSizeSet] = new PropertyDescriptor ( "maximumSizeSet", gr.wavesoft.webng.ui.RoundedButton.class, "isMaximumSizeSet", null ); // NOI18N
-            properties[PROPERTY_minimumSize] = new PropertyDescriptor ( "minimumSize", gr.wavesoft.webng.ui.RoundedButton.class, "getMinimumSize", "setMinimumSize" ); // NOI18N
-            properties[PROPERTY_minimumSizeSet] = new PropertyDescriptor ( "minimumSizeSet", gr.wavesoft.webng.ui.RoundedButton.class, "isMinimumSizeSet", null ); // NOI18N
-            properties[PROPERTY_mouseListeners] = new PropertyDescriptor ( "mouseListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getMouseListeners", null ); // NOI18N
-            properties[PROPERTY_mouseMotionListeners] = new PropertyDescriptor ( "mouseMotionListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getMouseMotionListeners", null ); // NOI18N
-            properties[PROPERTY_mousePosition] = new PropertyDescriptor ( "mousePosition", gr.wavesoft.webng.ui.RoundedButton.class, "getMousePosition", null ); // NOI18N
-            properties[PROPERTY_mouseWheelListeners] = new PropertyDescriptor ( "mouseWheelListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getMouseWheelListeners", null ); // NOI18N
-            properties[PROPERTY_name] = new PropertyDescriptor ( "name", gr.wavesoft.webng.ui.RoundedButton.class, "getName", "setName" ); // NOI18N
-            properties[PROPERTY_nextFocusableComponent] = new PropertyDescriptor ( "nextFocusableComponent", gr.wavesoft.webng.ui.RoundedButton.class, "getNextFocusableComponent", "setNextFocusableComponent" ); // NOI18N
-            properties[PROPERTY_opaque] = new PropertyDescriptor ( "opaque", gr.wavesoft.webng.ui.RoundedButton.class, "isOpaque", "setOpaque" ); // NOI18N
-            properties[PROPERTY_optimizedDrawingEnabled] = new PropertyDescriptor ( "optimizedDrawingEnabled", gr.wavesoft.webng.ui.RoundedButton.class, "isOptimizedDrawingEnabled", null ); // NOI18N
-            properties[PROPERTY_paintingForPrint] = new PropertyDescriptor ( "paintingForPrint", gr.wavesoft.webng.ui.RoundedButton.class, "isPaintingForPrint", null ); // NOI18N
-            properties[PROPERTY_paintingTile] = new PropertyDescriptor ( "paintingTile", gr.wavesoft.webng.ui.RoundedButton.class, "isPaintingTile", null ); // NOI18N
-            properties[PROPERTY_parent] = new PropertyDescriptor ( "parent", gr.wavesoft.webng.ui.RoundedButton.class, "getParent", null ); // NOI18N
-            properties[PROPERTY_peer] = new PropertyDescriptor ( "peer", gr.wavesoft.webng.ui.RoundedButton.class, "getPeer", null ); // NOI18N
-            properties[PROPERTY_preferredSize] = new PropertyDescriptor ( "preferredSize", gr.wavesoft.webng.ui.RoundedButton.class, "getPreferredSize", "setPreferredSize" ); // NOI18N
-            properties[PROPERTY_preferredSizeSet] = new PropertyDescriptor ( "preferredSizeSet", gr.wavesoft.webng.ui.RoundedButton.class, "isPreferredSizeSet", null ); // NOI18N
-            properties[PROPERTY_propertyChangeListeners] = new PropertyDescriptor ( "propertyChangeListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getPropertyChangeListeners", null ); // NOI18N
-            properties[PROPERTY_registeredKeyStrokes] = new PropertyDescriptor ( "registeredKeyStrokes", gr.wavesoft.webng.ui.RoundedButton.class, "getRegisteredKeyStrokes", null ); // NOI18N
-            properties[PROPERTY_requestFocusEnabled] = new PropertyDescriptor ( "requestFocusEnabled", gr.wavesoft.webng.ui.RoundedButton.class, "isRequestFocusEnabled", "setRequestFocusEnabled" ); // NOI18N
-            properties[PROPERTY_rootPane] = new PropertyDescriptor ( "rootPane", gr.wavesoft.webng.ui.RoundedButton.class, "getRootPane", null ); // NOI18N
-            properties[PROPERTY_showing] = new PropertyDescriptor ( "showing", gr.wavesoft.webng.ui.RoundedButton.class, "isShowing", null ); // NOI18N
-            properties[PROPERTY_size] = new PropertyDescriptor ( "size", gr.wavesoft.webng.ui.RoundedButton.class, "getSize", "setSize" ); // NOI18N
-            properties[PROPERTY_text] = new PropertyDescriptor ( "text", gr.wavesoft.webng.ui.RoundedButton.class, "getText", "setText" ); // NOI18N
+            properties[PROPERTY_fontSet] = new PropertyDescriptor ( "fontSet", gr.wavesoft.webng.components.RoundedButton.class, "isFontSet", null ); // NOI18N
+            properties[PROPERTY_foreground] = new PropertyDescriptor ( "foreground", gr.wavesoft.webng.components.RoundedButton.class, "getForeground", "setForeground" ); // NOI18N
+            properties[PROPERTY_foregroundSet] = new PropertyDescriptor ( "foregroundSet", gr.wavesoft.webng.components.RoundedButton.class, "isForegroundSet", null ); // NOI18N
+            properties[PROPERTY_graphics] = new PropertyDescriptor ( "graphics", gr.wavesoft.webng.components.RoundedButton.class, "getGraphics", null ); // NOI18N
+            properties[PROPERTY_graphicsConfiguration] = new PropertyDescriptor ( "graphicsConfiguration", gr.wavesoft.webng.components.RoundedButton.class, "getGraphicsConfiguration", null ); // NOI18N
+            properties[PROPERTY_height] = new PropertyDescriptor ( "height", gr.wavesoft.webng.components.RoundedButton.class, "getHeight", null ); // NOI18N
+            properties[PROPERTY_hierarchyBoundsListeners] = new PropertyDescriptor ( "hierarchyBoundsListeners", gr.wavesoft.webng.components.RoundedButton.class, "getHierarchyBoundsListeners", null ); // NOI18N
+            properties[PROPERTY_hierarchyListeners] = new PropertyDescriptor ( "hierarchyListeners", gr.wavesoft.webng.components.RoundedButton.class, "getHierarchyListeners", null ); // NOI18N
+            properties[PROPERTY_ignoreRepaint] = new PropertyDescriptor ( "ignoreRepaint", gr.wavesoft.webng.components.RoundedButton.class, "getIgnoreRepaint", "setIgnoreRepaint" ); // NOI18N
+            properties[PROPERTY_inheritsPopupMenu] = new PropertyDescriptor ( "inheritsPopupMenu", gr.wavesoft.webng.components.RoundedButton.class, "getInheritsPopupMenu", "setInheritsPopupMenu" ); // NOI18N
+            properties[PROPERTY_inputContext] = new PropertyDescriptor ( "inputContext", gr.wavesoft.webng.components.RoundedButton.class, "getInputContext", null ); // NOI18N
+            properties[PROPERTY_inputMap] = new PropertyDescriptor ( "inputMap", gr.wavesoft.webng.components.RoundedButton.class, "getInputMap", null ); // NOI18N
+            properties[PROPERTY_inputMethodListeners] = new PropertyDescriptor ( "inputMethodListeners", gr.wavesoft.webng.components.RoundedButton.class, "getInputMethodListeners", null ); // NOI18N
+            properties[PROPERTY_inputMethodRequests] = new PropertyDescriptor ( "inputMethodRequests", gr.wavesoft.webng.components.RoundedButton.class, "getInputMethodRequests", null ); // NOI18N
+            properties[PROPERTY_inputVerifier] = new PropertyDescriptor ( "inputVerifier", gr.wavesoft.webng.components.RoundedButton.class, "getInputVerifier", "setInputVerifier" ); // NOI18N
+            properties[PROPERTY_insets] = new PropertyDescriptor ( "insets", gr.wavesoft.webng.components.RoundedButton.class, "getInsets", null ); // NOI18N
+            properties[PROPERTY_keyListeners] = new PropertyDescriptor ( "keyListeners", gr.wavesoft.webng.components.RoundedButton.class, "getKeyListeners", null ); // NOI18N
+            properties[PROPERTY_layout] = new PropertyDescriptor ( "layout", gr.wavesoft.webng.components.RoundedButton.class, "getLayout", "setLayout" ); // NOI18N
+            properties[PROPERTY_lightweight] = new PropertyDescriptor ( "lightweight", gr.wavesoft.webng.components.RoundedButton.class, "isLightweight", null ); // NOI18N
+            properties[PROPERTY_locale] = new PropertyDescriptor ( "locale", gr.wavesoft.webng.components.RoundedButton.class, "getLocale", "setLocale" ); // NOI18N
+            properties[PROPERTY_location] = new PropertyDescriptor ( "location", gr.wavesoft.webng.components.RoundedButton.class, "getLocation", "setLocation" ); // NOI18N
+            properties[PROPERTY_locationOnScreen] = new PropertyDescriptor ( "locationOnScreen", gr.wavesoft.webng.components.RoundedButton.class, "getLocationOnScreen", null ); // NOI18N
+            properties[PROPERTY_managingFocus] = new PropertyDescriptor ( "managingFocus", gr.wavesoft.webng.components.RoundedButton.class, "isManagingFocus", null ); // NOI18N
+            properties[PROPERTY_maximumSize] = new PropertyDescriptor ( "maximumSize", gr.wavesoft.webng.components.RoundedButton.class, "getMaximumSize", "setMaximumSize" ); // NOI18N
+            properties[PROPERTY_maximumSizeSet] = new PropertyDescriptor ( "maximumSizeSet", gr.wavesoft.webng.components.RoundedButton.class, "isMaximumSizeSet", null ); // NOI18N
+            properties[PROPERTY_minimumSize] = new PropertyDescriptor ( "minimumSize", gr.wavesoft.webng.components.RoundedButton.class, "getMinimumSize", "setMinimumSize" ); // NOI18N
+            properties[PROPERTY_minimumSizeSet] = new PropertyDescriptor ( "minimumSizeSet", gr.wavesoft.webng.components.RoundedButton.class, "isMinimumSizeSet", null ); // NOI18N
+            properties[PROPERTY_mouseListeners] = new PropertyDescriptor ( "mouseListeners", gr.wavesoft.webng.components.RoundedButton.class, "getMouseListeners", null ); // NOI18N
+            properties[PROPERTY_mouseMotionListeners] = new PropertyDescriptor ( "mouseMotionListeners", gr.wavesoft.webng.components.RoundedButton.class, "getMouseMotionListeners", null ); // NOI18N
+            properties[PROPERTY_mousePosition] = new PropertyDescriptor ( "mousePosition", gr.wavesoft.webng.components.RoundedButton.class, "getMousePosition", null ); // NOI18N
+            properties[PROPERTY_mouseWheelListeners] = new PropertyDescriptor ( "mouseWheelListeners", gr.wavesoft.webng.components.RoundedButton.class, "getMouseWheelListeners", null ); // NOI18N
+            properties[PROPERTY_name] = new PropertyDescriptor ( "name", gr.wavesoft.webng.components.RoundedButton.class, "getName", "setName" ); // NOI18N
+            properties[PROPERTY_nextFocusableComponent] = new PropertyDescriptor ( "nextFocusableComponent", gr.wavesoft.webng.components.RoundedButton.class, "getNextFocusableComponent", "setNextFocusableComponent" ); // NOI18N
+            properties[PROPERTY_opaque] = new PropertyDescriptor ( "opaque", gr.wavesoft.webng.components.RoundedButton.class, "isOpaque", "setOpaque" ); // NOI18N
+            properties[PROPERTY_optimizedDrawingEnabled] = new PropertyDescriptor ( "optimizedDrawingEnabled", gr.wavesoft.webng.components.RoundedButton.class, "isOptimizedDrawingEnabled", null ); // NOI18N
+            properties[PROPERTY_paintingForPrint] = new PropertyDescriptor ( "paintingForPrint", gr.wavesoft.webng.components.RoundedButton.class, "isPaintingForPrint", null ); // NOI18N
+            properties[PROPERTY_paintingTile] = new PropertyDescriptor ( "paintingTile", gr.wavesoft.webng.components.RoundedButton.class, "isPaintingTile", null ); // NOI18N
+            properties[PROPERTY_parent] = new PropertyDescriptor ( "parent", gr.wavesoft.webng.components.RoundedButton.class, "getParent", null ); // NOI18N
+            properties[PROPERTY_peer] = new PropertyDescriptor ( "peer", gr.wavesoft.webng.components.RoundedButton.class, "getPeer", null ); // NOI18N
+            properties[PROPERTY_preferredSize] = new PropertyDescriptor ( "preferredSize", gr.wavesoft.webng.components.RoundedButton.class, "getPreferredSize", "setPreferredSize" ); // NOI18N
+            properties[PROPERTY_preferredSizeSet] = new PropertyDescriptor ( "preferredSizeSet", gr.wavesoft.webng.components.RoundedButton.class, "isPreferredSizeSet", null ); // NOI18N
+            properties[PROPERTY_propertyChangeListeners] = new PropertyDescriptor ( "propertyChangeListeners", gr.wavesoft.webng.components.RoundedButton.class, "getPropertyChangeListeners", null ); // NOI18N
+            properties[PROPERTY_registeredKeyStrokes] = new PropertyDescriptor ( "registeredKeyStrokes", gr.wavesoft.webng.components.RoundedButton.class, "getRegisteredKeyStrokes", null ); // NOI18N
+            properties[PROPERTY_requestFocusEnabled] = new PropertyDescriptor ( "requestFocusEnabled", gr.wavesoft.webng.components.RoundedButton.class, "isRequestFocusEnabled", "setRequestFocusEnabled" ); // NOI18N
+            properties[PROPERTY_rootPane] = new PropertyDescriptor ( "rootPane", gr.wavesoft.webng.components.RoundedButton.class, "getRootPane", null ); // NOI18N
+            properties[PROPERTY_showing] = new PropertyDescriptor ( "showing", gr.wavesoft.webng.components.RoundedButton.class, "isShowing", null ); // NOI18N
+            properties[PROPERTY_size] = new PropertyDescriptor ( "size", gr.wavesoft.webng.components.RoundedButton.class, "getSize", "setSize" ); // NOI18N
+            properties[PROPERTY_text] = new PropertyDescriptor ( "text", gr.wavesoft.webng.components.RoundedButton.class, "getText", "setText" ); // NOI18N
             properties[PROPERTY_text].setPreferred ( true );
-            properties[PROPERTY_textColor] = new PropertyDescriptor ( "textColor", gr.wavesoft.webng.ui.RoundedButton.class, "getTextColor", "setTextColor" ); // NOI18N
+            properties[PROPERTY_textColor] = new PropertyDescriptor ( "textColor", gr.wavesoft.webng.components.RoundedButton.class, "getTextColor", "setTextColor" ); // NOI18N
             properties[PROPERTY_textColor].setPreferred ( true );
-            properties[PROPERTY_toolkit] = new PropertyDescriptor ( "toolkit", gr.wavesoft.webng.ui.RoundedButton.class, "getToolkit", null ); // NOI18N
-            properties[PROPERTY_toolTipText] = new PropertyDescriptor ( "toolTipText", gr.wavesoft.webng.ui.RoundedButton.class, "getToolTipText", "setToolTipText" ); // NOI18N
-            properties[PROPERTY_topLevelAncestor] = new PropertyDescriptor ( "topLevelAncestor", gr.wavesoft.webng.ui.RoundedButton.class, "getTopLevelAncestor", null ); // NOI18N
-            properties[PROPERTY_transferHandler] = new PropertyDescriptor ( "transferHandler", gr.wavesoft.webng.ui.RoundedButton.class, "getTransferHandler", "setTransferHandler" ); // NOI18N
-            properties[PROPERTY_treeLock] = new PropertyDescriptor ( "treeLock", gr.wavesoft.webng.ui.RoundedButton.class, "getTreeLock", null ); // NOI18N
-            properties[PROPERTY_UIClassID] = new PropertyDescriptor ( "UIClassID", gr.wavesoft.webng.ui.RoundedButton.class, "getUIClassID", null ); // NOI18N
-            properties[PROPERTY_valid] = new PropertyDescriptor ( "valid", gr.wavesoft.webng.ui.RoundedButton.class, "isValid", null ); // NOI18N
-            properties[PROPERTY_validateRoot] = new PropertyDescriptor ( "validateRoot", gr.wavesoft.webng.ui.RoundedButton.class, "isValidateRoot", null ); // NOI18N
-            properties[PROPERTY_verifyInputWhenFocusTarget] = new PropertyDescriptor ( "verifyInputWhenFocusTarget", gr.wavesoft.webng.ui.RoundedButton.class, "getVerifyInputWhenFocusTarget", "setVerifyInputWhenFocusTarget" ); // NOI18N
-            properties[PROPERTY_vetoableChangeListeners] = new PropertyDescriptor ( "vetoableChangeListeners", gr.wavesoft.webng.ui.RoundedButton.class, "getVetoableChangeListeners", null ); // NOI18N
-            properties[PROPERTY_visible] = new PropertyDescriptor ( "visible", gr.wavesoft.webng.ui.RoundedButton.class, "isVisible", "setVisible" ); // NOI18N
-            properties[PROPERTY_visibleRect] = new PropertyDescriptor ( "visibleRect", gr.wavesoft.webng.ui.RoundedButton.class, "getVisibleRect", null ); // NOI18N
-            properties[PROPERTY_width] = new PropertyDescriptor ( "width", gr.wavesoft.webng.ui.RoundedButton.class, "getWidth", null ); // NOI18N
-            properties[PROPERTY_x] = new PropertyDescriptor ( "x", gr.wavesoft.webng.ui.RoundedButton.class, "getX", null ); // NOI18N
-            properties[PROPERTY_y] = new PropertyDescriptor ( "y", gr.wavesoft.webng.ui.RoundedButton.class, "getY", null ); // NOI18N
+            properties[PROPERTY_toolkit] = new PropertyDescriptor ( "toolkit", gr.wavesoft.webng.components.RoundedButton.class, "getToolkit", null ); // NOI18N
+            properties[PROPERTY_toolTipText] = new PropertyDescriptor ( "toolTipText", gr.wavesoft.webng.components.RoundedButton.class, "getToolTipText", "setToolTipText" ); // NOI18N
+            properties[PROPERTY_topLevelAncestor] = new PropertyDescriptor ( "topLevelAncestor", gr.wavesoft.webng.components.RoundedButton.class, "getTopLevelAncestor", null ); // NOI18N
+            properties[PROPERTY_transferHandler] = new PropertyDescriptor ( "transferHandler", gr.wavesoft.webng.components.RoundedButton.class, "getTransferHandler", "setTransferHandler" ); // NOI18N
+            properties[PROPERTY_treeLock] = new PropertyDescriptor ( "treeLock", gr.wavesoft.webng.components.RoundedButton.class, "getTreeLock", null ); // NOI18N
+            properties[PROPERTY_UIClassID] = new PropertyDescriptor ( "UIClassID", gr.wavesoft.webng.components.RoundedButton.class, "getUIClassID", null ); // NOI18N
+            properties[PROPERTY_valid] = new PropertyDescriptor ( "valid", gr.wavesoft.webng.components.RoundedButton.class, "isValid", null ); // NOI18N
+            properties[PROPERTY_validateRoot] = new PropertyDescriptor ( "validateRoot", gr.wavesoft.webng.components.RoundedButton.class, "isValidateRoot", null ); // NOI18N
+            properties[PROPERTY_verifyInputWhenFocusTarget] = new PropertyDescriptor ( "verifyInputWhenFocusTarget", gr.wavesoft.webng.components.RoundedButton.class, "getVerifyInputWhenFocusTarget", "setVerifyInputWhenFocusTarget" ); // NOI18N
+            properties[PROPERTY_vetoableChangeListeners] = new PropertyDescriptor ( "vetoableChangeListeners", gr.wavesoft.webng.components.RoundedButton.class, "getVetoableChangeListeners", null ); // NOI18N
+            properties[PROPERTY_visible] = new PropertyDescriptor ( "visible", gr.wavesoft.webng.components.RoundedButton.class, "isVisible", "setVisible" ); // NOI18N
+            properties[PROPERTY_visibleRect] = new PropertyDescriptor ( "visibleRect", gr.wavesoft.webng.components.RoundedButton.class, "getVisibleRect", null ); // NOI18N
+            properties[PROPERTY_width] = new PropertyDescriptor ( "width", gr.wavesoft.webng.components.RoundedButton.class, "getWidth", null ); // NOI18N
+            properties[PROPERTY_x] = new PropertyDescriptor ( "x", gr.wavesoft.webng.components.RoundedButton.class, "getX", null ); // NOI18N
+            properties[PROPERTY_y] = new PropertyDescriptor ( "y", gr.wavesoft.webng.components.RoundedButton.class, "getY", null ); // NOI18N
         }
         catch(IntrospectionException e) {
             e.printStackTrace();
@@ -285,20 +285,20 @@ public class RoundedButtonBeanInfo extends SimpleBeanInfo {
         EventSetDescriptor[] eventSets = new EventSetDescriptor[14];
     
         try {
-            eventSets[EVENT_actionListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "actionListener", java.awt.event.ActionListener.class, new String[] {"actionPerformed"}, "addActionListener", "removeActionListener" ); // NOI18N
-            eventSets[EVENT_ancestorListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "ancestorListener", javax.swing.event.AncestorListener.class, new String[] {"ancestorAdded", "ancestorRemoved", "ancestorMoved"}, "addAncestorListener", "removeAncestorListener" ); // NOI18N
-            eventSets[EVENT_componentListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "componentListener", java.awt.event.ComponentListener.class, new String[] {"componentResized", "componentMoved", "componentShown", "componentHidden"}, "addComponentListener", "removeComponentListener" ); // NOI18N
-            eventSets[EVENT_containerListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "containerListener", java.awt.event.ContainerListener.class, new String[] {"componentAdded", "componentRemoved"}, "addContainerListener", "removeContainerListener" ); // NOI18N
-            eventSets[EVENT_focusListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "focusListener", java.awt.event.FocusListener.class, new String[] {"focusGained", "focusLost"}, "addFocusListener", "removeFocusListener" ); // NOI18N
-            eventSets[EVENT_hierarchyBoundsListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "hierarchyBoundsListener", java.awt.event.HierarchyBoundsListener.class, new String[] {"ancestorMoved", "ancestorResized"}, "addHierarchyBoundsListener", "removeHierarchyBoundsListener" ); // NOI18N
-            eventSets[EVENT_hierarchyListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "hierarchyListener", java.awt.event.HierarchyListener.class, new String[] {"hierarchyChanged"}, "addHierarchyListener", "removeHierarchyListener" ); // NOI18N
-            eventSets[EVENT_inputMethodListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "inputMethodListener", java.awt.event.InputMethodListener.class, new String[] {"inputMethodTextChanged", "caretPositionChanged"}, "addInputMethodListener", "removeInputMethodListener" ); // NOI18N
-            eventSets[EVENT_keyListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "keyListener", java.awt.event.KeyListener.class, new String[] {"keyTyped", "keyPressed", "keyReleased"}, "addKeyListener", "removeKeyListener" ); // NOI18N
-            eventSets[EVENT_mouseListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "mouseListener", java.awt.event.MouseListener.class, new String[] {"mouseClicked", "mousePressed", "mouseReleased", "mouseEntered", "mouseExited"}, "addMouseListener", "removeMouseListener" ); // NOI18N
-            eventSets[EVENT_mouseMotionListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "mouseMotionListener", java.awt.event.MouseMotionListener.class, new String[] {"mouseDragged", "mouseMoved"}, "addMouseMotionListener", "removeMouseMotionListener" ); // NOI18N
-            eventSets[EVENT_mouseWheelListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "mouseWheelListener", java.awt.event.MouseWheelListener.class, new String[] {"mouseWheelMoved"}, "addMouseWheelListener", "removeMouseWheelListener" ); // NOI18N
-            eventSets[EVENT_propertyChangeListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "propertyChangeListener", java.beans.PropertyChangeListener.class, new String[] {"propertyChange"}, "addPropertyChangeListener", "removePropertyChangeListener" ); // NOI18N
-            eventSets[EVENT_vetoableChangeListener] = new EventSetDescriptor ( gr.wavesoft.webng.ui.RoundedButton.class, "vetoableChangeListener", java.beans.VetoableChangeListener.class, new String[] {"vetoableChange"}, "addVetoableChangeListener", "removeVetoableChangeListener" ); // NOI18N
+            eventSets[EVENT_actionListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "actionListener", java.awt.event.ActionListener.class, new String[] {"actionPerformed"}, "addActionListener", "removeActionListener" ); // NOI18N
+            eventSets[EVENT_ancestorListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "ancestorListener", javax.swing.event.AncestorListener.class, new String[] {"ancestorAdded", "ancestorRemoved", "ancestorMoved"}, "addAncestorListener", "removeAncestorListener" ); // NOI18N
+            eventSets[EVENT_componentListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "componentListener", java.awt.event.ComponentListener.class, new String[] {"componentResized", "componentMoved", "componentShown", "componentHidden"}, "addComponentListener", "removeComponentListener" ); // NOI18N
+            eventSets[EVENT_containerListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "containerListener", java.awt.event.ContainerListener.class, new String[] {"componentAdded", "componentRemoved"}, "addContainerListener", "removeContainerListener" ); // NOI18N
+            eventSets[EVENT_focusListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "focusListener", java.awt.event.FocusListener.class, new String[] {"focusGained", "focusLost"}, "addFocusListener", "removeFocusListener" ); // NOI18N
+            eventSets[EVENT_hierarchyBoundsListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "hierarchyBoundsListener", java.awt.event.HierarchyBoundsListener.class, new String[] {"ancestorMoved", "ancestorResized"}, "addHierarchyBoundsListener", "removeHierarchyBoundsListener" ); // NOI18N
+            eventSets[EVENT_hierarchyListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "hierarchyListener", java.awt.event.HierarchyListener.class, new String[] {"hierarchyChanged"}, "addHierarchyListener", "removeHierarchyListener" ); // NOI18N
+            eventSets[EVENT_inputMethodListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "inputMethodListener", java.awt.event.InputMethodListener.class, new String[] {"inputMethodTextChanged", "caretPositionChanged"}, "addInputMethodListener", "removeInputMethodListener" ); // NOI18N
+            eventSets[EVENT_keyListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "keyListener", java.awt.event.KeyListener.class, new String[] {"keyTyped", "keyPressed", "keyReleased"}, "addKeyListener", "removeKeyListener" ); // NOI18N
+            eventSets[EVENT_mouseListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "mouseListener", java.awt.event.MouseListener.class, new String[] {"mouseClicked", "mousePressed", "mouseReleased", "mouseEntered", "mouseExited"}, "addMouseListener", "removeMouseListener" ); // NOI18N
+            eventSets[EVENT_mouseMotionListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "mouseMotionListener", java.awt.event.MouseMotionListener.class, new String[] {"mouseDragged", "mouseMoved"}, "addMouseMotionListener", "removeMouseMotionListener" ); // NOI18N
+            eventSets[EVENT_mouseWheelListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "mouseWheelListener", java.awt.event.MouseWheelListener.class, new String[] {"mouseWheelMoved"}, "addMouseWheelListener", "removeMouseWheelListener" ); // NOI18N
+            eventSets[EVENT_propertyChangeListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "propertyChangeListener", java.beans.PropertyChangeListener.class, new String[] {"propertyChange"}, "addPropertyChangeListener", "removePropertyChangeListener" ); // NOI18N
+            eventSets[EVENT_vetoableChangeListener] = new EventSetDescriptor ( gr.wavesoft.webng.components.RoundedButton.class, "vetoableChangeListener", java.beans.VetoableChangeListener.class, new String[] {"vetoableChange"}, "addVetoableChangeListener", "removeVetoableChangeListener" ); // NOI18N
         }
         catch(IntrospectionException e) {
             e.printStackTrace();
@@ -642,7 +642,7 @@ public class RoundedButtonBeanInfo extends SimpleBeanInfo {
             methods[METHOD_move90].setDisplayName ( "" );
             methods[METHOD_nextFocus91] = new MethodDescriptor(java.awt.Component.class.getMethod("nextFocus", new Class[] {})); // NOI18N
             methods[METHOD_nextFocus91].setDisplayName ( "" );
-            methods[METHOD_paint92] = new MethodDescriptor(gr.wavesoft.webng.ui.RoundedButton.class.getMethod("paint", new Class[] {java.awt.Graphics.class})); // NOI18N
+            methods[METHOD_paint92] = new MethodDescriptor(gr.wavesoft.webng.components.RoundedButton.class.getMethod("paint", new Class[] {java.awt.Graphics.class})); // NOI18N
             methods[METHOD_paint92].setDisplayName ( "" );
             methods[METHOD_paintAll93] = new MethodDescriptor(java.awt.Component.class.getMethod("paintAll", new Class[] {java.awt.Graphics.class})); // NOI18N
             methods[METHOD_paintAll93].setDisplayName ( "" );

@@ -20,8 +20,9 @@
  */
 package gr.wavesoft.webng.io;
 
-import gr.wavesoft.webng.io.dlib.Aether;
+import gr.wavesoft.webng.io.repos.Aether;
 import gr.wavesoft.webng.io.cache.WebNGCache;
+import gr.wavesoft.webng.io.repos.AetherCore;
 import gr.wavesoft.webng.io.web.WebStreams;
 import gr.wavesoft.webng.security.WebNGKeyStore;
 import java.io.File;
@@ -100,6 +101,7 @@ public class WebNGSystem {
         // Initialize Aether repository
         mkdirIfMissing(webNGdir+"/repos");
         Aether.Initialize(webNGdir+"/repos");
+        //AetherCore.Initialize(webNGdir+"/repos");
         
         // Initialize JarIO
         WebNGIO.Initialize(webNGdir);
