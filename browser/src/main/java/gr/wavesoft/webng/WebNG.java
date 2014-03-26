@@ -144,7 +144,6 @@ public class WebNG {
        */
 
         // Create and display the form
-        /*
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -152,7 +151,6 @@ public class WebNG {
             }
 
         });
-         */
         
     }
     
